@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres - DSA Guelma</title>
+    <link rel="stylesheet" href="parametres.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="settings-container">
+        <div class="settings-header">
+            <h2><i class="fas fa-cog"></i> Paramètres du système</h2>
+            <p>Configurez les paramètres de l'application selon vos besoins</p>
+        </div>
+        
+        <div class="settings-sidebar">
+            <ul class="settings-menu">
+                <li class="active" data-target="general-settings">
+                    <i class="fas fa-sliders-h"></i> Paramètres généraux
+                </li>
+                <li data-target="user-management">
+                    <i class="fas fa-users"></i> Gestion des utilisateurs
+                </li>
+                <li data-target="notifications">
+                    <i class="fas fa-bell"></i> Notifications
+                </li>
+                <li data-target="security">
+                    <i class="fas fa-shield-alt"></i> Sécurité
+                </li>
+                <li data-target="backup">
+                    <i class="fas fa-database"></i> Sauvegarde et restauration
+                </li>
+            </ul>
+        </div>
+        
+        <div class="settings-content">
+            <!-- Paramètres généraux -->
+            <div id="general-settings" class="settings-section active">
+                <div class="settings-card">
+                    <h3><i class="fas fa-globe"></i> Paramètres d'affichage</h3>
+                    
+                    <div class="settings-group">
+                        <h4>Langue et région</h4>
+                        <div class="form-group">
+                            <label for="app-language">Langue de l'application</label>
+                            <select id="app-language" class="form-control">
+                                <option value="fr">Français</option>
+                                <option value="ar">العربية (Arabe)</option>
+                                <option value="en">English (Anglais)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="region">Région</label>
+                            <select id="region" class="form-control">
+                                <option value="24">Guelma (24)</option>
+                                <option value="16">Alger (16)</option>
+                                <option value="31">Oran (31)</option>
+                                <option value="19">Sétif (19)</option>
+                                <option value="25">Constantine (25)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Apparence</h4>
+                        <div class="form-group">
+                            <label for="app-theme">Thème</label>
+                            <select id="app-theme" class="form-control">
+                                <option value="light">Clair</option>
+                                <option value="dark">Sombre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="offline-mode">Mode hors ligne</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="offline-mode">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Désactivé</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 mt-4">Le mode hors ligne permet d'utiliser l'application sans connexion internet, mais certaines fonctionnalités seront limitées.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Format des données</h4>
+                        <div class="form-group">
+                            <label for="currency">Devise</label>
+                            <select id="currency" class="form-control">
+                                <option value="DZD">Dinar algérien (DZD)</option>
+                                <option value="EUR">Euro (EUR)</option>
+                                <option value="USD">Dollar américain (USD)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button id="save-settings" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer les paramètres
+                        </button>
+                        <button id="reset-settings" class="btn btn-outline">
+                            <i class="fas fa-undo"></i> Réinitialiser
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gestion des utilisateurs -->
+            <div id="user-management" class="settings-section">
+                <div class="settings-card">
+                    <h3><i class="fas fa-users"></i> Gestion des utilisateurs</h3>
+                    
+                    <div class="users-table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Rôle</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-list">
+                                <!-- Les utilisateurs seront chargés dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="user-form">
+                        <h4 id="user-form-title">Ajouter un utilisateur</h4>
+                        <form id="add-user-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="user-name">Nom complet</label>
+                                    <input type="text" id="user-name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-email">Email</label>
+                                    <input type="email" id="user-email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-role">Rôle</label>
+                                    <select id="user-role" class="form-control" required>
+                                        <option value="admin">Administrateur</option>
+                                        <option value="manager">Chef de projet</option>
+                                        <option value="technician">Technicien</option>
+                                        <option value="viewer">Observateur</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="password-label" for="user-password">Mot de passe</label>
+                                    <input type="password" id="user-password" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" id="submit-user-btn" class="btn btn-primary">
+                                    <i class="fas fa-user-plus"></i> Ajouter utilisateur
+                                </button>
+                                <button type="button" id="cancel-edit-btn" class="btn btn-outline" style="display: none;">
+                                    <i class="fas fa-times"></i> Annuler
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifications -->
+            <div id="notifications" class="settings-section">
+                <div class="settings-card">
+                    <h3><i class="fas fa-bell"></i> Paramètres de notification</h3>
+                    
+                    <div class="settings-group">
+                        <h4>Notifications par email</h4>
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="email-notifications">Recevoir des notifications par email</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="email-notifications" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Activé</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="project-updates">Mises à jour des projets</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="project-updates" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Activé</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="system-alerts">Alertes système</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="system-alerts" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Activé</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Notifications dans l'application</h4>
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="app-notifications">Notifications dans l'application</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="app-notifications" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Activé</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notification-sound">Son de notification</label>
+                            <select id="notification-sound" class="form-control">
+                                <option value="default">Son par défaut</option>
+                                <option value="chime">Carillon</option>
+                                <option value="bell">Cloche</option>
+                                <option value="none">Aucun son</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Enregistrer les paramètres
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sécurité -->
+            <div id="security" class="settings-section">
+                <div class="settings-card">
+                    <h3><i class="fas fa-shield-alt"></i> Paramètres de sécurité</h3>
+                    
+                    <div class="settings-group">
+                        <h4>Authentification</h4>
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="two-factor-auth">Authentification à deux facteurs</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="two-factor-auth">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Désactivé</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 mt-4">L'authentification à deux facteurs ajoute une couche de sécurité supplémentaire à votre compte.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="session-timeout">Expiration de session</label>
+                            <select id="session-timeout" class="form-control">
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="60">1 heure</option>
+                                <option value="120">2 heures</option>
+                                <option value="0">Jamais</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Mot de passe</h4>
+                        <div class="form-group">
+                            <label for="current-password">Mot de passe actuel</label>
+                            <input type="password" id="current-password" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="new-password">Nouveau mot de passe</label>
+                            <input type="password" id="new-password" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmer le mot de passe</label>
+                            <input type="password" id="confirm-password" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Mettre à jour le mot de passe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sauvegarde et restauration -->
+            <div id="backup" class="settings-section">
+                <div class="settings-card">
+                    <h3><i class="fas fa-database"></i> Sauvegarde et restauration</h3>
+                    
+                    <div class="settings-group">
+                        <h4>Sauvegarde automatique</h4>
+                        <div class="form-group toggle-group">
+                            <div class="toggle-container">
+                                <label for="auto-backup">Sauvegarde automatique</label>
+                                <div>
+                                    <label class="switch">
+                                        <input type="checkbox" id="auto-backup" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <span>Activé</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="backup-frequency">Fréquence de sauvegarde</label>
+                            <select id="backup-frequency" class="form-control">
+                                <option value="daily">Quotidienne</option>
+                                <option value="weekly">Hebdomadaire</option>
+                                <option value="monthly">Mensuelle</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Sauvegarde manuelle</h4>
+                        <p class="text-gray-500 mb-4">Créez une sauvegarde complète de vos données à tout moment.</p>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-download"></i> Créer une sauvegarde
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Restauration</h4>
+                        <p class="text-gray-500 mb-4">Restaurez vos données à partir d'une sauvegarde précédente.</p>
+                        
+                        <div class="form-group">
+                            <label for="backup-file">Fichier de sauvegarde</label>
+                            <input type="file" id="backup-file" class="form-control">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Restaurer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="parametres.js"></script>
+    <script src="theme-language-manager.js"></script>
+</body>
+</html>

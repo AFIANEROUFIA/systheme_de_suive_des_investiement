@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Investissements - Wilaya de Guelma</title>
+    <link rel="stylesheet" href="investissement_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-left">
+                <h1><i class="fas fa-chart-line"></i> Gestion des Investissements</h1>
+                <p>Wilaya de Guelma - Direction des Finances</p>
+            </div>
+            <div class="header-right">
+                <div class="user-menu">
+                    <span>Admin Finances</span>
+                    <div class="user-avatar">AF</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="filters-section">
+                <div class="year-selector">
+                    <label for="year"><i class="fas fa-calendar"></i> Année :</label>
+                    <select id="year" class="form-control">
+                        <option value="2023">2023</option>
+                        <option value="2024" selected>2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+
+                <div class="program-type">
+                    <label for="program"><i class="fas fa-project-diagram"></i> Programme :</label>
+                        <select id="program" class="form-control">
+                            <option value="">Tous les programmes</option>
+                            <option>Normal</option>
+                            <option>PSNE</option>
+                            <option>HP</option>
+                            <option>Urgence</option>
+                            <option>Spécial</option>
+                            <option>PCSC</option>
+                        </select>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher un investissement...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+
+                <button class="btn btn-primary" id="new-investment-btn">
+                    <i class="fas fa-plus"></i> Nouvel Investissement
+                </button>
+            </section>
+
+            <div class="summary-cards">
+                <div class="summary-card total">
+                    <div class="card-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Budget Total</h3>
+                        <p class="amount">450,000,000 DA</p>
+                        <p class="info">+12% vs 2023</p>
+                    </div>
+                </div>
+
+                <div class="summary-card engaged">
+                    <div class="card-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Engagements</h3>
+                        <p class="amount">320,500,000 DA</p>
+                        <p class="info">71.2% du budget</p>
+                    </div>
+                </div>
+
+                <div class="summary-card paid">
+                    <div class="card-icon">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Paiements</h3>
+                        <p class="amount">285,750,000 DA</p>
+                        <p class="info">89.2% des engagements</p>
+                    </div>
+                </div>
+
+                <div class="summary-card remaining">
+                    <div class="card-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Reliquat</h3>
+                        <p class="amount">129,250,000 DA</p>
+                        <p class="info">28.7% du budget</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="investments-table-container">
+                <div class="table-header">
+                    <h2><i class="fas fa-table"></i> Liste des Investissements</h2>
+                    <div class="table-actions">
+                        <button class="btn btn-outline btn-export">
+                            <i class="fas fa-file-export"></i> Exporter
+                        </button>
+                        <button class="btn btn-outline btn-print">
+                            <i class="fas fa-print"></i> Imprimer
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="investments-table-scroll">
+                    <table class="investments-table">
+                        <thead>
+                            <tr>
+                                <th>N° Op</th>
+                                <th>Intitulé</th>
+                                <th>Programme</th>
+                                <th>Budget</th>
+                                <th>Engagé</th>
+                                <th>Payé</th>
+                                <th>Avancement</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="investments-table-body">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div class="modal-overlay hidden" id="investment-details-modal">
+                <div class="modal-content">
+                    <!-- Les détails seront chargés dynamiquement -->
+                </div>
+            </div>
+
+            <div class="modal-overlay hidden" id="new-investment-modal">
+                <div class="modal-content">
+                    <!-- Le formulaire sera chargé dynamiquement -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="investissement_script.js"></script>
+    <script src="translations.js"></script>
+</body>
+</html>

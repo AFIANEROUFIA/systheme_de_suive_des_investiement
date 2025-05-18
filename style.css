@@ -1,0 +1,904 @@
+/* Palette de Couleurs */
+:root {
+  --dark-teal: #2d4f4f;
+  --medium-teal: #3a6363;
+  --light-teal: #5c8d8d;
+  --gold: #d4af37;
+  --light-gold: #f0d77b;
+  --cream: #f5f5f0;
+  --text-dark: #333333;
+  --text-light: #ffffff;
+  --menu-width: 280px;
+  --card-bg: #ffffff;
+  --light-bg: #e5eded;
+  --mint-bg: #dce8e8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--mint-bg);
+  color: var(--text-dark);
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Menu vertical */
+.menu-container {
+  width: var(--menu-width);
+  background-color: var(--dark-teal);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  overflow: hidden;
+}
+
+.menu {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Update the profile section to center the profile */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--light-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.profile-pic::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  animation: profileShine 3s infinite;
+}
+
+@keyframes profileShine {
+  0% {
+    top: -50%;
+    left: -50%;
+  }
+  100% {
+    top: 150%;
+    left: 150%;
+  }
+}
+
+.profile-section:hover .profile-pic {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.profile-info h3 {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.profile-info p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+/* Navigation */
+.nav-links {
+  list-style: none;
+  margin-top: 2rem;
+  flex-grow: 1;
+}
+
+.nav-item {
+  position: relative;
+  padding: 0.8rem 1.5rem;
+  margin-bottom: 0.8rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease;
+  color: var(--text-light);
+  overflow: hidden;
+  background: linear-gradient(to right, transparent 50%, var(--mint-bg) 50%);
+  background-size: 200% 100%;
+  background-position: left bottom;
+}
+
+.nav-item a {
+  color: var(--text-light);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Drawing animation for menu items */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.6s ease;
+}
+
+.nav-item:hover::before {
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+  animation: borderDraw 1s forwards;
+}
+
+@keyframes borderDraw {
+  0% {
+    border-top-color: var(--gold);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  25% {
+    border-top-color: var(--gold);
+    border-right-color: var(--gold);
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  50% {
+    border-top-color: var(--gold);
+    border-right-color: var(--gold);
+    border-bottom-color: var(--gold);
+    border-left-color: transparent;
+  }
+  100% {
+    border-color: var(--gold);
+  }
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background-position: right bottom;
+  color: var(--dark-teal);
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.nav-text {
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.nav-item.active .nav-icon,
+.nav-item:hover .nav-icon,
+.nav-item.active .nav-text,
+.nav-item:hover .nav-text {
+  color: var(--dark-teal);
+}
+
+.nav-item:hover .nav-icon {
+  transform: scale(1.1);
+}
+
+.nav-item:hover .nav-text {
+  transform: translateX(5px);
+}
+
+.active-indicator {
+  position: absolute;
+  right: -20px;
+  width: 4px;
+  height: 0;
+  background-color: var(--gold);
+  border-radius: 2px 0 0 2px;
+  transition: all 0.3s ease;
+}
+
+.nav-item.active {
+  background-color: rgba(212, 175, 55, 0.15);
+}
+
+.nav-item.active .active-indicator {
+  height: 60%;
+  right: 0;
+}
+
+/* Animation for menu items */
+@keyframes menuPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.nav-item.active {
+  animation: menuPulse 2s infinite;
+}
+
+/* Utilisateurs actifs */
+.active-users {
+  margin-top: auto;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.users-count {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+}
+
+.active-users span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+/* Replace world map with Algeria map */
+.algeria-map {
+  margin-top: 2rem;
+  width: 100%;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.7;
+  position: relative;
+}
+
+.algeria-map::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200' fill='none'%3E%3Cpath d='M50,150 C60,140 80,130 100,120 C120,110 140,100 160,90 C180,80 200,70 220,60 C240,50 260,40 270,30 L280,20 L270,30 L260,40 L250,50 L240,60 L230,70 L220,80 L210,90 L200,100 L190,110 L180,120 L170,130 L160,140 L150,150 L140,160 L130,170 L120,180 L110,190 L100,180 L90,170 L80,160 L70,150 L60,140 L50,150 Z' stroke='rgba(255,255,255,0.6)' stroke-width='2' fill='rgba(212,175,55,0.2)'/%3E%3Ccircle cx='150' cy='120' r='5' fill='rgba(212,175,55,0.8)'/%3E%3Ctext x='150' y='140' text-anchor='middle' fill='rgba(255,255,255,0.6)' font-size='10'%3EGuelma%3C/text%3E%3C/svg%3E");
+  animation: mapPulse 4s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+/* Header with cart */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header-title {
+  font-size: 1.2rem;
+  color: var(--dark-teal);
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--dark-teal);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--gold);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenu principal */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Conteneur des statistiques */
+.stats-container {
+  background-color: transparent;
+  border-radius: 16px;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.stats-section {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stat-card {
+  flex: 1;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-top: 4px solid var(--gold);
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--gold), var(--light-gold), var(--gold));
+  background-size: 200% 100%;
+  animation: gradientMove 3s infinite linear;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.stat-card:nth-child(1) {
+  background-color: var(--gold);
+  color: var(--text-light);
+  border-top: none;
+}
+
+.stat-card:nth-child(1)::before {
+  background: linear-gradient(to right, var(--dark-teal), var(--light-teal), var(--dark-teal));
+}
+
+.stat-card:nth-child(2) {
+  background-color: var(--medium-teal);
+  color: var(--text-light);
+  border-top: none;
+}
+
+.stat-card:nth-child(2)::before {
+  background: linear-gradient(to right, var(--gold), var(--light-gold), var(--gold));
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.stat-card:nth-child(1) h3,
+.stat-card:nth-child(2) h3 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stat-card:nth-child(1) .stat-value,
+.stat-card:nth-child(2) .stat-value {
+  color: var(--text-light);
+}
+
+.stat-card p {
+  font-size: 0.85rem;
+}
+
+.stat-card:nth-child(1) p,
+.stat-card:nth-child(2) p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Card icons */
+.stat-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  opacity: 0.2;
+}
+
+/* Sections de contenu */
+.content {
+  margin-top: 1rem;
+}
+
+.section {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--dark-teal);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--gold);
+  border-radius: 2px;
+}
+
+/* Liste des projets */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.project-item:hover {
+  background-color: rgba(92, 141, 141, 0.05);
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.project-details h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--dark-teal);
+}
+
+.project-details p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.status.in-progress {
+  background-color: rgba(212, 175, 55, 0.2);
+  color: var(--gold);
+}
+
+.status.completed {
+  background-color: rgba(92, 141, 141, 0.2);
+  color: var(--medium-teal);
+}
+
+/* Graphiques */
+.charts-section {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Chart containers */
+.chart-container {
+  flex: 1;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  min-height: 450px; /* Increased from 350px */
+}
+
+.chart-container.large {
+  flex: 2;
+}
+
+.chart-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.chart-container h3 {
+  font-size: 0.95rem;
+  color: var(--dark-teal);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.chart-container h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--gold);
+  border-radius: 2px;
+}
+
+/* SVG Charts - increase size */
+.donut-chart {
+  height: 350px; /* Increased from 250px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.donut-chart svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.legend-item:hover {
+  background-color: rgba(92, 141, 141, 0.1);
+}
+
+.legend-item.active {
+  background-color: rgba(92, 141, 141, 0.2);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.legend-item:hover .legend-color,
+.legend-item.active .legend-color {
+  transform: scale(1.2);
+}
+
+.line-chart {
+  height: 350px; /* Increased from 250px */
+  width: 100%;
+}
+
+.line-chart svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Animation for charts */
+@keyframes chartFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-container {
+  animation: chartFadeIn 0.8s ease-out forwards;
+}
+
+.chart-container:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+/* Agriculture card styles */
+.agriculture-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.agriculture-card:hover {
+  animation: cardPulse 1s ease-in-out;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.agriculture-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(92, 141, 141, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--medium-teal);
+}
+
+.agriculture-card:hover .agriculture-icon {
+  background-color: rgba(212, 175, 55, 0.2);
+  color: var(--gold);
+  transform: rotate(10deg);
+}
+
+.agriculture-info h3 {
+  font-size: 1.2rem;
+  color: var(--dark-teal);
+  margin-bottom: 0.3rem;
+}
+
+.agriculture-info p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.agriculture-price {
+  margin-left: auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* SVG Animation */
+@keyframes donutFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.donut-segment {
+  animation: donutFadeIn 0.8s ease-out forwards;
+}
+
+.line-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: lineGrow 1.5s ease-out forwards;
+}
+
+.donut-segment:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.donut-segment:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.donut-segment:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.donut-segment:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* Add tooltip styles */
+.chart-tooltip {
+  position: absolute;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  max-width: 250px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.tooltip-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-teal);
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-desc {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Enhanced animations for chart elements */
+@keyframes donutPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.donut-segment.active {
+  transform-origin: center;
+  animation: donutPulse 1s infinite;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+
+/* Enhanced animations for agriculture cards */
+@keyframes cardPulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Add point hover effect for line chart */
+.chart-point {
+  transition: r 0.2s ease, stroke-width 0.2s ease;
+  cursor: pointer;
+}
+
+.chart-point:hover, .chart-point.active {
+  r: 6;
+  stroke-width: 3;
+}

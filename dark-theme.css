@@ -1,0 +1,203 @@
+/* Styles pour le mode sombre à appliquer sur toutes les pages */
+
+/* Variables pour le thème sombre */
+.dark-theme {
+  --dark-teal: #5c8d8d;
+  --medium-teal: #3a6363;
+  --light-teal: #2d4f4f;
+  --gold: #f0d77b;
+  --light-gold: #d4af37;
+  --cream: #2a2a2a;
+  --text-dark: #f0f0f0;
+  --text-light: #ffffff;
+  --card-bg: #2a2a2a;
+  --light-bg: #3a3a3a;
+  --mint-bg: #222222;
+  --border-color: #444444;
+  --table-border: #444444;
+  --toast-bg: #2a2a2a;
+  --header-bg: #1a1a1a;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --hover-bg: rgba(255, 255, 255, 0.05);
+
+  /* Variables spécifiques pour le tableau de bord */
+  --bg-color: #1a1a1a;
+  --menu-bg: #2a2a2a;
+  --card-background: #2a2a2a;
+  --text-color: #f0f0f0;
+  --border: #444444;
+  --accent-color: #5c8d8d;
+  --chart-bg: #333333;
+  --chart-grid: #444444;
+
+  /* Variables pour les projets */
+  --sidebar-bg: #2a2a2a;
+  --content-bg: #1a1a1a;
+  --header-bg: #1a1a1a;
+  --card-bg: #2a2a2a;
+  --table-header-bg: #333333;
+  --table-row-hover: rgba(255, 255, 255, 0.05);
+  --input-bg: #333333;
+  --input-text: #f0f0f0;
+  --button-bg: #3a6363;
+  --button-text: #ffffff;
+  --button-hover: #5c8d8d;
+  --modal-bg: #2a2a2a;
+  --modal-header: #333333;
+}
+
+/* Styles généraux pour le mode sombre */
+.dark-theme body {
+  background-color: var(--mint-bg);
+  color: var(--text-dark);
+}
+
+/* Styles pour la page stats */
+.dark-theme .stats-container {
+  background-color: var(--mint-bg);
+  color: var(--text-dark);
+}
+
+.dark-theme .stats-header {
+  background-color: var(--header-bg);
+  border-color: var(--border-color);
+}
+
+.dark-theme .kpi-card {
+  background-color: var(--card-bg);
+  color: var(--text-light);
+  border-color: var(--border-color);
+}
+
+.dark-theme .chart-container {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-theme .chart-header h3 {
+  color: var(--text-light);
+}
+
+.dark-theme canvas {
+  background-color: var(--chart-bg);
+}
+
+.dark-theme .stats-table th {
+  background-color: var(--table-header-bg);
+  color: var(--text-light);
+}
+
+.dark-theme .stats-table td {
+  border-color: var(--table-border);
+}
+
+.dark-theme .progress-bar {
+  background-color: var(--medium-teal);
+}
+
+/* Styles pour la page dashboard */
+.dark-theme .dashboard {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.dark-theme .menu {
+  background-color: var(--menu-bg);
+}
+
+.dark-theme .nav-item {
+  color: var(--text-light);
+}
+
+.dark-theme .nav-item.active {
+  background-color: var(--accent-color);
+}
+
+.dark-theme .stat-card,
+.dark-theme .agriculture-card {
+  background-color: var(--card-background);
+  border-color: var(--border);
+}
+
+.dark-theme .chart-container {
+  background-color: var(--card-background);
+}
+
+/* Styles pour la page projets */
+.dark-theme .sidebar {
+  background-color: var(--sidebar-bg);
+}
+
+.dark-theme .content-wrapper {
+  background-color: var(--content-bg);
+}
+
+.dark-theme .main-header {
+  background-color: var(--header-bg);
+  border-color: var(--border-color);
+}
+
+.dark-theme .app-main {
+  background-color: var(--content-bg);
+}
+
+.dark-theme .projects-table th {
+  background-color: var(--table-header-bg);
+}
+
+.dark-theme .projects-table tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+.dark-theme .btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+.dark-theme .btn:hover {
+  background-color: var(--button-hover);
+}
+
+.dark-theme .modal {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dark-theme .modal-content {
+  background-color: var(--modal-bg);
+}
+
+.dark-theme .modal-header {
+  background-color: var(--modal-header);
+}
+
+/* Styles pour les contrôles de thème et langue */
+.theme-toggle-btn {
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.language-selector {
+  transition: all 0.3s ease;
+}
+
+.language-selector:hover {
+  border-color: var(--accent-color, #5c8d8d);
+}
+
+/* Support RTL pour l'arabe */
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl .theme-language-controls {
+  flex-direction: row-reverse;
+}
+
+.rtl .theme-toggle-btn {
+  margin-right: 0;
+  margin-left: 15px;
+}

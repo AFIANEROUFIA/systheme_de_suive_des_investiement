@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord DSA Guelma</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Menu vertical -->
+        <div class="menu-container">
+            <div class="menu">
+                <div class="profile-section">
+                    <div class="profile-pic">AD</div>
+                    <div class="profile-info">
+                        <h3>Admin DSA</h3>
+                        <p>admin@dsa-agriculture.dz</p>
+                    </div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li class="nav-item active">
+                        <div class="nav-icon">📊</div>
+                        <span class="nav-text">TABLEAU DE BORD</span>
+                        <div class="active-indicator"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html">
+                            <div class="nav-icon">🌱</div>
+                            <span class="nav-text">PROJETS AGRICOLES</span>
+                            <div class="active-indicator"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="investissement.html">
+                            <div class="nav-icon">💰</div>
+                            <span class="nav-text">INVESTISSEMENT</span>
+                            <div class="active-indicator"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="electrification.html">
+                            <div class="nav-icon">⚡</div>
+                            <span class="nav-text">ÉLECTRIFICATION</span>
+                            <div class="active-indicator"></div>
+                        </a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a href="stats.html">  
+                         <div class="nav-icon">📈</div>
+                            <span class="nav-text">STATISTIQUES</span>
+                            <div class="active-indicator"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="parametres.html">
+                            <div class="nav-icon">⚙️</div>
+                          <span class="nav-text">PARAMÈTRES</span>
+                         <div class="active-indicator"></div>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="algeria-map"></div>
+                
+                <div class="active-users">
+                    <div class="users-count">24</div>
+                    <span>UTILISATEURS ACTIFS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <!-- Header with cart -->
+            <div class="header">
+                <div class="header-title">Direction des Services Agricoles - Guelma</div>
+                <div class="header-actions">
+                    <div class="cart-icon">
+                        🛒
+                        <div class="cart-badge">3</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section des statistiques -->
+            <div class="stats-container">
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <div class="stat-icon">🌱</div>
+                        <h3>PROJETS ACTIFS</h3>
+                        <div class="stat-value">24</div>
+                        <p>Ce mois-ci</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <h3>BUDGET ENGAGÉ</h3>
+                        <div class="stat-value">850M</div>
+                        <p>DA cette année</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">👨‍🌾</div>
+                        <h3>BÉNÉFICIAIRES</h3>
+                        <div class="stat-value">156</div>
+                        <p>Agriculteurs</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agriculture cards -->
+            <div class="agriculture-section">
+                <div class="agriculture-card">
+                    <div class="agriculture-icon">🚜</div>
+                    <div class="agriculture-info">
+                        <h3>Tracteurs Agricoles</h3>
+                        <p>Équipement pour les agriculteurs de Guelma</p>
+                    </div>
+                    <div class="agriculture-price">12 Unités</div>
+                </div>
+                
+                <div class="agriculture-card">
+                    <div class="agriculture-icon">⚡</div>
+                    <div class="agriculture-info">
+                        <h3>Électrification Rurale</h3>
+                        <p>Projet d'électrification des zones agricoles</p>
+                    </div>
+                    <div class="agriculture-price">8 Sites</div>
+                </div>
+            </div>
+
+            <!-- Contenu du tableau de bord -->
+            <div class="content">
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-container large">
+                        <h3>RÉPARTITION DU BUDGET</h3>
+                        <div class="donut-chart" id="budgetDonutChart">
+                            <!-- SVG Donut Chart will be inserted here by JavaScript -->
+                        </div>
+                        <div class="chart-tooltip" id="budgetChartTooltip">
+                            <div class="tooltip-content">
+                                <h4 class="tooltip-title">Irrigation</h4>
+                                <p class="tooltip-value">35%</p>
+                                <p class="tooltip-desc">Budget alloué à l'irrigation des terres agricoles</p>
+                            </div>
+                        </div>
+                        <div class="chart-legend" id="budgetChartLegend">
+                            <!-- Legend will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>PROJETS PAR STATUT</h3>
+                        <div class="line-chart" id="statusLineChart">
+                            <!-- SVG Line Chart will be inserted here by JavaScript -->
+                        </div>
+                        <div class="chart-tooltip" id="statusChartTooltip">
+                            <div class="tooltip-content">
+                                <h4 class="tooltip-title">Juin</h4>
+                                <p class="tooltip-value">15 projets terminés</p>
+                                <p class="tooltip-desc">8 projets en cours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
