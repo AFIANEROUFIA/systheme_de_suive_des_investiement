@@ -1,0 +1,484 @@
+<!-- Modal pour ajouter un projet -->
+<div id="add-project-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-plus"></i> Nouveau Projet d'Électrification</h2>
+            <button class="modal-close" id="close-add-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="add-project-form" class="modal-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="project-code">Code du projet *</label>
+                    <input type="text" id="project-code" name="code" required placeholder="ELEC-2024-XXX">
+                </div>
+                <div class="form-group">
+                    <label for="project-title">Intitulé du projet *</label>
+                    <input type="text" id="project-title" name="title" required placeholder="Nom du projet">
+                </div>
+                <div class="form-group">
+                    <label for="project-nature">Nature du projet *</label>
+                    <select id="project-nature" name="nature" required>
+                        <option value="">Sélectionner...</option>
+                        <option value="installation-lignes">Installation lignes</option>
+                        <option value="extension-reseau">Extension réseau</option>
+                        <option value="raccordement">Raccordement</option>
+                        <option value="transformation">Transformation</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="eclairage">Éclairage public</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="project-daira">Daïra *</label>
+                    <select id="project-daira" name="daira" required>
+                        <option value="">Sélectionner...</option>
+                        <option value="guelma">Guelma</option>
+                        <option value="oued-zenati">Oued Zenati</option>
+                        <option value="heliopolis">Héliopolis</option>
+                        <option value="bouchegouf">Bouchegouf</option>
+                        <option value="hammam-debagh">Hammam Debagh</option>
+                        <option value="ain-makhlouf">Ain Makhlouf</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="project-commune">Commune *</label>
+                    <select id="project-commune" name="commune" required>
+                        <option value="">Sélectionner d'abord une daïra</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="project-budget">Budget (DA) *</label>
+                    <input type="number" id="project-budget" name="budget" required placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label for="project-start-date">Date de début *</label>
+                    <input type="date" id="project-start-date" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-end-date">Date de fin *</label>
+                    <input type="date" id="project-end-date" name="endDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-contractor">Entrepreneur</label>
+                    <input type="text" id="project-contractor" name="contractor" placeholder="Nom de l'entreprise">
+                </div>
+                <div class="form-group full-width">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" name="description" rows="3" placeholder="Description détaillée du projet"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-add">Annuler</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Enregistrer
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal pour voir les détails d'un projet -->
+<div id="view-project-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-eye"></i> Détails du Projet</h2>
+            <button class="modal-close" id="close-view-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="project-details" id="project-details-content">
+            <!-- Contenu généré dynamiquement -->
+        </div>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="close-details">Fermer</button>
+            <button type="button" class="btn btn-primary" id="edit-from-details">
+                <i class="fas fa-edit"></i> Modifier
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour modifier un projet -->
+<div id="edit-project-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-edit"></i> Modifier le Projet</h2>
+            <button class="modal-close" id="close-edit-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form id="edit-project-form" class="modal-form">
+            <input type="hidden" id="edit-project-id" name="id">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="edit-project-code">Code du projet *</label>
+                    <input type="text" id="edit-project-code" name="code" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-title">Intitulé du projet *</label>
+                    <input type="text" id="edit-project-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-nature">Nature du projet *</label>
+                    <select id="edit-project-nature" name="nature" required>
+                        <option value="installation-lignes">Installation lignes</option>
+                        <option value="extension-reseau">Extension réseau</option>
+                        <option value="raccordement">Raccordement</option>
+                        <option value="transformation">Transformation</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="eclairage">Éclairage public</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-status">Statut *</label>
+                    <select id="edit-project-status" name="status" required>
+                        <option value="planned">Planifié</option>
+                        <option value="in-progress">En cours</option>
+                        <option value="completed">Terminé</option>
+                        <option value="suspended">Suspendu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-daira">Daïra *</label>
+                    <select id="edit-project-daira" name="daira" required>
+                        <option value="guelma">Guelma</option>
+                        <option value="oued-zenati">Oued Zenati</option>
+                        <option value="heliopolis">Héliopolis</option>
+                        <option value="bouchegouf">Bouchegouf</option>
+                        <option value="hammam-debagh">Hammam Debagh</option>
+                        <option value="ain-makhlouf">Ain Makhlouf</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-commune">Commune *</label>
+                    <select id="edit-project-commune" name="commune" required>
+                        <!-- Options générées dynamiquement -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-budget">Budget (DA) *</label>
+                    <input type="number" id="edit-project-budget" name="budget" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-start-date">Date de début *</label>
+                    <input type="date" id="edit-project-start-date" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-end-date">Date de fin *</label>
+                    <input type="date" id="edit-project-end-date" name="endDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-contractor">Entrepreneur</label>
+                    <input type="text" id="edit-project-contractor" name="contractor">
+                </div>
+                <div class="form-group">
+                    <label for="edit-project-progress">Progression (%)</label>
+                    <input type="number" id="edit-project-progress" name="progress" min="0" max="100">
+                </div>
+                <div class="form-group full-width">
+                    <label for="edit-project-description">Description</label>
+                    <textarea id="edit-project-description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-edit">Annuler</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Sauvegarder
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal pour la carte -->
+<div id="map-modal" class="modal modal-large">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-map-marked-alt"></i> Carte des Projets d'Électrification</h2>
+            <button class="modal-close" id="close-map-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="map-container">
+            <div id="projects-map" class="map-placeholder">
+                <div class="map-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Carte Interactive</h3>
+                    <p>Visualisation géographique des projets d'électrification</p>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #28a745;"></span>
+                            <span>Terminé</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #fd7e14;"></span>
+                            <span>En cours</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #6c757d;"></span>
+                            <span>Planifié</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="close-map">Fermer</button>
+            <button type="button" class="btn btn-primary" id="export-map">
+                <i class="fas fa-download"></i> Exporter la carte
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Styles pour les modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 79, 79, 0.9);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--surface), var(--light-bg));
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid var(--border);
+    position: relative;
+    animation: slideInUp 0.3s ease;
+}
+
+.modal-large .modal-content {
+    max-width: 1200px;
+    width: 95%;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-light);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.modal-form {
+    padding: 2rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    transition: var(--transition);
+    background: var(--surface);
+    color: var(--text-primary);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding: 1.5rem 2rem;
+    border-top: 2px solid var(--border);
+    background: var(--light-bg);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.project-details {
+    padding: 2rem;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border);
+}
+
+.detail-item label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.detail-item .value {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.map-container {
+    height: 500px;
+    position: relative;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--light-bg), var(--mint-bg));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px dashed var(--border);
+    border-radius: var(--border-radius-sm);
+    margin: 1rem;
+}
+
+.map-info {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.map-info i {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.map-info h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.map-legend {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+}
+</style>

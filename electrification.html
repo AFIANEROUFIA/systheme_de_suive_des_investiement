@@ -3,499 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Électrification - DSA Guelma</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Projets d'Électrification - DSA Guelma</title>
     <link rel="stylesheet" href="electrification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="map-styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="map-manager.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- Navigation latérale -->
-        <nav class="sidebar">
-            <div class="profile-container">
-                <div class="profile-circle">
-                    <span>AD</span>
-                </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-pic">AD</div>
                 <div class="profile-info">
                     <h3>Admin DSA</h3>
                     <p>admin@dsa-agriculture.dz</p>
                 </div>
             </div>
             
-            <div class="nav-links">
-                <a href="dsa-dashboard.html" class="nav-link">
-                    <i class="fas fa-chart-line"></i>
-                    <span>TABLEAU DE BORD</span>
-                </a>
-                <a href="projects.html" class="nav-link">
-                    <i class="fas fa-tractor"></i>
-                    <span>PROJETS AGRICOLES</span>
-                </a>
-                <a href="investissement.html" class="nav-link">
-                    <i class="fas fa-coins"></i>
-                    <span>INVESTISSEMENT</span>
-                </a>
-                <a href="#" class="nav-link active">
-                    <i class="fas fa-bolt"></i>
-                    <span>ÉLECTRIFICATION</span>
-                </a>
-                <a href="statistiques.html" class="nav-link">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>STATISTIQUES</span>
-                </a>
-                <a href="parametres.html" class="nav-link">
-                    <i class="fas fa-cog"></i>
-                    <span>PARAMÈTRES</span>
-                </a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <div class="nav-icon">📊</div>
+                        <span class="nav-text">TABLEAU DE BORD</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html">
+                        <div class="nav-icon">🌱</div>
+                        <span class="nav-text">PROJETS AGRICOLES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="investissement.html">
+                        <div class="nav-icon">💰</div>
+                        <span class="nav-text">INVESTISSEMENT</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="electrification.html">
+                        <div class="nav-icon">⚡</div>
+                        <span class="nav-text">ÉLECTRIFICATION</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stats.html">  
+                        <div class="nav-icon">📈</div>
+                        <span class="nav-text">STATISTIQUES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="parametres.html">
+                        <div class="nav-icon">⚙️</div>
+                        <span class="nav-text">PARAMÈTRES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="active-users">
+                <div class="users-count">14</div>
+                <span>PROJETS ACTIFS</span>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">Direction des Services Agricoles - Guelma</div>
+                <div class="header-actions">
+                    <div class="time-widget">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time"></span>
+                    </div>
+                    <div class="cart-icon">
+                        🛒
+                        <div class="cart-badge">3</div>
+                    </div>
+                </div>
             </div>
             
-            <div class="sidebar-footer">
-                <div class="active-users">
-                    <span class="user-count">27</span>
-                    <span class="user-label">UTILISATEURS ACTIFS</span>
-                </div>
-            </div>
-        </nav>
-
-        <div class="content-wrapper">
-            <!-- En-tête -->
-            <header class="main-header">
-                <h1>Direction des Services Agricoles - Guelma</h1>
-                <div class="header-actions">
-                    <div class="notification-icon">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
-                    </div>
-                    <div class="user-menu">
-                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="User" class="user-avatar">
-                        <span class="user-name">Admin</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-            </header>
-
-            <main class="app-main">
-                <!-- Cartes statistiques en haut de la page -->
-                <div class="stats-cards-container animate__animated animate__fadeInUp">
-                    <h3><i class="fas fa-chart-pie"></i> Aperçu des projets d'électrification</h3>
-                    <div class="stats-cards">
-                        <div class="stat-card">
-                            <div class="stat-icon gold">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="8">0</div>
-                                <div class="stat-label">Sites d'électrification</div>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon teal">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value">12.5M DA</div>
-                                <div class="stat-label">Budget total</div>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon green">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="3">0</div>
-                                <div class="stat-label">Projets terminés</div>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon orange">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="2">0</div>
-                                <div class="stat-label">Projets en cours</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="page-header animate__animated animate__fadeInDown">
+            <!-- Page content -->
+            <div class="page-content">
+                <!-- Page header -->
+                <div class="page-header">
                     <div class="page-title">
-                        <i class="fas fa-bolt"></i>
-                        <h2>Projets d'Électrification</h2>
+                        <h1>⚡ Projets d'Électrification</h1>
+                        <p>Gérez et suivez tous vos projets d'électrification agricole</p>
                     </div>
-                    <div class="page-actions">
-                        <div class="search-container">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" class="search-input" placeholder="Rechercher un projet...">
+                    <div class="page-controls-layout">
+                        <!-- Zone de contrôles à gauche -->
+                        <div class="controls-section">
+                            <!-- Champs de recherche et filtres (verticaux) -->
+                            <div class="search-filters-vertical">
+                                <div class="search-container">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher un projet...">
+                                </div>
+                                <div class="filters-row">
+                                    <select id="status-filter" class="filter-select">
+                                        <option value="all">Tous statuts</option>
+                                        <option value="in-progress">En cours</option>
+                                        <option value="planned">Planifié</option>
+                                        <option value="completed">Terminé</option>
+                                    </select>
+                                    <select id="daira-filter" class="filter-select">
+                                        <option value="all">Toutes daïras</option>
+                                        <option value="guelma">Guelma</option>
+                                        <option value="oued-zenati">Oued Zenati</option>
+                                        <option value="heliopolis">Héliopolis</option>
+                                        <option value="bouchegouf">Bouchegouf</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Boutons (horizontaux) -->
+                            <div class="buttons-row">
+                                <div class="export-container">
+                                    <button class="btn btn-export" id="export-btn">
+                                        <i class="fas fa-download"></i>
+                                        Exporter
+                                    </button>
+                                    <div class="export-dropdown" id="export-dropdown">
+                                        <button class="export-option" id="export-pdf">
+                                            <i class="fas fa-file-pdf"></i>
+                                            PDF
+                                        </button>
+                                        <button class="export-option" id="export-excel">
+                                            <i class="fas fa-file-excel"></i>
+                                            Excel
+                                        </button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-print" id="print-btn">
+                                    <i class="fas fa-print"></i>
+                                    Imprimer
+                                </button>
+                                <button class="btn btn-primary" id="add-project-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Nouveau projet
+                                </button>
+                                <button class="btn btn-info" id="maps-btn">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    Carte des projets
+                                </button>
+                            </div>
                         </div>
-                        <div class="btn-export-container">
-                            <button class="btn btn-export" id="export-btn">
-                                <i class="fas fa-file-export"></i> Exporter
-                            </button>
-                            <div class="export-options" id="export-options">
-                                <div class="export-option excel" id="export-excel">
-                                    <i class="fas fa-file-excel"></i>
-                                    <span>Exporter en Excel</span>
+                        
+                        <!-- Zone calendrier à droite -->
+                        <div class="calendar-section">
+                            <div class="calendar-widget-compact">
+                                <div class="calendar-header-compact">
+                                    <button class="calendar-nav-compact" id="prev-month">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <h4 id="calendar-month-year">mai 2025</h4>
+                                    <button class="calendar-nav-compact" id="next-month">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
                                 </div>
-                                <div class="export-option pdf" id="export-pdf">
-                                    <i class="fas fa-file-pdf"></i>
-                                    <span>Exporter en PDF</span>
+                                <div class="calendar-days-header">
+                                    <div class="calendar-day-header">Dim</div>
+                                    <div class="calendar-day-header">Lun</div>
+                                    <div class="calendar-day-header">Mar</div>
+                                    <div class="calendar-day-header">Mer</div>
+                                    <div class="calendar-day-header">Jeu</div>
+                                    <div class="calendar-day-header">Ven</div>
+                                    <div class="calendar-day-header">Sam</div>
                                 </div>
-                                <div class="export-option csv" id="export-csv">
-                                    <i class="fas fa-file-csv"></i>
-                                    <span>Exporter en CSV</span>
+                                <div class="calendar-grid-compact" id="calendar-grid-compact">
+                                    <!-- Calendrier généré dynamiquement -->
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-print" id="print-btn">
-                            <i class="fas fa-print"></i> Imprimer
-                        </button>
-                        <button class="btn btn-map" id="map-btn">
-                            <i class="fas fa-map-marked-alt"></i> Carte
-                        </button>
-                        <button class="btn btn-add pulse" id="add-project-btn">
-                            <i class="fas fa-plus"></i> Nouveau Projet
-                        </button>
                     </div>
                 </div>
 
-                <!-- Vue Liste des Projets (Tableau) -->
-                <div id="list-view" class="view active animate__animated animate__fadeIn">
-                    <div class="table-container">
+                <!-- Stats cards -->
+                <div class="stats-section">
+                    <h3>📊 Aperçu de l'Électrification</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">⚡</div>
+                            <h3>Total des projets</h3>
+                            <div class="stat-value counter" data-target="14">0</div>
+                            <p>Projets d'électrification</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">🔌</div>
+                            <h3>En cours</h3>
+                            <div class="stat-value counter" data-target="8">0</div>
+                            <p>Installations actives</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <h3>Terminés</h3>
+                            <div class="stat-value counter" data-target="4">0</div>
+                            <p>Sites électrifiés</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">💡</div>
+                            <h3>Budget total</h3>
+                            <div class="stat-value counter" data-target="105">0</div>
+                            <p>Millions DA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects table -->
+                <div class="table-container">
+                    <div class="table-wrapper">
                         <table class="projects-table">
                             <thead>
                                 <tr>
                                     <th>Code</th>
                                     <th>Intitulé</th>
-                                    <th>Localisation</th>
-                                    <th>Type</th>
+                                    <th>Nature</th>
+                                    <th>Wilaya/Commune</th>
+                                    <th>Budget</th>
                                     <th>Date début</th>
                                     <th>Date fin</th>
                                     <th>Statut</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="table-row-animate">
-                                    <td>ELEC-2024-05-123</td>
-                                    <td>Électrification rurale Oued Zenati</td>
-                                    <td>Oued Zenati</td>
-                                    <td>Puits profond</td>
-                                    <td>15/05/2024</td>
-                                    <td>30/08/2024</td>
-                                    <td><span class="status-badge status-active">En cours</span></td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn" title="Modifier">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn" title="Détails">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="action-btn" title="Supprimer">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="table-row-animate">
-                                    <td>ELEC-2024-04-089</td>
-                                    <td>Électrification étable agricole Héliopolis</td>
-                                    <td>Héliopolis</td>
-                                    <td>Étable agricole</td>
-                                    <td>10/04/2024</td>
-                                    <td>20/07/2024</td>
-                                    <td><span class="status-badge status-pending">En attente</span></td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn" title="Modifier">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn" title="Détails">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="action-btn" title="Supprimer">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="table-row-animate">
-                                    <td>ELEC-2024-03-045</td>
-                                    <td>Électrification forage Bouchegouf</td>
-                                    <td>Bouchegouf</td>
-                                    <td>Forage</td>
-                                    <td>05/03/2024</td>
-                                    <td>15/06/2024</td>
-                                    <td><span class="status-badge status-completed">Terminé</span></td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn" title="Modifier">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn" title="Détails">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="action-btn" title="Supprimer">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="table-row-animate">
-                                    <td>ELEC-2024-02-078</td>
-                                    <td>Électrification entrepôt agricole Guelma</td>
-                                    <td>Guelma</td>
-                                    <td>Entrepôt</td>
-                                    <td>20/02/2024</td>
-                                    <td>10/05/2024</td>
-                                    <td><span class="status-badge status-completed">Terminé</span></td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn" title="Modifier">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn" title="Détails">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="action-btn" title="Supprimer">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="table-row-animate">
-                                    <td>ELEC-2024-01-112</td>
-                                    <td>Électrification puits Aïn Makhlouf</td>
-                                    <td>Aïn Makhlouf</td>
-                                    <td>Puits profond</td>
-                                    <td>15/01/2024</td>
-                                    <td>25/04/2024</td>
-                                    <td><span class="status-badge status-active">En cours</span></td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn" title="Modifier">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="action-btn" title="Détails">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="action-btn" title="Supprimer">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tbody id="projects-table-body">
+                                <!-- Les données seront chargées dynamiquement -->
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Pagination -->
-                    <div class="pagination">
-                        <div class="page-item"><i class="fas fa-chevron-left"></i></div>
-                        <div class="page-item active">1</div>
-                        <div class="page-item">2</div>
-                        <div class="page-item">3</div>
-                        <div class="page-item"><i class="fas fa-chevron-right"></i></div>
-                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- Vue Formulaire -->
-                <div id="form-view" class="view animate__animated animate__fadeIn">
-                    <div class="form-container">
-                        <div class="form-header">
-                            <h2><i class="fas fa-bolt"></i> Nouveau Projet d'Électrification</h2>
-                            <p>Veuillez remplir tous les champs obligatoires (*)</p>
+    <!-- Modal pour ajouter un projet -->
+    <div id="add-project-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Nouveau Projet d'Électrification</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-project-form" class="project-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="project-code">Code du projet *</label>
+                            <input type="text" id="project-code" name="code" required placeholder="ELEC-2024-XXX">
                         </div>
                         
-                        <form id="project-form" class="animated-form">
-                            <!-- Section 1: Informations de base -->
-                            <div class="form-section">
-                                <div class="section-header">
-                                    <i class="fas fa-info-circle"></i>
-                                    <h3>Informations du Projet</h3>
-                                </div>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="intitule">
-                                            <i class="fas fa-heading"></i> Intitulé du projet*
-                                        </label>
-                                        <input type="text" id="intitule" name="intitule" required 
-                                            placeholder="Ex: Électrification rurale Oued Zenati" 
-                                            class="input-animated">
-                                        <span class="focus-border"></span>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="code_projet">
-                                            <i class="fas fa-hashtag"></i> Code projet
-                                        </label>
-                                        <input type="text" id="code_projet" name="code_projet" 
-                                            placeholder="Ex: ELEC-2024-001" class="input-animated">
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="localisation">
-                                            <i class="fas fa-map-marker-alt"></i> Localisation (Daïra)*
-                                        </label>
-                                        <select id="localisation" name="localisation" required class="select-animated">
-                                            <option value="">Sélectionner une daïra</option>
-                                            <option>Guelma</option>
-                                            <option>Bouchegouf</option>
-                                            <option>Oued Zenati</option>
-                                            <option>Héliopolis</option>
-                                            <option>Aïn Makhlouf</option>
-                                        </select>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="adresse">
-                                            <i class="fas fa-map-pin"></i> Adresse précise
-                                        </label>
-                                        <input type="text" id="adresse" name="adresse" 
-                                            placeholder="Coordonnées GPS ou adresse" class="input-animated">
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Section 2: Caractéristiques techniques -->
-                            <div class="form-section">
-                                <div class="section-header">
-                                    <i class="fas fa-cogs"></i>
-                                    <h3>Caractéristiques Techniques</h3>
-                                </div>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="type_installation">
-                                            <i class="fas fa-bolt"></i> Type d'installation*
-                                        </label>
-                                        <select id="type_installation" name="type_installation" required class="select-animated">
-                                            <option value="">Sélectionner...</option>
-                                            <option>puits profond</option>
-                                            <option>forage</option>
-                                            <option>étable agricole</option>
-                                            <option>entrepôt</option>
-                                        </select>
-                                        <span class="focus-border"></span>
-                                    </div>
-                                    
-                                    <div class="form-group file-upload">
-                                        <label for="fichier_justificatif">
-                                            <i class="fas fa-file-upload"></i> Fichier justificatif
-                                        </label>
-                                        <div class="file-input-container">
-                                            <input type="file" id="fichier_justificatif" name="fichier_justificatif" 
-                                                class="file-input">
-                                            <div class="file-input-trigger">
-                                                <i class="fas fa-cloud-upload-alt"></i>
-                                                <span>Choisir un fichier</span>
-                                            </div>
-                                            <div class="file-name">Aucun fichier choisi</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="description_technique">
-                                        <i class="fas fa-align-left"></i> Description technique
-                                    </label>
-                                    <textarea id="description_technique" name="description_technique" rows="3" 
-                                        placeholder="Détails sur l'installation..." class="textarea-animated"></textarea>
-                                    <span class="focus-border"></span>
-                                </div>
-                            </div>
-                            
-                            <!-- Section 3: Calendrier -->
-                            <div class="form-section">
-                                <div class="section-header">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <h3>Calendrier</h3>
-                                </div>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="date_debut">
-                                            <i class="fas fa-play"></i> Date de début*
-                                        </label>
-                                        <input type="date" id="date_debut" name="date_debut" required class="date-input">
-                                        <span class="focus-border"></span>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="date_prevue_fin">
-                                            <i class="fas fa-flag-checkered"></i> Date de fin prévue*
-                                        </label>
-                                        <input type="date" id="date_prevue_fin" name="date_prevue_fin" required class="date-input">
-                                        <span class="focus-border"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Boutons de soumission -->
-                            <div class="form-actions">
-                                <button type="button" class="btn btn-cancel" id="cancel-project">
-                                    <i class="fas fa-times"></i> Annuler
-                                </button>
-                                
-                                <button type="submit" class="btn btn-submit">
-                                    <i class="fas fa-save"></i> Enregistrer le projet
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </main>
+                        <div class="form-group">
+                            <label for="project-title">Intitulé du projet *</label>
+                            <input type="text" id="project-title" name="title" required placeholder="Nom du projet">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-nature">Nature juridique de la tâche *</label>
+                            <select id="project-nature" name="nature" required>
+                                <option value="">Sélectionner la nature juridique</option>
+                                <option value="installation-lignes">Installation de lignes</option>
+                                <option value="raccordement">Raccordement électrique</option>
+                                <option value="extension-reseau">Extension de réseau</option>
+                                <option value="maintenance">Maintenance électrique</option>
+                                <option value="transformation">Poste de transformation</option>
+                                <option value="eclairage">Éclairage public</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-installation-type">Type d'installation *</label>
+                            <select id="project-installation-type" name="installationType" required>
+                                <option value="">Sélectionner le type</option>
+                                <option value="puits">Puits</option>
+                                <option value="forage">Forage</option>
+                                <option value="etable">Étable</Étable>
+                                <option value="entrepot">Entrepôt</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-daira">Daïra *</label>
+                            <select id="project-daira" name="daira" required>
+                                <option value="">Sélectionner la daïra</option>
+                                <option value="guelma">Guelma</option>
+                                <option value="oued-zenati">Oued Zenati</option>
+                                <option value="heliopolis">Héliopolis</option>
+                                <option value="bouchegouf">Bouchegouf</bouchegouf>
+                                <option value="hammam-debagh">Hammam Debagh</option>
+                                <option value="ain-makhlouf">Ain Makhlouf</option>
+                            </select>
+                        </div>
 
-            <!-- Footer -->
-            <footer class="app-footer">
-                <div class="footer-content">
-                    <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Aide</a>
-                        <a href="#" class="footer-link">Contact</a>
-                        <a href="#" class="footer-link">Mentions légales</a>
+                        <div class="form-group">
+                            <label for="project-commune">Commune *</label>
+                            <select id="project-commune" name="commune" required>
+                                <option value="">Sélectionner la commune</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-budget">Budget (DA) *</label>
+                            <input type="number" id="project-budget" name="budget" required placeholder="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-contractor">Entrepreneur</label>
+                            <input type="text" id="project-contractor" name="contractor" placeholder="Nom de l'entrepreneur">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-status">Statut *</label>
+                            <select id="project-status" name="status" required>
+                                <option value="planned">Planifié</option>
+                                <option value="in-progress">En cours</option>
+                                <option value="completed">Terminé</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </footer>
+                    
+                    <div class="dates-section">
+                        <h4><i class="fas fa-calendar"></i> Dates importantes</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="date-reception-demande">Date réception demande</label>
+                                <input type="date" id="date-reception-demande" name="dateReceptionDemande">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date-envoi-sonelgaz">Date envoi à Sonelgaz</label>
+                                <input type="date" id="date-envoi-sonelgaz" name="dateEnvoiSonelgaz">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date-accord-sonelgaz">Date accord Sonelgaz</label>
+                                <input type="date" id="date-accord-sonelgaz" name="dateAccordSonelgaz">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date-commencement">Date commencement *</label>
+                                <input type="date" id="date-commencement" name="startDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date-fin">Date fin prévue *</label>
+                                <input type="date" id="date-fin" name="endDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="project-description">Description</label>
+                        <textarea id="project-description" name="description" rows="4" placeholder="Description détaillée du projet d'électrification"></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-add">
+                            <i class="fas fa-times"></i>
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier un projet -->
+    <div id="edit-project-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Modifier le Projet</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-project-form" class="project-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-project-code">Code du projet *</label>
+                            <input type="text" id="edit-project-code" name="code" required readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-title">Intitulé du projet *</label>
+                            <input type="text" id="edit-project-title" name="title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-nature">Nature juridique de la tâche *</label>
+                            <select id="edit-project-nature" name="nature" required>
+                                <option value="">Sélectionner la nature juridique</option>
+                                <option value="installation-lignes">Installation de lignes</option>
+                                <option value="raccordement">Raccordement électrique</option>
+                                <option value="extension-reseau">Extension de réseau</option>
+                                <option value="maintenance">Maintenance électrique</option>
+                                <option value="transformation">Poste de transformation</option>
+                                <option value="eclairage">Éclairage public</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-installation-type">Type d'installation *</label>
+                            <select id="edit-project-installation-type" name="installationType" required>
+                                <option value="">Sélectionner le type</option>
+                                <option value="puits">Puits</option>
+                                <option value="forage">Forage</forage>
+                                <option value="etable">Étable</Étable>
+                                <option value="entrepot">Entrepôt</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-daira">Daïra *</label>
+                            <select id="edit-project-daira" name="daira" required>
+                                <option value="">Sélectionner la daïra</option>
+                                <option value="guelma">Guelma</option>
+                                <option value="oued-zenati">Oued Zenati</option>
+                                <option value="heliopolis">Héliopolis</heliopolis>
+                                <option value="bouchegouf">Bouchegouf</bouchegouf>
+                                <option value="hammam-debagh">Hammam Debagh</hammam-debagh>
+                                <option value="ain-makhlouf">Ain Makhlouf</ain-makhlouf>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-commune">Commune *</label>
+                            <select id="edit-project-commune" name="commune" required>
+                                <option value="">Sélectionner la commune</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-budget">Budget (DA) *</label>
+                            <input type="number" id="edit-project-budget" name="budget" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-contractor">Entrepreneur</label>
+                            <input type="text" id="edit-project-contractor" name="contractor">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-status">Statut *</label>
+                            <select id="edit-project-status" name="status" required>
+                                <option value="planned">Planifié</option>
+                                <option value="in-progress">En cours</option>
+                                <option value="completed">Terminé</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="dates-section">
+                        <h4><i class="fas fa-calendar"></i> Dates importantes</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="edit-date-reception-demande">Date réception demande</label>
+                                <input type="date" id="edit-date-reception-demande" name="dateReceptionDemande">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-date-envoi-sonelgaz">Date envoi à Sonelgaz</label>
+                                <input type="date" id="edit-date-envoi-sonelgaz" name="dateEnvoiSonelgaz">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-date-accord-sonelgaz">Date accord Sonelgaz</label>
+                                <input type="date" id="edit-date-accord-sonelgaz" name="dateAccordSonelgaz">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-date-commencement">Date commencement *</label>
+                                <input type="date" id="edit-date-commencement" name="startDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-date-fin">Date fin prévue *</label>
+                                <input type="date" id="edit-date-fin" name="endDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="observations-section">
+                        <h4><i class="fas fa-clipboard-list"></i> Observations</h4>
+                        <div class="observations-list" id="edit-observations-list">
+                            <!-- Les observations existantes seront affichées ici -->
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-new-observation">Nouvelle observation</label>
+                            <textarea id="edit-new-observation" name="newObservation" rows="3" placeholder="Ajouter une nouvelle observation..."></textarea>
+                        </div>
+                        <div class="observation-controls">
+                            <button type="button" class="btn btn-sm btn-secondary" id="toggle-observations">
+                                <i class="fas fa-eye"></i>
+                                Voir toutes les observations
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="edit-project-description">Description</label>
+                        <textarea id="edit-project-description" name="description" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="edit-project-observations">Observations/Remarques</label>
+                        <textarea id="edit-project-observations" name="observations" rows="3" placeholder="Ajouter des observations ou remarques techniques..."></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-edit">
+                            <i class="fas fa-times"></i>
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Sauvegarder
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- Modal pour les détails du projet -->
-    <div class="modal" id="project-details-modal">
-        <div class="modal-content">
+    <div id="project-details-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
             <div class="modal-header">
-                <h3><i class="fas fa-info-circle"></i> Détails du Projet</h3>
-                <button class="modal-close"><i class="fas fa-times"></i></button>
+                <h3><i class="fas fa-info-circle"></i> Détails du projet</h3>
+                <div class="modal-header-actions">
+                    <button class="btn btn-sm btn-secondary" id="print-details-btn">
+                        <i class="fas fa-print"></i>
+                        Imprimer
+                    </button>
+                    <button class="btn btn-sm btn-export" id="export-details-btn">
+                        <i class="fas fa-download"></i>
+                        Exporter
+                    </button>
+                    <button class="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body project-details-content">
+                <!-- Le contenu sera chargé dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour la carte Google Maps -->
+    <div id="map-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-map-marked-alt"></i> Carte des Projets d'Électrification</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="project-details-content">
-                    <!-- Le contenu sera rempli dynamiquement -->
+                <div id="map-container" style="width: 100%; height: 500px; border-radius: 8px; overflow: hidden;">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; background-color: #f8f9fa;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #2d4f4f; margin-bottom: 1rem;"></i>
+                            <p>Chargement de la carte...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal pour la carte -->
-    <div class="map-modal" id="map-modal">
-        <div class="map-container">
-            <div class="map-header">
-                <h3><i class="fas fa-map-marked-alt"></i> Carte des Projets d'Électrification</h3>
-                <button class="modal-close" id="map-close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="map-content">
-                <!-- Ajout d'un conteneur spécifique pour Google Maps -->
-                <div id="map-container" style="width: 100%; height: 100%;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section d'impression cachée -->
-    <div id="print-section" style="display: none;"></div>
-
-    <!-- Charger d'abord le gestionnaire de carte -->
-    <script src="map-manager.js"></script>
-    <!-- Puis charger le script principal -->
     <script src="electrification.js"></script>
 </body>
 </html>

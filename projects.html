@@ -5,197 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Projets - DSA Guelma</title>
     <link rel="stylesheet" href="projects_style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- Barre latérale -->
+        <!-- Sidebar identique au dashboard -->
         <div class="sidebar">
-            <div class="profile-container">
-                <div class="profile-circle">DSA</div>
+            <div class="profile-section">
+                <div class="profile-pic">AD</div>
                 <div class="profile-info">
                     <h3>Admin DSA</h3>
-                    <p>Direction des Services Agricoles</p>
+                    <p>admin@dsa-agriculture.dz</p>
                 </div>
             </div>
-            <div class="nav-links">
-    <a href="index.html" class="nav-link">
-        <i class="fas fa-tachometer-alt"></i> Tableau de bord
-    </a>
-    <a href="projects.html" class="nav-link active">
-        <i class="fas fa-project-diagram"></i> Projets
-    </a>
-    <a href="electrification.html" class="nav-link">
-        <i class="fas fa-bolt"></i> Électrification
-    </a>
-    <a href="investissement.html" class="nav-link">
-        <i class="fas fa-chart-line"></i> Investissements
-    </a>
-    <a href="#" class="nav-link">
-        <i class="fas fa-file-alt"></i> Rapports
-    </a>
-    <a href="#" class="nav-link">
-        <i class="fas fa-cog"></i> Paramètres
-    </a>
-</div>
-            <div class="sidebar-footer">
-                <div class="active-users">
-                    <div class="user-count">12</div>
-                    <div class="user-label">PROJETS ACTIFS</div>
-                </div>
+            
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <div class="nav-icon">📊</div>
+                        <span class="nav-text">TABLEAU DE BORD</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="projects.html">
+                        <div class="nav-icon">🌱</div>
+                        <span class="nav-text">PROJETS AGRICOLES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="investissement.html">
+                        <div class="nav-icon">💰</div>
+                        <span class="nav-text">INVESTISSEMENT</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="electrification.html">
+                        <div class="nav-icon">⚡</div>
+                        <span class="nav-text">ÉLECTRIFICATION</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stats.html">  
+                        <div class="nav-icon">📈</div>
+                        <span class="nav-text">STATISTIQUES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="parametres.html">
+                        <div class="nav-icon">⚙️</div>
+                        <span class="nav-text">PARAMÈTRES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="active-users">
+                <div class="users-count">24</div>
+                <span>PROJETS ACTIFS</span>
             </div>
         </div>
 
         <!-- Contenu principal -->
-        <div class="content-wrapper">
-            <!-- En-tête principal -->
-            <header class="main-header">
-                <h1>Gestion des Projets</h1>
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">Direction des Services Agricoles - Guelma</div>
                 <div class="header-actions">
-                    <div class="notification-icon">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
-                    </div>
-                    <div class="user-menu">
-                        <div class="user-avatar">AD</div>
-                        <span class="user-name">Admin DSA</span>
+                    <div class="cart-icon">
+                        🛒
+                        <div class="cart-badge">3</div>
                     </div>
                 </div>
-            </header>
-
-            <!-- Contenu principal -->
-            <main class="app-main">
-                <!-- En-tête de la page -->
+            </div>
+            
+            <!-- Page content -->
+            <div class="page-content">
+                <!-- Page header -->
                 <div class="page-header">
                     <div class="page-title">
-                        <i class="fas fa-project-diagram"></i>
-                        <h2>Tous les Projets</h2>
+                        <h1>🌱 Tous les Projets</h1>
+                        <p>Gérez et suivez tous vos projets agricoles</p>
                     </div>
                     <div class="page-actions">
                         <div class="search-container">
-                            <i class="fas fa-search search-icon"></i>
+                            <i class="fas fa-search"></i>
                             <input type="text" class="search-input" placeholder="Rechercher un projet...">
                         </div>
-                        <div class="filter-container">
-                            <select id="type-filter" class="filter-select">
-                                <option value="all">Tous les types</option>
-                                <option value="electrification">Électrification</option>
-                                <option value="investment">Investissement</option>
-                            </select>
+                        <select id="type-filter" class="filter-select">
+                            <option value="all">Tous les types</option>
+                            <option value="electrification">Électrification</option>
+                            <option value="investment">Investissement</option>
+                        </select>
+                        <select id="status-filter" class="filter-select">
+                            <option value="all">Tous les statuts</option>
+                            <option value="in-progress">En cours</option>
+                            <option value="planned">Planifié</option>
+                            <option value="completed">Terminé</option>
+                        </select>
+                        <div class="export-container">
+                            <button class="btn btn-export" id="export-btn">
+                                <i class="fas fa-download"></i>
+                                Exporter
+                            </button>
+                            <div class="export-dropdown" id="export-dropdown">
+                                <button class="export-option" id="export-pdf">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF
+                                </button>
+                                <button class="export-option" id="export-excel">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel
+                                </button>
+                            </div>
                         </div>
-                        <div class="filter-container">
-                            <select id="status-filter" class="filter-select">
-                                <option value="all">Tous les statuts</option>
-                                <option value="in-progress">En cours</option>
-                                <option value="planned">Planifié</option>
-                                <option value="completed">Terminé</option>
-                            </select>
-                        </div>
-                        <button id="export-btn" class="btn btn-export">
-                            <i class="fas fa-file-export"></i> Exporter
+                        <button class="btn btn-print" id="print-btn">
+                            <i class="fas fa-print"></i>
+                            Imprimer
                         </button>
-                        <button id="print-btn" class="btn btn-print">
-                            <i class="fas fa-print"></i> Imprimer
+                        <button class="btn btn-primary" id="add-project-btn">
+                            <i class="fas fa-plus"></i>
+                            Nouveau projet
                         </button>
                     </div>
                 </div>
 
-                <!-- Cartes statistiques -->
-                <div class="stats-cards-container">
-                    <h3><i class="fas fa-chart-pie"></i> Aperçu des Projets</h3>
-                    <div class="stats-cards">
+                <!-- Stats cards -->
+                <div class="stats-section">
+                    <h3>📊 Aperçu des Projets</h3>
+                    <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon gold">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="24">0</div>
-                                <div class="stat-label">Total des projets</div>
-                            </div>
+                            <div class="stat-icon">🌱</div>
+                            <h3>Total des projets</h3>
+                            <div class="stat-value counter" data-target="24">0</div>
+                            <p>Ce mois-ci</p>
                         </div>
+                        
                         <div class="stat-card">
-                            <div class="stat-icon teal">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="14">0</div>
-                                <div class="stat-label">Projets d'électrification</div>
-                            </div>
+                            <div class="stat-icon">⚡</div>
+                            <h3>Projets d'électrification</h3>
+                            <div class="stat-value counter" data-target="14">0</div>
+                            <p>Sites électrifiés</p>
                         </div>
+                        
                         <div class="stat-card">
-                            <div class="stat-icon orange">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="10">0</div>
-                                <div class="stat-label">Projets d'investissement</div>
-                            </div>
+                            <div class="stat-icon">💰</div>
+                            <h3>Projets d'investissement</h3>
+                            <div class="stat-value counter" data-target="10">0</div>
+                            <p>Investissements</p>
                         </div>
+                        
                         <div class="stat-card">
-                            <div class="stat-icon green">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-value counter" data-target="8">0</div>
-                                <div class="stat-label">Projets terminés</div>
-                            </div>
+                            <div class="stat-icon">✅</div>
+                            <h3>Projets terminés</h3>
+                            <div class="stat-value counter" data-target="8">0</div>
+                            <p>Complétés</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tableau des projets -->
+                <!-- Projects table -->
                 <div class="table-container">
-                    <table class="projects-table">
-                        <thead>
-                            <tr>
-                                <th>Code</th>
-                                <th>Type</th>
-                                <th>Intitulé</th>
-                                <th>Localisation</th>
-                                <th>Budget</th>
-                                <th>Date début</th>
-                                <th>Date fin</th>
-                                <th>Statut</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="projects-table-body">
-                            <!-- Les données seront chargées dynamiquement -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pagination -->
-                <div class="pagination">
-                    <button class="page-item"><i class="fas fa-chevron-left"></i></button>
-                    <button class="page-item active">1</button>
-                    <button class="page-item">2</button>
-                    <button class="page-item">3</button>
-                    <button class="page-item"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </main>
-
-            <!-- Pied de page -->
-            <footer class="app-footer">
-                <div class="footer-content">
-                    <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Aide</a>
-                        <a href="#" class="footer-link">Confidentialité</a>
-                        <a href="#" class="footer-link">Conditions d'utilisation</a>
+                    <div class="table-wrapper">
+                        <table class="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Type</th>
+                                    <th>Intitulé</th>
+                                    <th>Localisation</th>
+                                    <th>Budget</th>
+                                    <th>Date début</th>
+                                    <th>Date fin</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projects-table-body">
+                                <!-- Les données seront chargées dynamiquement -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour sélectionner le type de projet -->
+    <div id="project-type-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Choisir le type de projet</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="project-type-selection">
+                    <div class="type-option" data-type="investment">
+                        <div class="type-icon">💰</div>
+                        <h4>Projet d'Investissement</h4>
+                        <p>Créer un nouveau projet d'investissement avec gestion budgétaire complète</p>
+                        <div class="type-features">
+                            <span><i class="fas fa-check"></i> Gestion budgétaire</span>
+                            <span><i class="fas fa-check"></i> Suivi des paiements</span>
+                            <span><i class="fas fa-check"></i> Rapports financiers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="type-option" data-type="electrification">
+                        <div class="type-icon">⚡</div>
+                        <h4>Projet d'Électrification</h4>
+                        <p>Créer un nouveau projet d'électrification agricole avec suivi technique</p>
+                        <div class="type-features">
+                            <span><i class="fas fa-check"></i> Suivi technique</span>
+                            <span><i class="fas fa-check"></i> Gestion des installations</span>
+                            <span><i class="fas fa-check"></i> Cartographie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Modal pour les détails du projet -->
     <div id="project-details-modal" class="modal">
+        <div class="modal-backdrop"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-info-circle"></i> Détails du Projet</h3>
-                <button class="modal-close">&times;</button>
+                <h3>Détails du projet</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <div class="modal-body project-details-content">
                 <!-- Le contenu sera chargé dynamiquement -->
@@ -203,24 +252,6 @@
         </div>
     </div>
 
-    <!-- Options d'exportation -->
-    <div id="export-options" class="export-options">
-        <div id="export-excel" class="export-option excel">
-            <i class="fas fa-file-excel"></i> Exporter en Excel
-        </div>
-        <div id="export-pdf" class="export-option pdf">
-            <i class="fas fa-file-pdf"></i> Exporter en PDF
-        </div>
-        <div id="export-csv" class="export-option csv">
-            <i class="fas fa-file-csv"></i> Exporter en CSV
-        </div>
-    </div>
-
-    <!-- Section pour l'impression -->
-    <div id="print-section" style="display: none;"></div>
-
     <script src="projects_script.js"></script>
-    <script src="translations.js"></script>
-    <script src="theme-manager.js"></script>
 </body>
 </html>

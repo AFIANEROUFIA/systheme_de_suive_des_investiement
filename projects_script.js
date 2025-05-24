@@ -1,1268 +1,706 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Référence aux éléments du DOM
-    const projectsTableBody = document.getElementById("projects-table-body")
-    const searchInput = document.querySelector(".search-input")
-    const typeFilter = document.getElementById("type-filter")
-    const statusFilter = document.getElementById("status-filter")
-    const exportBtn = document.getElementById("export-btn")
-    const exportOptions = document.getElementById("export-options")
-    const exportExcel = document.getElementById("export-excel")
-    const exportPdf = document.getElementById("export-pdf")
-    const exportCsv = document.getElementById("export-csv")
-    const printBtn = document.getElementById("print-btn")
-    const projectDetailsModal = document.getElementById("project-details-modal")
-    const modalClose = document.querySelector(".modal-close")
-    const projectDetailsContent = document.querySelector(".project-details-content")
-    const paginationItems = document.querySelectorAll(".pagination .page-item")
-  
-    // Données combinées des projets (électrification et investissement)
-    const projectsData = [
-      // Projets d'électrification
-      {
-        code: "ELEC-2024-05-123",
-        type: "electrification",
-        title: "Électrification Zone Agricole Oued Zenati",
-        location: "Oued Zenati",
-        budget: 45000000,
-        startDate: "2024-03-15",
-        endDate: "2024-09-30",
-        status: "in-progress",
-        details: {
-          contractor: "Entreprise Électrique SARL",
-          powerCapacity: "250 kW",
-          beneficiaries: "15 exploitations agricoles",
-          description:
-            "Installation de lignes électriques et transformateurs pour alimenter la zone agricole d'Oued Zenati.",
-        },
-      },
-      {
-        code: "ELEC-2024-04-089",
-        type: "electrification",
-        title: "Réseau Électrique Fermes Héliopolis",
-        location: "Héliopolis",
-        budget: 32000000,
-        startDate: "2024-06-01",
-        endDate: "2024-12-15",
-        status: "planned",
-        details: {
-          contractor: "ElectroPower Algérie",
-          powerCapacity: "180 kW",
-          beneficiaries: "8 fermes d'élevage",
-          description: "Mise en place d'un réseau électrique pour les fermes d'élevage dans la commune d'Héliopolis.",
-        },
-      },
-      {
-        code: "ELEC-2024-03-045",
-        type: "electrification",
-        title: "Électrification Serres Bouchegouf",
-        location: "Bouchegouf",
-        budget: 28500000,
-        startDate: "2023-11-10",
-        endDate: "2024-04-20",
-        status: "completed",
-        details: {
-          contractor: "Consortium Électrique Est",
-          powerCapacity: "120 kW",
-          beneficiaries: "12 serres agricoles",
-          description: "Installation complète du réseau électrique pour alimenter les serres agricoles de Bouchegouf.",
-        },
-      },
-      {
-        code: "ELEC-2024-02-078",
-        type: "electrification",
-        title: "Alimentation Électrique Station Pompage",
-        location: "Guelma",
-        budget: 18700000,
-        startDate: "2023-09-05",
-        endDate: "2024-02-28",
-        status: "completed",
-        details: {
-          contractor: "HydroPower EURL",
-          powerCapacity: "90 kW",
-          beneficiaries: "Zone d'irrigation 200 hectares",
-          description: "Électrification de la station de pompage principale pour l'irrigation de la plaine de Guelma.",
-        },
-      },
-      {
-        code: "ELEC-2024-01-112",
-        type: "electrification",
-        title: "Réseau Électrique Coopérative Agricole",
-        location: "Aïn Makhlouf",
-        budget: 35200000,
-        startDate: "2024-02-15",
-        endDate: "2024-08-30",
-        status: "in-progress",
-        details: {
-          contractor: "ElectroBuild SPA",
-          powerCapacity: "200 kW",
-          beneficiaries: "Coopérative de 25 agriculteurs",
-          description:
-            "Installation du réseau électrique pour la coopérative agricole d'Aïn Makhlouf, incluant les bâtiments administratifs et les zones de stockage.",
-        },
-      },
-  
-      // Projets d'investissement
-      {
-        code: "INV-2024-001",
-        type: "investment",
-        title: "Construction Centre Santé",
-        location: "Subdivision Nord",
-        budget: 150000000,
-        startDate: "2024-01-15",
-        endDate: "2024-11-30",
-        status: "in-progress",
-        details: {
-          contractor: "Entreprise BTP SARL",
-          progress: 63,
-          description: "Construction d'un centre de santé pour les travailleurs agricoles dans la subdivision Nord.",
-        },
-      },
-      {
-        code: "INV-2024-002",
-        type: "investment",
-        title: "Équipement Lycée Technique",
-        location: "Subdivision Sud",
-        budget: 75000000,
-        startDate: "2024-03-01",
-        endDate: "2024-09-30",
-        status: "in-progress",
-        details: {
-          contractor: "Fournisseur Équipements",
-          progress: 80,
-          description: "Fourniture et installation d'équipements pour le lycée technique agricole.",
-        },
-      },
-      {
-        code: "INV-2024-003",
-        type: "investment",
-        title: "Aménagement Parc Urbain",
-        location: "Subdivision Est",
-        budget: 45000000,
-        startDate: "2024-05-10",
-        endDate: "2024-12-15",
-        status: "planned",
-        details: {
-          contractor: "Paysagiste ENP",
-          progress: 33,
-          description: "Aménagement d'un parc urbain avec espaces verts et zones de loisirs.",
-        },
-      },
-      {
-        code: "INV-2023-004",
-        type: "investment",
-        title: "Réhabilitation Route Principale",
-        location: "Subdivision Ouest",
-        budget: 280000000,
-        startDate: "2023-02-01",
-        endDate: "2023-10-15",
-        status: "completed",
-        details: {
-          contractor: "Génie Civil EURL",
-          progress: 100,
-          description: "Réhabilitation complète de la route principale desservant les zones agricoles.",
-        },
-      },
-      {
-        code: "INV-2024-005",
-        type: "investment",
-        title: "Système Irrigation Agricole",
-        location: "Subdivision Sud",
-        budget: 90000000,
-        startDate: "2024-06-01",
-        endDate: "2024-12-31",
-        status: "planned",
-        details: {
-          contractor: "AgriTech SA",
-          progress: 0,
-          description: "Installation d'un système d'irrigation moderne pour les exploitations agricoles.",
-        },
-      },
-    ]
-  
-    // Charger les projets au démarrage
-    loadProjects(projectsData)
-    updateStats(projectsData)
+  // Éléments du DOM
+  const projectsTableBody = document.getElementById("projects-table-body")
+  const searchInput = document.querySelector(".search-input")
+  const typeFilter = document.getElementById("type-filter")
+  const statusFilter = document.getElementById("status-filter")
+  const exportBtn = document.getElementById("export-btn")
+  const exportDropdown = document.getElementById("export-dropdown")
+  const exportPdf = document.getElementById("export-pdf")
+  const exportExcel = document.getElementById("export-excel")
+  const addProjectBtn = document.getElementById("add-project-btn")
+  const counters = document.querySelectorAll(".counter")
+  const projectTypeModal = document.getElementById("project-type-modal")
+
+  // Données combinées des projets (électrification + investissement)
+  const projectsData = [
+    // Projets d'électrification
+    {
+      id: "ELEC-2024-001",
+      code: "ELEC-2024-05-123",
+      type: "electrification",
+      title: "Électrification Zone Agricole Oued Zenati",
+      location: "Oued Zenati",
+      budget: 45000000,
+      startDate: "2024-03-15",
+      endDate: "2024-09-30",
+      status: "in-progress",
+      contractor: "Entreprise Électrique SARL",
+      description: "Installation de lignes électriques pour la zone agricole",
+    },
+    {
+      id: "ELEC-2024-002",
+      code: "ELEC-2024-04-089",
+      type: "electrification",
+      title: "Réseau Électrique Fermes Héliopolis",
+      location: "Héliopolis",
+      budget: 32000000,
+      startDate: "2024-06-01",
+      endDate: "2024-12-15",
+      status: "planned",
+      contractor: "ElectroPower Algérie",
+      description: "Mise en place d'un réseau électrique pour les fermes",
+    },
+    {
+      id: "ELEC-2024-003",
+      code: "ELEC-2024-03-045",
+      type: "electrification",
+      title: "Électrification Forage Bouchegouf",
+      location: "Bouchegouf",
+      budget: 28500000,
+      startDate: "2023-11-01",
+      endDate: "2024-04-20",
+      status: "completed",
+      contractor: "TechElec SARL",
+      description: "Électrification complète du système de forage",
+    },
+    // Projets d'investissement
+    {
+      id: "INV-2024-001",
+      code: "INV-2024-001",
+      type: "investment",
+      title: "Construction Centre Santé",
+      location: "Guelma",
+      budget: 150000000,
+      startDate: "2024-01-15",
+      endDate: "2024-11-30",
+      status: "in-progress",
+      contractor: "Entreprise BTP SARL",
+      description: "Construction d'un centre de santé moderne",
+    },
+    {
+      id: "INV-2024-002",
+      code: "INV-2023-004",
+      type: "investment",
+      title: "Réhabilitation Route Principale",
+      location: "Oued Zenati",
+      budget: 280000000,
+      startDate: "2023-02-01",
+      endDate: "2023-10-15",
+      status: "completed",
+      contractor: "Génie Civil EURL",
+      description: "Réhabilitation complète de la route principale",
+    },
+    {
+      id: "INV-2024-003",
+      code: "INV-2024-002",
+      type: "investment",
+      title: "Modernisation Marché Municipal",
+      location: "Guelma",
+      budget: 95000000,
+      startDate: "2024-04-01",
+      endDate: "2024-10-30",
+      status: "in-progress",
+      contractor: "Construction Moderne SARL",
+      description: "Modernisation et extension du marché municipal",
+    },
+    {
+      id: "INV-2024-004",
+      code: "INV-2024-003",
+      type: "investment",
+      title: "Aménagement Parc Public",
+      location: "Héliopolis",
+      budget: 45000000,
+      startDate: "2024-07-01",
+      endDate: "2024-12-31",
+      status: "planned",
+      contractor: "Espaces Verts EURL",
+      description: "Création d'un parc public avec aires de jeux",
+    },
+  ]
+
+  // Importation de XLSX
+  const XLSX = window.XLSX
+
+  // Initialisation
+  init()
+
+  function init() {
+    loadProjects()
     animateCounters()
-  
-    // Gestionnaire pour la recherche
-    searchInput.addEventListener("input", filterProjects)
-  
-    // Gestionnaires pour les filtres
-    typeFilter.addEventListener("change", filterProjects)
-    statusFilter.addEventListener("change", filterProjects)
-  
-    // Gestionnaire pour le bouton d'exportation
-    exportBtn.addEventListener("click", (e) => {
-      e.preventDefault()
-      e.stopPropagation()
-      exportOptions.classList.toggle("show")
+    setupEventListeners()
+    updateStats()
+  }
+
+  function setupEventListeners() {
+    // Recherche
+    searchInput?.addEventListener("input", filterProjects)
+
+    // Filtres
+    typeFilter?.addEventListener("change", filterProjects)
+    statusFilter?.addEventListener("change", filterProjects)
+
+    // Export
+    exportBtn?.addEventListener("click", toggleExportMenu)
+    document.addEventListener("click", closeExportMenu)
+
+    // Export options
+    exportPdf?.addEventListener("click", exportToPDF)
+    exportExcel?.addEventListener("click", exportToExcel)
+
+    // Impression
+    const printBtn = document.getElementById("print-btn")
+    printBtn?.addEventListener("click", printProjects)
+
+    // Nouveau projet - Ouvrir le modal de sélection
+    addProjectBtn?.addEventListener("click", openProjectTypeModal)
+
+    // Sélection du type de projet
+    document.querySelectorAll(".type-option").forEach((option) => {
+      option.addEventListener("click", handleProjectTypeSelection)
     })
-  
-    // Fermer les options d'exportation si on clique ailleurs
+
+    // Fermeture des modals
     document.addEventListener("click", (e) => {
-      if (!e.target.closest("#export-btn") && exportOptions.classList.contains("show")) {
-        exportOptions.classList.remove("show")
+      if (e.target.classList.contains("modal-backdrop")) {
+        closeModal()
       }
     })
-  
-    // Gestionnaires pour les options d'exportation
-    exportExcel.addEventListener("click", () => {
-      exportOptions.classList.remove("show")
-      exportToExcel()
+
+    document.querySelectorAll(".modal-close").forEach((btn) => {
+      btn.addEventListener("click", closeModal)
     })
-  
-    exportPdf.addEventListener("click", () => {
-      exportOptions.classList.remove("show")
-      exportToPDF()
-    })
-  
-    exportCsv.addEventListener("click", () => {
-      exportOptions.classList.remove("show")
-      exportToCSV()
-    })
-  
-    // Gestionnaire pour le bouton d'impression
-    printBtn.addEventListener("click", printProjects)
-  
-    // Fermer la modal de détails
-    if (modalClose) {
-      modalClose.addEventListener("click", () => {
-        projectDetailsModal.classList.remove("show")
-      })
+  }
+
+  function openProjectTypeModal() {
+    projectTypeModal.classList.add("show")
+  }
+
+  function handleProjectTypeSelection(e) {
+    const selectedType = e.currentTarget.getAttribute("data-type")
+    closeModal()
+
+    // Rediriger vers la page appropriée avec un paramètre
+    if (selectedType === "investment") {
+      // Rediriger vers la page d'investissement
+      window.location.href = "investissement.html?action=new"
+    } else if (selectedType === "electrification") {
+      // Rediriger vers la page d'électrification
+      window.location.href = "electrification.html?action=new"
     }
-  
-    // Fermer la modal en cliquant en dehors
-    projectDetailsModal.addEventListener("click", (e) => {
-      if (e.target === projectDetailsModal) {
-        projectDetailsModal.classList.remove("show")
-      }
+  }
+
+  function loadProjects() {
+    if (!projectsTableBody) return
+
+    projectsTableBody.innerHTML = ""
+
+    projectsData.forEach((project, index) => {
+      const row = createProjectRow(project)
+      projectsTableBody.appendChild(row)
+
+      // Animation d'apparition
+      setTimeout(() => {
+        row.style.opacity = "1"
+        row.style.transform = "translateY(0)"
+      }, index * 100)
     })
-  
-    // Initialisation de la pagination
-    paginationItems.forEach((item) => {
-      item.addEventListener("click", function () {
-        if (!this.classList.contains("active") && !this.querySelector("i")) {
-          document.querySelector(".pagination .active").classList.remove("active")
-          this.classList.add("active")
-          showNotification(`Page ${this.textContent} chargée`)
-        }
-      })
-    })
-  
-    // Fonction pour charger les projets dans le tableau
-    function loadProjects(projects) {
-      projectsTableBody.innerHTML = ""
-  
-      projects.forEach((project) => {
-        const row = document.createElement("tr")
-  
-        // Déterminer la classe de badge pour le type
-        const typeClass = project.type === "electrification" ? "type-electrification" : "type-investment"
-        const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-  
-        // Déterminer la classe de badge pour le statut
-        let statusClass = ""
-        let statusLabel = ""
-  
-        switch (project.status) {
-          case "in-progress":
-            statusClass = "status-in-progress"
-            statusLabel = "En cours"
-            break
-          case "planned":
-            statusClass = "status-planned"
-            statusLabel = "Planifié"
-            break
-          case "completed":
-            statusClass = "status-completed"
-            statusLabel = "Terminé"
-            break
-        }
-  
-        // Formater les dates
-        const startDate = formatDate(project.startDate)
-        const endDate = formatDate(project.endDate)
-  
-        // Formater le budget
-        const formattedBudget = formatNumber(project.budget) + " DA"
-  
-        row.innerHTML = `
-          <td>${project.code}</td>
-          <td><span class="type-badge ${typeClass}">${typeLabel}</span></td>
-          <td>${project.title}</td>
-          <td>${project.location}</td>
-          <td>${formattedBudget}</td>
-          <td>${startDate}</td>
-          <td>${endDate}</td>
-          <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
-          <td class="actions-cell">
-            <button class="action-btn view-btn" title="Voir les détails" data-code="${project.code}">
-              <i class="fas fa-eye"></i>
-            </button>
-            <button class="action-btn export-btn" title="Exporter en PDF" data-code="${project.code}">
-              <i class="fas fa-file-pdf"></i>
-            </button>
-            <button class="action-btn print-btn" title="Imprimer" data-code="${project.code}">
-              <i class="fas fa-print"></i>
-            </button>
-          </td>
+
+    addRowEventListeners()
+  }
+
+  function createProjectRow(project) {
+    const row = document.createElement("tr")
+    row.style.opacity = "0"
+    row.style.transform = "translateY(20px)"
+    row.style.transition = "all 0.3s ease"
+
+    const typeClass = project.type === "electrification" ? "electrification" : "investment"
+    const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
+
+    let statusClass = ""
+    let statusLabel = ""
+
+    switch (project.status) {
+      case "in-progress":
+        statusClass = "in-progress"
+        statusLabel = "En cours"
+        break
+      case "planned":
+        statusClass = "planned"
+        statusLabel = "Planifié"
+        break
+      case "completed":
+        statusClass = "completed"
+        statusLabel = "Terminé"
+        break
+    }
+
+    row.innerHTML = `
+            <td>
+                <div class="project-code">
+                    <strong>${project.code}</strong>
+                </div>
+            </td>
+            <td>
+                <span class="type-badge type-${typeClass}">${typeLabel}</span>
+            </td>
+            <td>
+                <div class="project-title">
+                    <strong>${project.title}</strong>
+                    <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">${project.contractor}</small>
+                </div>
+            </td>
+            <td>${project.location}</td>
+            <td>
+                <strong>${formatCurrency(project.budget)}</strong>
+            </td>
+            <td>${formatDate(project.startDate)}</td>
+            <td>${formatDate(project.endDate)}</td>
+            <td>
+                <span class="status-badge status-${statusClass}">${statusLabel}</span>
+            </td>
+            <td>
+                <div class="actions-cell">
+                    <button class="action-btn view-btn" data-id="${project.id}" title="Voir les détails">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn delete-btn" data-id="${project.id}" title="Supprimer">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
         `
-  
-        projectsTableBody.appendChild(row)
+
+    return row
+  }
+
+  function addRowEventListeners() {
+    // Boutons de visualisation
+    document.querySelectorAll(".view-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const projectId = e.currentTarget.getAttribute("data-id")
+        showProjectDetails(projectId)
       })
-  
-      // Ajouter les gestionnaires d'événements aux boutons d'action
-      addActionButtonsEventListeners()
-    }
-  
-    // Fonction pour ajouter les gestionnaires d'événements aux boutons d'action
-    function addActionButtonsEventListeners() {
-      // Boutons de visualisation
-      document.querySelectorAll(".view-btn").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const projectCode = this.getAttribute("data-code")
-          const project = findProjectByCode(projectCode)
-          if (project) {
-            showProjectDetails(project)
-          }
-        })
+    })
+
+    // Boutons de suppression
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const projectId = e.currentTarget.getAttribute("data-id")
+        deleteProject(projectId)
       })
-  
-      // Boutons d'exportation PDF
-      document.querySelectorAll(".export-btn").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const projectCode = this.getAttribute("data-code")
-          const project = findProjectByCode(projectCode)
-          if (project) {
-            exportProjectToPDF(project)
-          }
-        })
-      })
-  
-      // Boutons d'impression
-      document.querySelectorAll(".print-btn").forEach((btn) => {
-        btn.addEventListener("click", function () {
-          const projectCode = this.getAttribute("data-code")
-          const project = findProjectByCode(projectCode)
-          if (project) {
-            printProjectDetails(project)
-          }
-        })
-      })
-    }
-  
-    // Fonction pour trouver un projet par son code
-    function findProjectByCode(code) {
-      return projectsData.find((project) => project.code === code)
-    }
-  
-    // Fonction pour filtrer les projets
-    function filterProjects() {
-      const searchTerm = searchInput.value.toLowerCase()
-      const selectedType = typeFilter.value
-      const selectedStatus = statusFilter.value
-  
-      const filteredProjects = projectsData.filter((project) => {
-        // Filtre par terme de recherche
-        const matchesSearch =
-          project.code.toLowerCase().includes(searchTerm) ||
-          project.title.toLowerCase().includes(searchTerm) ||
-          project.location.toLowerCase().includes(searchTerm)
-  
-        // Filtre par type
-        const matchesType = selectedType === "all" || project.type === selectedType
-  
-        // Filtre par statut
-        const matchesStatus = selectedStatus === "all" || project.status === selectedStatus
-  
-        return matchesSearch && matchesType && matchesStatus
-      })
-  
-      loadProjects(filteredProjects)
-      updateStats(filteredProjects)
-    }
-  
-    // Fonction pour mettre à jour les statistiques
-    function updateStats(projects) {
-      const totalProjects = projects.length
-      const electrificationProjects = projects.filter((p) => p.type === "electrification").length
-      const investmentProjects = projects.filter((p) => p.type === "investment").length
-      const completedProjects = projects.filter((p) => p.status === "completed").length
-  
-      document
-        .querySelector(".stats-cards .stat-card:nth-child(1) .stat-value")
-        .setAttribute("data-target", totalProjects)
-      document
-        .querySelector(".stats-cards .stat-card:nth-child(2) .stat-value")
-        .setAttribute("data-target", electrificationProjects)
-      document
-        .querySelector(".stats-cards .stat-card:nth-child(3) .stat-value")
-        .setAttribute("data-target", investmentProjects)
-      document
-        .querySelector(".stats-cards .stat-card:nth-child(4) .stat-value")
-        .setAttribute("data-target", completedProjects)
-  
-      animateCounters()
-    }
-  
-    // Fonction pour animer les compteurs
-    function animateCounters() {
-      const counters = document.querySelectorAll(".counter")
-  
-      counters.forEach((counter) => {
-        const target = +counter.getAttribute("data-target")
-        const count = +counter.innerText
-        const increment = target / 20
-  
-        if (count < target) {
-          counter.innerText = Math.ceil(count + increment)
-          setTimeout(() => animateCounters(), 50)
-        } else {
-          counter.innerText = target
-        }
-      })
-    }
-  
-    // Fonction pour afficher les détails d'un projet
-    function showProjectDetails(project) {
-      // Déterminer le type de projet pour l'affichage
-      const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-  
-      // Déterminer le statut pour l'affichage
-      let statusLabel = ""
-      let statusClass = ""
-  
-      switch (project.status) {
-        case "in-progress":
-          statusLabel = "En cours"
-          statusClass = "status-active-text"
-          break
-        case "planned":
-          statusLabel = "Planifié"
-          statusClass = "status-pending-text"
-          break
-        case "completed":
-          statusLabel = "Terminé"
-          statusClass = "status-completed-text"
-          break
-      }
-  
-      // Formater les dates et le budget
-      const startDate = formatDate(project.startDate)
-      const endDate = formatDate(project.endDate)
-      const formattedBudget = formatNumber(project.budget) + " DA"
-  
-      // Construire le contenu HTML pour les détails spécifiques au type de projet
-      let specificDetails = ""
-  
-      if (project.type === "electrification") {
-        specificDetails = `
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-bolt"></i> Capacité électrique:</span>
-            <span class="detail-value">${project.details.powerCapacity}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-users"></i> Bénéficiaires:</span>
-            <span class="detail-value">${project.details.beneficiaries}</span>
-          </div>
-        `
+    })
+  }
+
+  function filterProjects() {
+    const searchTerm = searchInput?.value.toLowerCase() || ""
+    const selectedType = typeFilter?.value || "all"
+    const selectedStatus = statusFilter?.value || "all"
+
+    const rows = document.querySelectorAll("#projects-table-body tr")
+
+    rows.forEach((row) => {
+      const title = row.querySelector(".project-title strong")?.textContent.toLowerCase() || ""
+      const code = row.querySelector(".project-code strong")?.textContent.toLowerCase() || ""
+      const type = row.querySelector(".type-badge")?.classList.contains("type-electrification")
+        ? "electrification"
+        : "investment"
+      const status = getStatusFromBadge(row.querySelector(".status-badge"))
+
+      const matchesSearch = title.includes(searchTerm) || code.includes(searchTerm)
+      const matchesType = selectedType === "all" || type === selectedType
+      const matchesStatus = selectedStatus === "all" || status === selectedStatus
+
+      if (matchesSearch && matchesType && matchesStatus) {
+        row.style.display = ""
+        row.style.animation = "fadeInUp 0.3s ease"
       } else {
-        specificDetails = `
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-tasks"></i> Avancement:</span>
-            <span class="detail-value">
-              <div class="progress-container" style="height: 8px; background-color: #e0e0e0; border-radius: 4px; overflow: hidden; margin-top: 5px;">
-                <div style="height: 100%; width: ${project.details.progress}%; background-color: var(--success-color); border-radius: 4px;"></div>
-              </div>
-              <span style="font-size: 0.9rem; margin-top: 5px; display: inline-block;">${project.details.progress}%</span>
-            </span>
-          </div>
-        `
+        row.style.display = "none"
       }
-  
-      // Construire le contenu HTML complet
-      projectDetailsContent.innerHTML = `
-        <div class="project-detail-card">
-          <div class="detail-header">
-            <h4>${project.title}</h4>
-            <span class="detail-code">${project.code} - ${typeLabel}</span>
-          </div>
-          <div class="detail-body">
-            <div class="detail-item">
-              <span class="detail-label"><i class="fas fa-map-marker-alt"></i> Localisation:</span>
-              <span class="detail-value">${project.location}</span>
+    })
+
+    updateStats()
+  }
+
+  function getStatusFromBadge(badge) {
+    if (badge?.classList.contains("status-in-progress")) return "in-progress"
+    if (badge?.classList.contains("status-planned")) return "planned"
+    if (badge?.classList.contains("status-completed")) return "completed"
+    return ""
+  }
+
+  function showProjectDetails(projectId) {
+    const project = projectsData.find((p) => p.id === projectId)
+    if (!project) return
+
+    const modal = document.getElementById("project-details-modal")
+    const content = modal?.querySelector(".project-details-content")
+
+    if (!content) return
+
+    content.innerHTML = `
+            <div class="project-detail-header" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border);">
+                <h4 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem;">${project.title}</h4>
+                <span style="font-family: monospace; background: var(--warm-beige); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">${project.code}</span>
             </div>
-            <div class="detail-item">
-              <span class="detail-label"><i class="fas fa-money-bill-wave"></i> Budget:</span>
-              <span class="detail-value">${formattedBudget}</span>
+            <div class="project-detail-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="padding: 1rem; background: var(--warm-beige); border-radius: 8px;">
+                        <label style="font-weight: 600; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Type</label>
+                        <span style="display: block; margin-top: 0.25rem; color: var(--primary); font-weight: 500;">${project.type === "electrification" ? "Électrification" : "Investissement"}</span>
+                    </div>
+                    <div style="padding: 1rem; background: var(--warm-beige); border-radius: 8px;">
+                        <label style="font-weight: 600; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Localisation</label>
+                        <span style="display: block; margin-top: 0.25rem; color: var(--primary); font-weight: 500;">${project.location}</span>
+                    </div>
+                    <div style="padding: 1rem; background: var(--warm-beige); border-radius: 8px;">
+                        <label style="font-weight: 600; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Budget</label>
+                        <span style="display: block; margin-top: 0.25rem; color: var(--primary); font-weight: 500;">${formatCurrency(project.budget)}</span>
+                    </div>
+                    <div style="padding: 1rem; background: var(--warm-beige); border-radius: 8px;">
+                        <label style="font-weight: 600; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Entrepreneur</label>
+                        <span style="display: block; margin-top: 0.25rem; color: var(--primary); font-weight: 500;">${project.contractor}</span>
+                    </div>
+                    <div style="padding: 1rem; background: var(--warm-beige); border-radius: 8px;">
+                        <label style="font-weight: 600; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;">Période</label>
+                        <span style="display: block; margin-top: 0.25rem; color: var(--primary); font-weight: 500;">${formatDate(project.startDate)} - ${formatDate(project.endDate)}</span>
+                    </div>
+                </div>
+                <div style="background: var(--cream-beige); padding: 1.5rem; border-radius: 12px;">
+                    <label style="font-weight: 600; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; display: block;">Description</label>
+                    <p style="color: var(--text-primary); line-height: 1.6;">${project.description}</p>
+                </div>
             </div>
-            <div class="detail-item">
-              <span class="detail-label"><i class="fas fa-calendar-alt"></i> Période:</span>
-              <span class="detail-value">Du ${startDate} au ${endDate}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-label"><i class="fas fa-building"></i> Entreprise:</span>
-              <span class="detail-value">${project.details.contractor}</span>
-            </div>
-            ${specificDetails}
-            <div class="detail-item">
-              <span class="detail-label"><i class="fas fa-info-circle"></i> Statut:</span>
-              <span class="detail-value ${statusClass}">${statusLabel}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-label"><i class="fas fa-align-left"></i> Description:</span>
-              <span class="detail-value">${project.details.description}</span>
-            </div>
-          </div>
-        </div>
-      `
-  
-      // Afficher la modal
-      projectDetailsModal.classList.add("show")
+        `
+
+    modal?.classList.add("show")
+  }
+
+  function deleteProject(projectId) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
+      const index = projectsData.findIndex((p) => p.id === projectId)
+      if (index > -1) {
+        projectsData.splice(index, 1)
+        loadProjects()
+        updateStats()
+        showNotification("Projet supprimé avec succès", "success")
+      }
     }
-  
-    // Fonction pour exporter tous les projets en Excel
-    function exportToExcel() {
-      showNotification("Exportation en Excel en cours...")
-  
-      // Simuler un délai de traitement
-      setTimeout(() => {
-        try {
-          // Créer un tableau HTML qui ressemble à Excel
-          let excelContent = `
-            <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
-            <head>
-              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-              <!--[if gte mso 9]>
-              <xml>
-                <x:ExcelWorkbook>
-                  <x:ExcelWorksheets>
-                    <x:ExcelWorksheet>
-                      <x:Name>Projets DSA</x:Name>
-                      <x:WorksheetOptions>
-                        <x:DisplayGridlines/>
-                      </x:WorksheetOptions>
-                    </x:ExcelWorksheet>
-                  </x:ExcelWorksheets>
-                </x:ExcelWorkbook>
-              </xml>
-              <![endif]-->
-              <style>
-                table, th, td {
-                  border: 1px solid black;
-                  border-collapse: collapse;
-                  padding: 5px;
-                }
-                th {
-                  background-color: #f2f2f2;
-                  font-weight: bold;
-                }
-              </style>
-            </head>
-            <body>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Code</th>
-                    <th>Type</th>
-                    <th>Intitulé</th>
-                    <th>Localisation</th>
-                    <th>Budget</th>
-                    <th>Date début</th>
-                    <th>Date fin</th>
-                    <th>Statut</th>
-                  </tr>
-                </thead>
-                <tbody>
-          `
-  
-          // Ajouter les données des projets
-          projectsData.forEach((project) => {
-            const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-            let statusLabel = ""
-  
-            switch (project.status) {
-              case "in-progress":
-                statusLabel = "En cours"
-                break
-              case "planned":
-                statusLabel = "Planifié"
-                break
-              case "completed":
-                statusLabel = "Terminé"
-                break
-            }
-  
-            const startDate = formatDate(project.startDate)
-            const endDate = formatDate(project.endDate)
-            const formattedBudget = formatNumber(project.budget) + " DA"
-  
-            excelContent += `
-              <tr>
-                <td>${project.code}</td>
-                <td>${typeLabel}</td>
-                <td>${project.title}</td>
-                <td>${project.location}</td>
-                <td>${formattedBudget}</td>
-                <td>${startDate}</td>
-                <td>${endDate}</td>
-                <td>${statusLabel}</td>
-              </tr>
-            `
-          })
-  
-          excelContent += `
-                </tbody>
-              </table>
-            </body>
-            </html>
-          `
-  
-          // Créer un Blob avec le contenu HTML
-          const blob = new Blob([excelContent], { type: "application/vnd.ms-excel" })
-  
-          // Créer un URL pour le blob
-          const url = window.URL.createObjectURL(blob)
-  
-          // Créer un élément <a> pour le téléchargement
-          const link = document.createElement("a")
-          link.href = url
-          link.download = "projets_dsa.xls"
-  
-          // Ajouter au DOM, cliquer, puis supprimer
-          document.body.appendChild(link)
-          link.click()
-          document.body.removeChild(link)
-  
-          // Libérer l'URL
-          window.URL.revokeObjectURL(url)
-  
-          showNotification("Exportation en Excel terminée avec succès !")
-        } catch (error) {
-          console.error("Erreur lors de l'exportation:", error)
-          showNotification("Erreur lors de l'exportation. Veuillez réessayer.")
-        }
-      }, 1500)
+  }
+
+  function toggleExportMenu(e) {
+    e.stopPropagation()
+    exportDropdown?.classList.toggle("show")
+  }
+
+  function closeExportMenu(e) {
+    if (!e.target.closest(".export-container")) {
+      exportDropdown?.classList.remove("show")
     }
-  
-    // Fonction pour exporter tous les projets en PDF
-    function exportToPDF() {
-      showNotification("Exportation en PDF en cours...")
-  
+  }
+
+  function exportToPDF() {
+    exportDropdown?.classList.remove("show")
+    showNotification("Génération du PDF en cours...", "info")
+
+    // Utiliser jsPDF pour créer le PDF
+    setTimeout(() => {
       try {
-        // Créer un élément pour contenir le contenu à exporter
-        const element = document.createElement("div")
-        element.innerHTML = `
-          <div style="padding: 20px; font-family: Arial, sans-serif;">
-            <div style="text-align: center; margin-bottom: 20px;">
-              <h1 style="font-size: 18px; margin-bottom: 5px;">Direction des Services Agricoles - Guelma</h1>
-              <h2 style="font-size: 16px; margin-bottom: 5px;">Liste des Projets</h2>
-              <p style="font-size: 14px; color: #666;">Date d'exportation: ${new Date().toLocaleDateString()}</p>
-            </div>
-            
-            <table style="width: 100%; border-collapse: collapse;">
-              <thead>
-                <tr style="background-color: #f2f2f2;">
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Code</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Type</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Intitulé</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Localisation</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Budget</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Date début</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Date fin</th>
-                  <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${projectsData
-                  .map((project) => {
-                    const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-                    let statusLabel = ""
-  
-                    switch (project.status) {
-                      case "in-progress":
-                        statusLabel = "En cours"
-                        break
-                      case "planned":
-                        statusLabel = "Planifié"
-                        break
-                      case "completed":
-                        statusLabel = "Terminé"
-                        break
-                    }
-  
-                    const startDate = formatDate(project.startDate)
-                    const endDate = formatDate(project.endDate)
-                    const formattedBudget = formatNumber(project.budget) + " DA"
-  
-                    return `
-                    <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.code}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${typeLabel}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.title}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.location}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${formattedBudget}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${startDate}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${endDate}</td>
-                      <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${statusLabel}</td>
-                    </tr>
-                  `
-                  })
-                  .join("")}
-              </tbody>
-            </table>
-            
-            <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
-              <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-            </div>
-          </div>
-        `
-  
-        // Options pour html2pdf
-        const options = {
-          margin: 10,
-          filename: "projets_dsa.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
-        }
-  
-        // Générer le PDF
-        const worker = html2pdf().from(element).set(options).save()
-        worker
-          .then(() => {
-            showNotification("Exportation en PDF terminée avec succès !")
+        const { jsPDF } = window.jspdf
+        const doc = new jsPDF()
+
+        // Configuration
+        doc.setFontSize(16)
+        doc.text("Rapport des Projets - DSA Guelma", 20, 20)
+
+        doc.setFontSize(10)
+        doc.text(`Date de génération: ${new Date().toLocaleDateString("fr-FR")}`, 20, 30)
+
+        // En-têtes du tableau
+        const headers = ["Code", "Type", "Intitulé", "Localisation", "Budget", "Statut"]
+        let yPosition = 50
+
+        // Dessiner les en-têtes
+        doc.setFontSize(8)
+        doc.setFont(undefined, "bold")
+        headers.forEach((header, index) => {
+          doc.text(header, 20 + index * 30, yPosition)
+        })
+
+        yPosition += 10
+
+        // Dessiner les données
+        doc.setFont(undefined, "normal")
+        projectsData.forEach((project) => {
+          const row = [
+            project.code,
+            project.type === "electrification" ? "Élec." : "Inv.",
+            project.title.substring(0, 20) + "...",
+            project.location,
+            formatCurrency(project.budget),
+            project.status === "in-progress" ? "En cours" : project.status === "completed" ? "Terminé" : "Planifié",
+          ]
+
+          row.forEach((cell, index) => {
+            doc.text(cell.toString(), 20 + index * 30, yPosition)
           })
-          .catch((error) => {
-            console.error("Erreur lors de l'exportation en PDF:", error)
-            showNotification("Erreur lors de l'exportation en PDF. Veuillez réessayer.")
-          })
+
+          yPosition += 8
+
+          // Nouvelle page si nécessaire
+          if (yPosition > 270) {
+            doc.addPage()
+            yPosition = 20
+          }
+        })
+
+        // Sauvegarder le PDF
+        doc.save("projets_dsa_guelma.pdf")
+        showNotification("PDF généré avec succès !", "success")
       } catch (error) {
-        console.error("Erreur lors de l'exportation en PDF:", error)
-        showNotification("Erreur lors de l'exportation en PDF. Veuillez réessayer.")
+        console.error("Erreur lors de la génération du PDF:", error)
+        showNotification("Erreur lors de la génération du PDF", "error")
       }
-    }
-  
-    // Fonction pour exporter un projet spécifique en PDF
-    function exportProjectToPDF(project) {
-      showNotification(`Exportation du projet ${project.code} en PDF...`)
-  
+    }, 1000)
+  }
+
+  function exportToExcel() {
+    exportDropdown?.classList.remove("show")
+    showNotification("Génération du fichier Excel en cours...", "info")
+
+    setTimeout(() => {
       try {
-        // Déterminer le type de projet pour l'affichage
-        const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-  
-        // Déterminer le statut pour l'affichage
-        let statusLabel = ""
-        switch (project.status) {
-          case "in-progress":
-            statusLabel = "En cours"
-            break
-          case "planned":
-            statusLabel = "Planifié"
-            break
-          case "completed":
-            statusLabel = "Terminé"
-            break
-        }
-  
-        // Formater les dates et le budget
-        const startDate = formatDate(project.startDate)
-        const endDate = formatDate(project.endDate)
-        const formattedBudget = formatNumber(project.budget) + " DA"
-  
-        // Construire le contenu HTML pour les détails spécifiques au type de projet
-        let specificDetails = ""
-        if (project.type === "electrification") {
-          specificDetails = `
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Capacité électrique</th>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.details.powerCapacity}</td>
-            </tr>
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Bénéficiaires</th>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.details.beneficiaries}</td>
-            </tr>
-          `
-        } else {
-          specificDetails = `
-            <tr>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Avancement</th>
-              <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.details.progress}%</td>
-            </tr>
-          `
-        }
-  
-        // Créer un élément pour contenir le contenu à exporter
-        const element = document.createElement("div")
-        element.innerHTML = `
-          <div style="padding: 20px; font-family: Arial, sans-serif;">
-            <div style="text-align: center; margin-bottom: 20px;">
-              <h1 style="font-size: 18px; margin-bottom: 5px;">Direction des Services Agricoles - Guelma</h1>
-              <h2 style="font-size: 16px; margin-bottom: 5px; color: #2d4f4f;">Détails du Projet: ${project.title}</h2>
-              <p style="font-family: monospace; color: #666;">Code: ${project.code} - Type: ${typeLabel}</p>
-              <p style="font-size: 14px; color: #666;">Date d'exportation: ${new Date().toLocaleDateString()}</p>
-            </div>
-            
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-              <tr>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Localisation</th>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.location}</td>
-              </tr>
-              <tr>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Budget</th>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${formattedBudget}</td>
-              </tr>
-              <tr>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Période</th>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">Du ${startDate} au ${endDate}</td>
-              </tr>
-              <tr>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Entreprise</th>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.details.contractor}</td>
-              </tr>
-              ${specificDetails}
-              <tr>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; width: 30%; background-color: #f2f2f2;">Statut</th>
-                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${statusLabel}</td>
-              </tr>
-            </table>
-            
-            <div style="margin-top: 20px; border: 1px solid #ddd; padding: 15px; background-color: #f9f9f9;">
-              <h3 style="margin-top: 0; color: #2d4f4f;">Description du projet</h3>
-              <p>${project.details.description}</p>
-            </div>
-            
-            <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
-              <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-            </div>
-          </div>
-        `
-  
-        // Options pour html2pdf
-        const options = {
-          margin: 10,
-          filename: `projet_${project.code}.pdf`,
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-        }
-  
-        // Générer le PDF
-        const worker = html2pdf().from(element).set(options).save()
-        worker
-          .then(() => {
-            showNotification(`Exportation du projet ${project.code} terminée avec succès !`)
-          })
-          .catch((error) => {
-            console.error("Erreur lors de l'exportation en PDF:", error)
-            showNotification("Erreur lors de l'exportation en PDF. Veuillez réessayer.")
-          })
+        // Préparer les données pour Excel
+        const excelData = projectsData.map((project) => ({
+          Code: project.code,
+          Type: project.type === "electrification" ? "Électrification" : "Investissement",
+          Intitulé: project.title,
+          Localisation: project.location,
+          Budget: project.budget,
+          "Date début": formatDate(project.startDate),
+          "Date fin": formatDate(project.endDate),
+          Statut:
+            project.status === "in-progress" ? "En cours" : project.status === "completed" ? "Terminé" : "Planifié",
+          Entrepreneur: project.contractor,
+          Description: project.description,
+        }))
+
+        // Créer un nouveau workbook
+        const wb = XLSX.utils.book_new()
+        const ws = XLSX.utils.json_to_sheet(excelData)
+
+        // Ajouter la feuille au workbook
+        XLSX.utils.book_append_sheet(wb, ws, "Projets")
+
+        // Sauvegarder le fichier
+        XLSX.writeFile(wb, "projets_dsa_guelma.xlsx")
+        showNotification("Fichier Excel généré avec succès !", "success")
       } catch (error) {
-        console.error("Erreur lors de l'exportation en PDF:", error)
-        showNotification("Erreur lors de l'exportation en PDF. Veuillez réessayer.")
+        console.error("Erreur lors de la génération du fichier Excel:", error)
+        showNotification("Erreur lors de la génération du fichier Excel", "error")
       }
-    }
-  
-    // Fonction pour exporter tous les projets en CSV
-    function exportToCSV() {
-      showNotification("Exportation en CSV en cours...")
-  
-      // Simuler un délai de traitement
-      setTimeout(() => {
-        try {
-          // Créer l'en-tête BOM pour UTF-8
-          const BOM = "\uFEFF"
-          let csvContent = BOM + "Code,Type,Intitulé,Localisation,Budget,Date début,Date fin,Statut\n"
-  
-          // Ajouter les données des projets
-          projectsData.forEach((project) => {
-            const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-            let statusLabel = ""
-  
-            switch (project.status) {
-              case "in-progress":
-                statusLabel = "En cours"
-                break
-              case "planned":
-                statusLabel = "Planifié"
-                break
-              case "completed":
-                statusLabel = "Terminé"
-                break
-            }
-  
-            const startDate = formatDate(project.startDate)
-            const endDate = formatDate(project.endDate)
-            const formattedBudget = formatNumber(project.budget)
-  
-            // Échapper les guillemets et ajouter des guillemets autour du texte
-            const escapedTitle = `"${project.title.replace(/"/g, '""')}"`
-            const escapedLocation = `"${project.location.replace(/"/g, '""')}"`
-  
-            csvContent += `${project.code},${typeLabel},${escapedTitle},${escapedLocation},${formattedBudget} DA,${startDate},${endDate},${statusLabel}\n`
-          })
-  
-          // Créer un Blob avec les données CSV
-          const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
-  
-          // Créer un URL pour le blob
-          const url = window.URL.createObjectURL(blob)
-  
-          // Créer un élément <a> pour le téléchargement
-          const link = document.createElement("a")
-          link.href = url
-          link.download = "projets_dsa.csv"
-  
-          // Ajouter au DOM, cliquer, puis supprimer
-          document.body.appendChild(link)
-          link.click()
-          document.body.removeChild(link)
-  
-          // Libérer l'URL
-          window.URL.revokeObjectURL(url)
-  
-          showNotification("Exportation en CSV terminée avec succès !")
-        } catch (error) {
-          console.error("Erreur lors de l'exportation:", error)
-          showNotification("Erreur lors de l'exportation. Veuillez réessayer.")
-        }
-      }, 1500)
-    }
-  
-    // Fonction pour préparer le contenu à imprimer pour tous les projets
-    function preparePrintContent() {
-      const title = document.querySelector(".page-title h2").textContent
-      const date = new Date().toLocaleDateString()
-  
-      let tableContent = `
-        <table style="width: 100%; border-collapse: collapse;">
+    }, 1000)
+  }
+
+  function printProjects() {
+    showNotification("Préparation de l'impression...", "info")
+
+    // Créer une fenêtre d'impression
+    const printWindow = window.open("", "_blank", "width=800,height=600")
+
+    // Contenu à imprimer
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Projets DSA Guelma - Impression</title>
+        <meta charset="UTF-8">
+        <style>
+          body { font-family: Arial, sans-serif; margin: 20px; }
+          h1 { text-align: center; margin-bottom: 20px; color: #2d4f4f; }
+          .print-date { text-align: right; margin-bottom: 20px; font-style: italic; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+          th, td { border: 1px solid #444; padding: 8px; text-align: left; }
+          th { background-color: #3a6363; color: white; }
+          tr:nth-child(even) { background-color: #f2f2f2; }
+          .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; }
+          .status { padding: 3px 8px; border-radius: 12px; font-size: 12px; display: inline-block; }
+          .status-in-progress { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
+          .status-completed { background-color: #e3f2fd; color: #1565c0; border: 1px solid #1565c0; }
+          .status-planned { background-color: #fff8e1; color: #f57f17; border: 1px solid #f57f17; }
+        </style>
+      </head>
+      <body>
+        <h1>Liste des Projets - DSA Guelma</h1>
+        <div class="print-date">Date d'impression: ${new Date().toLocaleDateString("fr-FR")}</div>
+        
+        <table>
           <thead>
-            <tr style="background-color: #f2f2f2;">
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Code</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Type</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Intitulé</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Localisation</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Budget</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Date début</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Date fin</th>
-              <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Statut</th>
+            <tr>
+              <th>Code</th>
+              <th>Type</th>
+              <th>Intitulé</th>
+              <th>Localisation</th>
+              <th>Budget</th>
+              <th>Période</th>
+              <th>Statut</th>
             </tr>
           </thead>
           <tbody>
-      `
-  
-      // Ajouter les données des projets
-      projectsData.forEach((project) => {
-        const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-        let statusLabel = ""
-  
-        switch (project.status) {
-          case "in-progress":
-            statusLabel = "En cours"
-            break
-          case "planned":
-            statusLabel = "Planifié"
-            break
-          case "completed":
-            statusLabel = "Terminé"
-            break
-        }
-  
-        const startDate = formatDate(project.startDate)
-        const endDate = formatDate(project.endDate)
-        const formattedBudget = formatNumber(project.budget) + " DA"
-  
-        tableContent += `
-          <tr>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.code}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${typeLabel}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.title}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${project.location}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${formattedBudget}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${startDate}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${endDate}</td>
-            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${statusLabel}</td>
-          </tr>
-        `
-      })
-  
-      tableContent += `
+            ${projectsData
+              .map(
+                (project) => `
+              <tr>
+                <td>${project.code}</td>
+                <td>${project.type === "electrification" ? "Électrification" : "Investissement"}</td>
+                <td>${project.title}</td>
+                <td>${project.location}</td>
+                <td>${formatCurrency(project.budget)}</td>
+                <td>${formatDate(project.startDate)} - ${formatDate(project.endDate)}</td>
+                <td>
+                  <span class="status status-${project.status}">
+                    ${project.status === "in-progress" ? "En cours" : project.status === "completed" ? "Terminé" : "Planifié"}
+                  </span>
+                </td>
+              </tr>
+            `,
+              )
+              .join("")}
           </tbody>
         </table>
-      `
-  
-      // Créer le contenu HTML pour l'impression
-      return `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Projets DSA - ${date}</title>
-          <meta charset="UTF-8">
-          <style>
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            .print-header { text-align: center; margin-bottom: 20px; }
-            .print-header h1 { font-size: 18px; margin-bottom: 5px; }
-            .print-header h2 { font-size: 16px; margin-bottom: 5px; }
-            .print-header p { font-size: 14px; color: #666; }
-            table { width: 100%; border-collapse: collapse; }
-            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-            th { background-color: #f2f2f2; }
-            .print-footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; }
-          </style>
-        </head>
-        <body>
-          <div class="print-header">
-            <h1>Direction des Services Agricoles - Guelma</h1>
-            <h2>${title}</h2>
-            <p>Date d'impression: ${date}</p>
-          </div>
-          ${tableContent}
-          <div class="print-footer">
-            <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-          </div>
-        </body>
-        </html>
-      `
-    }
-  
-    // Fonction pour préparer le contenu à imprimer pour un projet spécifique
-    function prepareProjectPrintContent(project) {
-      const date = new Date().toLocaleDateString()
-      const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
-  
-      // Déterminer le statut pour l'affichage
-      let statusLabel = ""
-  
-      switch (project.status) {
-        case "in-progress":
-          statusLabel = "En cours"
-          break
-        case "planned":
-          statusLabel = "Planifié"
-          break
-        case "completed":
-          statusLabel = "Terminé"
-          break
-      }
-  
-      // Formater les dates et le budget
-      const startDate = formatDate(project.startDate)
-      const endDate = formatDate(project.endDate)
-      const formattedBudget = formatNumber(project.budget) + " DA"
-  
-      // Construire le contenu HTML pour les détails spécifiques au type de projet
-      let specificDetails = ""
-  
-      if (project.type === "electrification") {
-        specificDetails = `
-          <tr>
-            <td><strong>Capacité électrique</strong></td>
-            <td>${project.details.powerCapacity}</td>
-          </tr>
-          <tr>
-            <td><strong>Bénéficiaires</strong></td>
-            <td>${project.details.beneficiaries}</td>
-          </tr>
-        `
-      } else {
-        specificDetails = `
-          <tr>
-            <td><strong>Avancement</strong></td>
-            <td>${project.details.progress}%</td>
-          </tr>
-        `
-      }
-  
-      // Créer le contenu HTML pour l'impression
-      return `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Projet ${project.code} - ${date}</title>
-          <meta charset="UTF-8">
-          <style>
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            .print-header { text-align: center; margin-bottom: 20px; }
-            .print-header h1 { font-size: 18px; margin-bottom: 5px; }
-            .print-header h2 { font-size: 16px; margin-bottom: 5px; color: #2d4f4f; }
-            .print-header p { font-size: 14px; color: #666; }
-            .project-code { font-family: monospace; color: #666; }
-            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-            th { background-color: #f2f2f2; width: 30%; }
-            .print-footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; }
-            .description { margin-top: 20px; border: 1px solid #ddd; padding: 15px; background-color: #f9f9f9; }
-            .description h3 { margin-top: 0; color: #2d4f4f; }
-          </style>
-        </head>
-        <body>
-          <div class="print-header">
-            <h1>Direction des Services Agricoles - Guelma</h1>
-            <h2>Détails du Projet: ${project.title}</h2>
-            <p class="project-code">Code: ${project.code} - Type: ${typeLabel}</p>
-            <p>Date d'impression: ${date}</p>
-          </div>
-          
-          <table>
-            <tr>
-              <th>Localisation</th>
-              <td>${project.location}</td>
-            </tr>
-            <tr>
-              <th>Budget</th>
-              <td>${formattedBudget}</td>
-            </tr>
-            <tr>
-              <th>Période</th>
-              <td>Du ${startDate} au ${endDate}</td>
-            </tr>
-            <tr>
-              <th>Entreprise</th>
-              <td>${project.details.contractor}</td>
-            </tr>
-            ${specificDetails}
-            <tr>
-              <th>Statut</th>
-              <td>${statusLabel}</td>
-            </tr>
-          </table>
-          
-          <div class="description">
-            <h3>Description du projet</h3>
-            <p>${project.details.description}</p>
-          </div>
-          
-          <div class="print-footer">
-            <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-          </div>
-        </body>
-        </html>
-      `
-    }
-  
-    // Fonction pour imprimer tous les projets
-    function printProjects() {
-      showNotification("Préparation de l'impression...")
-  
-      // Préparer le contenu pour l'impression
-      const printContent = preparePrintContent()
-  
-      // Créer un iframe invisible pour l'impression
-      const printFrame = document.createElement("iframe")
-      printFrame.name = "print-frame"
-      printFrame.style.position = "absolute"
-      printFrame.style.top = "-1000px"
-      printFrame.style.left = "-1000px"
-      document.body.appendChild(printFrame)
-  
-      // Écrire le contenu dans l'iframe
-      printFrame.contentDocument.write(printContent)
-      printFrame.contentDocument.close()
-  
-      // Attendre que le contenu soit chargé
-      printFrame.onload = () => {
-        setTimeout(() => {
-          try {
-            // Imprimer l'iframe
-            window.frames["print-frame"].focus()
-            window.frames["print-frame"].print()
-  
-            // Supprimer l'iframe après l'impression
-            setTimeout(() => {
-              document.body.removeChild(printFrame)
-              showNotification("Impression terminée avec succès !")
-            }, 1000)
-          } catch (error) {
-            console.error("Erreur lors de l'impression:", error)
-            showNotification("Erreur lors de l'impression. Veuillez réessayer.")
-          }
-        }, 500)
-      }
-    }
-  
-    // Fonction pour imprimer les détails d'un projet spécifique
-    function printProjectDetails(project) {
-      showNotification(`Préparation de l'impression du projet ${project.code}...`)
-  
-      // Préparer le contenu pour l'impression
-      const printContent = prepareProjectPrintContent(project)
-  
-      // Créer un iframe invisible pour l'impression
-      const printFrame = document.createElement("iframe")
-      printFrame.name = "print-frame"
-      printFrame.style.position = "absolute"
-      printFrame.style.top = "-1000px"
-      printFrame.style.left = "-1000px"
-      document.body.appendChild(printFrame)
-  
-      // Écrire le contenu dans l'iframe
-      printFrame.contentDocument.write(printContent)
-      printFrame.contentDocument.close()
-  
-      // Attendre que le contenu soit chargé
-      printFrame.onload = () => {
-        setTimeout(() => {
-          try {
-            // Imprimer l'iframe
-            window.frames["print-frame"].focus()
-            window.frames["print-frame"].print()
-  
-            // Supprimer l'iframe après l'impression
-            setTimeout(() => {
-              document.body.removeChild(printFrame)
-              showNotification(`Impression du projet ${project.code} terminée avec succès !`)
-            }, 1000)
-          } catch (error) {
-            console.error("Erreur lors de l'impression:", error)
-            showNotification("Erreur lors de l'impression. Veuillez réessayer.")
-          }
-        }, 500)
-      }
-    }
-  
-    // Fonction pour afficher une notification
-    function showNotification(message) {
-      // Créer l'élément de notification
-      const notification = document.createElement("div")
-      notification.className = "notification"
-      notification.innerHTML = `
-        <div class="notification-content">
-          <i class="fas fa-check-circle"></i>
-          <span>${message}</span>
+        
+        <div class="footer">
+          Direction des Services Agricoles - Guelma
         </div>
-      `
-  
-      // Ajouter au DOM
-      document.body.appendChild(notification)
-  
-      // Afficher la notification
+      </body>
+      </html>
+    `
+
+    // Écrire le contenu dans la fenêtre d'impression
+    printWindow.document.write(printContent)
+    printWindow.document.close()
+
+    // Attendre que le contenu soit chargé
+    printWindow.onload = () => {
+      // Imprimer
       setTimeout(() => {
-        notification.classList.add("show")
-  
-        // Masquer après 3 secondes
-        setTimeout(() => {
-          notification.classList.remove("show")
-  
-          // Supprimer du DOM après l'animation
-          setTimeout(() => {
-            document.body.removeChild(notification)
-          }, 500)
-        }, 3000)
-      }, 100)
+        printWindow.print()
+        printWindow.onafterprint = () => {
+          printWindow.close()
+        }
+        showNotification("Impression lancée avec succès", "success")
+      }, 500)
     }
-  
-    // Fonction pour formater une date au format DD/MM/YYYY
-    function formatDate(dateString) {
-      const date = new Date(dateString)
-      const day = date.getDate().toString().padStart(2, "0")
-      const month = (date.getMonth() + 1).toString().padStart(2, "0")
-      const year = date.getFullYear()
-      return `${day}/${month}/${year}`
+  }
+
+  function closeModal() {
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.classList.remove("show")
+    })
+  }
+
+  function animateCounters() {
+    counters.forEach((counter) => {
+      const target = Number.parseInt(counter.getAttribute("data-target"))
+      const duration = 2000
+      const step = target / (duration / 16)
+      let current = 0
+
+      const timer = setInterval(() => {
+        current += step
+        if (current >= target) {
+          current = target
+          clearInterval(timer)
+        }
+        counter.textContent = Math.floor(current)
+      }, 16)
+    })
+  }
+
+  function updateStats() {
+    const visibleProjects = document.querySelectorAll("#projects-table-body tr:not([style*='display: none'])")
+    const electrificationProjects = projectsData.filter((p) => p.type === "electrification").length
+    const investmentProjects = projectsData.filter((p) => p.type === "investment").length
+    const completedProjects = projectsData.filter((p) => p.status === "completed").length
+
+    // Mettre à jour les statistiques
+    const statValues = document.querySelectorAll(".stat-value")
+    if (statValues[0]) statValues[0].textContent = projectsData.length
+    if (statValues[1]) statValues[1].textContent = electrificationProjects
+    if (statValues[2]) statValues[2].textContent = investmentProjects
+    if (statValues[3]) statValues[3].textContent = completedProjects
+  }
+
+  function showNotification(message, type = "success") {
+    const notification = document.createElement("div")
+    notification.className = `notification ${type}`
+    notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas ${getNotificationIcon(type)}"></i>
+                <span>${message}</span>
+            </div>
+        `
+
+    // Styles pour la notification
+    notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--surface);
+            border: 2px solid var(--${type === "success" ? "success" : type === "error" ? "error" : "info"});
+            border-radius: var(--border-radius-sm);
+            padding: 1rem;
+            box-shadow: 0 8px 24px var(--shadow);
+            z-index: 1100;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: var(--transition);
+            max-width: 400px;
+        `
+
+    notification.querySelector(".notification-content").style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-primary);
+        `
+
+    notification.querySelector("i").style.cssText = `
+            color: var(--${type === "success" ? "success" : type === "error" ? "error" : "info"});
+            font-size: 1.2rem;
+        `
+
+    document.body.appendChild(notification)
+
+    setTimeout(() => {
+      notification.style.transform = "translateX(0)"
+      notification.style.opacity = "1"
+    }, 100)
+
+    setTimeout(() => {
+      notification.style.transform = "translateX(100%)"
+      notification.style.opacity = "0"
+      setTimeout(() => {
+        document.body.removeChild(notification)
+      }, 300)
+    }, 3000)
+  }
+
+  function getNotificationIcon(type) {
+    switch (type) {
+      case "success":
+        return "fa-check-circle"
+      case "error":
+        return "fa-exclamation-circle"
+      case "warning":
+        return "fa-exclamation-triangle"
+      case "info":
+        return "fa-info-circle"
+      default:
+        return "fa-check-circle"
     }
-  
-    // Fonction pour formater un nombre avec séparateur de milliers
-    function formatNumber(num) {
-      return new Intl.NumberFormat("fr-FR").format(num)
-    }
-  })
-  
+  }
+
+  function formatCurrency(amount) {
+    return new Intl.NumberFormat("fr-DZ", {
+      style: "currency",
+      currency: "DZD",
+      minimumFractionDigits: 0,
+    }).format(amount)
+  }
+
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString("fr-FR")
+  }
+})

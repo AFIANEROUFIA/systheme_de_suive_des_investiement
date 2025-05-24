@@ -1,911 +1,1394 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Référence aux éléments du formulaire et des vues
-  const form = document.getElementById("project-form")
-  const fileInput = document.getElementById("fichier_justificatif")
-  const fileName = document.querySelector(".file-name")
-  const cancelBtn = document.getElementById("cancel-project")
-  const addProjectBtn = document.getElementById("add-project-btn")
-  const listView = document.getElementById("list-view")
-  const formView = document.getElementById("form-view")
-  const exportBtn = document.getElementById("export-btn")
-  const exportOptions = document.getElementById("export-options")
-  const exportExcel = document.getElementById("export-excel")
-  const exportPdf = document.getElementById("export-pdf")
-  const exportCsv = document.getElementById("export-csv")
-  const printBtn = document.getElementById("print-btn")
-  const mapBtn = document.getElementById("map-btn")
-  const mapModal = document.getElementById("map-modal")
-  const mapClose = document.getElementById("map-close")
+  // Éléments du DOM
+  const projectsTableBody = document.getElementById("projects-table-body")
   const searchInput = document.querySelector(".search-input")
-  const paginationItems = document.querySelectorAll(".pagination .page-item")
-  const statCards = document.querySelectorAll(".stat-card")
-  const projectDetailsModal = document.getElementById("project-details-modal")
-  const modalClose = document.querySelector(".modal-close")
-  const projectDetailsContent = document.querySelector(".project-details-content")
-  const projectsTable = document.querySelector(".projects-table tbody")
-  const printSection = document.getElementById("print-section")
-
-  // Variable pour suivre si nous sommes en mode édition ou ajout
-  let editMode = false
-  let currentEditRow = null
-
-  // Animation des compteurs dans les cartes statistiques
+  const statusFilter = document.getElementById("status-filter")
+  const dairaFilter = document.getElementById("daira-filter")
+  const exportBtn = document.getElementById("export-btn")
+  const exportDropdown = document.getElementById("export-dropdown")
+  const exportPdf = document.getElementById("export-pdf")
+  const exportExcel = document.getElementById("export-excel")
+  const addProjectBtn = document.getElementById("add-project-btn")
   const counters = document.querySelectorAll(".counter")
 
-  counters.forEach((counter) => {
-    animateCounter(counter)
-  })
+  // Modals
+  const addProjectModal = document.getElementById("add-project-modal")
+  const editProjectModal = document.getElementById("edit-project-modal")
+  const projectDetailsModal = document.getElementById("project-details-modal")
 
-  function animateCounter(counter) {
-    const target = +counter.getAttribute("data-target")
-    const count = +counter.innerText
-    const increment = target / 20
+  // Formulaires
+  const addProjectForm = document.getElementById("add-project-form")
+  const editProjectForm = document.getElementById("edit-project-form")
 
-    if (count < target) {
-      counter.innerText = Math.ceil(count + increment)
-      setTimeout(() => {
-        animateCounter(counter)
-      }, 50)
-    } else {
-      counter.innerText = target
-    }
+  // Données des communes par daïra de la wilaya de Guelma
+  const communesByDaira = {
+    guelma: ["Guelma", "Belkheir", "Medjez Amar"],
+    "oued-zenati": ["Oued Zenati", "Ain Hessainia", "Nechmaya", "Bordj Sabath"],
+    heliopolis: ["Héliopolis", "Khezaras", "Sellaoua Announa"],
+    bouchegouf: ["Bouchegouf", "Hammam N'Bails", "Roknia"],
+    "hammam-debagh": ["Hammam Debagh", "Ras El Agba", "Ain Sandel"],
+    "ain-makhlouf": ["Ain Makhlouf", "Houari Boumediene", "El Fedjoudj"],
   }
 
-  // Gestionnaire pour le bouton "Nouveau Projet"
-  addProjectBtn.addEventListener("click", () => {
-    // Réinitialiser le mode d'édition
-    editMode = false
-    currentEditRow = null
+  // Données des projets d'électrification uniquement
+  const electrificationProjects = [
+    {
+      id: "ELEC-2024-001",
+      code: "ELEC-2024-05-123",
+      title: "Électrification Zone Agricole Oued Zenati",
+      nature: "installation-lignes",
+      installationType: "forage",
+      daira: "oued-zenati",
+      commune: "Oued Zenati",
+      budget: 45000000,
+      startDate: "2024-03-15",
+      endDate: "2024-09-30",
+      status: "in-progress",
+      contractor: "Entreprise Électrique SARL",
+      description: "Installation de lignes électriques pour la zone agricole",
+      dateReceptionDemande: "2024-01-10",
+      dateEnvoiSonelgaz: "2024-02-01",
+      dateAccordSonelgaz: "2024-02-28",
+      observations: [
+        {
+          date: "2024-03-15",
+          text: "Début des travaux d'installation",
+        },
+        {
+          date: "2024-04-10",
+          text: "Installation des poteaux terminée",
+        },
+      ],
+      coordinates: { lat: 36.4667, lng: 7.5 },
+    },
+    {
+      id: "ELEC-2024-002",
+      code: "ELEC-2024-04-089",
+      title: "Réseau Électrique Fermes Héliopolis",
+      nature: "extension-reseau",
+      installationType: "etable",
+      daira: "heliopolis",
+      commune: "Héliopolis",
+      budget: 32000000,
+      startDate: "2024-06-01",
+      endDate: "2024-12-15",
+      status: "planned",
+      contractor: "ElectroPower Algérie",
+      description: "Mise en place d'un réseau électrique pour les fermes",
+      dateReceptionDemande: "2024-03-15",
+      dateEnvoiSonelgaz: "2024-04-01",
+      dateAccordSonelgaz: "2024-05-10",
+      observations: [
+        {
+          date: "2024-05-10",
+          text: "Accord Sonelgaz reçu, préparation du chantier",
+        },
+      ],
+      coordinates: { lat: 36.5, lng: 7.45 },
+    },
+    {
+      id: "ELEC-2024-003",
+      code: "ELEC-2024-03-045",
+      title: "Électrification Forage Bouchegouf",
+      nature: "raccordement",
+      installationType: "puits",
+      daira: "bouchegouf",
+      commune: "Bouchegouf",
+      budget: 28500000,
+      startDate: "2023-11-01",
+      endDate: "2024-04-20",
+      status: "completed",
+      contractor: "TechElec SARL",
+      description: "Électrification complète du système de forage",
+      dateReceptionDemande: "2023-08-15",
+      dateEnvoiSonelgaz: "2023-09-01",
+      dateAccordSonelgaz: "2023-10-15",
+      observations: [
+        {
+          date: "2023-11-01",
+          text: "Début des travaux de raccordement",
+        },
+        {
+          date: "2024-02-15",
+          text: "Tests de fonctionnement réussis",
+        },
+        {
+          date: "2024-04-20",
+          text: "Projet terminé avec succès, installation conforme aux normes",
+        },
+      ],
+      coordinates: { lat: 36.4333, lng: 7.6167 },
+    },
+    {
+      id: "ELEC-2024-004",
+      code: "ELEC-2024-06-156",
+      title: "Poste de Transformation Guelma Centre",
+      nature: "transformation",
+      installationType: "entrepot",
+      daira: "guelma",
+      commune: "Guelma",
+      budget: 52000000,
+      startDate: "2024-08-01",
+      endDate: "2025-02-28",
+      status: "planned",
+      contractor: "Électro-Technique SARL",
+      description: "Installation d'un nouveau poste de transformation",
+      dateReceptionDemande: "2024-05-20",
+      dateEnvoiSonelgaz: "",
+      dateAccordSonelgaz: "",
+      observations: [
+        {
+          date: "2024-05-20",
+          text: "Demande reçue et en cours d'étude",
+        },
+      ],
+      coordinates: { lat: 36.4611, lng: 7.4278 },
+    },
+  ]
 
-    listView.classList.remove("active")
-    formView.classList.add("active")
-    generateProjectCode()
-    // Réinitialiser le formulaire pour un nouveau projet
-    form.reset()
-    fileName.textContent = "Aucun fichier choisi"
-    document.querySelector(".form-header h2").innerHTML =
-      '<i class="fas fa-bolt"></i> Nouveau Projet d\'Électrification'
-  })
+  let currentEditingProject = null
 
-  // Gestionnaire pour le bouton d'annulation
-  cancelBtn.addEventListener("click", () => {
-    if (confirm("Êtes-vous sûr de vouloir annuler ? Les données saisies seront perdues.")) {
-      form.reset()
-      fileName.textContent = "Aucun fichier choisi"
-      listView.classList.add("active")
-      formView.classList.remove("active")
+  // Initialisation
+  init()
 
-      // Réinitialiser le mode d'édition
-      editMode = false
-      currentEditRow = null
-    }
-  })
+  function init() {
+    loadProjects()
+    animateCounters()
+    setupEventListeners()
+    updateStats()
+    setupCommuneSelectors()
+    updateCurrentDate()
+    updateCurrentTime()
+    updateCurrentDateShort()
+    initCompactCalendar() // Changé ici
 
-  // Gestionnaire pour le bouton d'exportation
-  exportBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    exportOptions.classList.toggle("show")
-  })
+    // Mettre à jour l'heure toutes les secondes
+    setInterval(updateCurrentTime, 1000)
+  }
 
-  // Fermer les options d'exportation si on clique ailleurs
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".btn-export-container") && exportOptions.classList.contains("show")) {
-      exportOptions.classList.remove("show")
-    }
-  })
+  function setupEventListeners() {
+    // Recherche et filtres
+    searchInput?.addEventListener("input", filterProjects)
+    statusFilter?.addEventListener("change", filterProjects)
+    dairaFilter?.addEventListener("change", filterProjects)
 
-  // Fonction pour convertir les données du tableau en format CSV
-  function tableToCSV() {
-    const csv = []
-    const rows = document.querySelectorAll(".projects-table tr")
+    // Export
+    exportBtn?.addEventListener("click", toggleExportMenu)
+    document.addEventListener("click", closeExportMenu)
+    exportPdf?.addEventListener("click", exportToPDF)
+    exportExcel?.addEventListener("click", exportToExcel)
 
-    for (let i = 0; i < rows.length; i++) {
-      const row = rows[i]
-      const cols = row.querySelectorAll("td, th")
-      const rowData = []
+    // Impression
+    const printBtn = document.getElementById("print-btn")
+    printBtn?.addEventListener("click", printProjects)
 
-      for (let j = 0; j < cols.length; j++) {
-        // Ne pas inclure la colonne des actions
-        if (i === 0 || j < cols.length - 1) {
-          // Pour les cellules avec des badges de statut
-          if (cols[j].querySelector(".status-badge")) {
-            rowData.push(cols[j].querySelector(".status-badge").textContent)
-          } else {
-            // Échapper les guillemets et ajouter des guillemets autour du texte
-            let cellText = cols[j].textContent.trim()
-            cellText = cellText.replace(/"/g, '""')
-            rowData.push(`"${cellText}"`)
-          }
-        }
+    // Nouveau projet
+    addProjectBtn?.addEventListener("click", openAddProjectModal)
+
+    // Formulaires
+    addProjectForm?.addEventListener("submit", handleAddProject)
+    editProjectForm?.addEventListener("submit", handleEditProject)
+
+    // Boutons d'annulation
+    document.getElementById("cancel-add")?.addEventListener("click", closeModal)
+    document.getElementById("cancel-edit")?.addEventListener("click", closeModal)
+
+    // Fermeture des modals
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal-backdrop")) {
+        closeModal()
       }
+    })
 
-      csv.push(rowData.join(","))
-    }
+    document.querySelectorAll(".modal-close").forEach((btn) => {
+      btn.addEventListener("click", closeModal)
+    })
 
-    return csv.join("\n")
-  }
+    // Sélecteurs de wilaya
+    document.getElementById("project-wilaya")?.addEventListener("change", updateCommuneOptions)
+    document.getElementById("edit-project-wilaya")?.addEventListener("change", updateEditCommuneOptions)
 
-  // Fonction pour créer un fichier Excel/CSV
-  function createExcelFile() {
-    // Créer l'en-tête BOM pour UTF-8
-    const BOM = "\uFEFF"
-    const csvContent = BOM + tableToCSV()
+    // Boutons d'export/impression des détails
+    document.getElementById("print-details-btn")?.addEventListener("click", printProjectDetails)
+    document.getElementById("export-details-btn")?.addEventListener("click", exportProjectDetails)
 
-    // Créer un Blob avec les données CSV
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
-    return blob
-  }
+    // Ajouter les event listeners pour les nouvelles fonctionnalités
+    document.getElementById("project-daira")?.addEventListener("change", updateCommuneOptions)
+    document.getElementById("edit-project-daira")?.addEventListener("change", updateEditCommuneOptions)
+    document.getElementById("maps-btn")?.addEventListener("click", showProjectsMap)
 
-  // Gestionnaire pour l'exportation Excel
-  exportExcel.addEventListener("click", () => {
-    exportOptions.classList.remove("show")
-    showNotification("Exportation en Excel en cours...")
+    // Fonction pour gérer le toggle des observations
+    let showAllObservations = false
+    document.getElementById("toggle-observations")?.addEventListener("click", function () {
+      showAllObservations = !showAllObservations
+      const container = document.getElementById("edit-observations-list")
+      const project = currentEditingProject
 
-    // Simuler un délai de traitement
-    setTimeout(() => {
-      try {
-        // Créer un tableau HTML qui ressemble à Excel
-        let excelContent = `
-          <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
-          <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <!--[if gte mso 9]>
-            <xml>
-              <x:ExcelWorkbook>
-                <x:ExcelWorksheets>
-                  <x:ExcelWorksheet>
-                    <x:Name>Projets d'Électrification</x:Name>
-                    <x:WorksheetOptions>
-                      <x:DisplayGridlines/>
-                    </x:WorksheetOptions>
-                  </x:ExcelWorksheet>
-                </x:ExcelWorksheets>
-              </x:ExcelWorkbook>
-            </xml>
-            <![endif]-->
-            <style>
-              table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                padding: 5px;
-              }
-              th {
-                background-color: #f2f2f2;
-                font-weight: bold;
-              }
-            </style>
-          </head>
-          <body>
-            <table>
-              <thead>
-                <tr>
-        `
-
-        // Ajouter les en-têtes
-        document.querySelectorAll(".projects-table th").forEach((th) => {
-          if (th.textContent !== "Actions") {
-            excelContent += `<th>${th.textContent}</th>`
-          }
-        })
-
-        excelContent += `
-                </tr>
-              </thead>
-              <tbody>
-        `
-
-        // Ajouter les données des lignes
-        document.querySelectorAll(".projects-table tbody tr").forEach((tr) => {
-          excelContent += "<tr>"
-          tr.querySelectorAll("td").forEach((td, index) => {
-            // Ne pas inclure la colonne des actions
-            if (index < tr.querySelectorAll("td").length - 1) {
-              // Pour les cellules avec des badges de statut
-              if (td.querySelector(".status-badge")) {
-                excelContent += `<td>${td.querySelector(".status-badge").textContent}</td>`
-              } else {
-                excelContent += `<td>${td.textContent}</td>`
-              }
-            }
-          })
-          excelContent += "</tr>"
-        })
-
-        excelContent += `
-              </tbody>
-            </table>
-          </body>
-          </html>
-        `
-
-        // Créer un Blob avec le contenu HTML
-        const blob = new Blob([excelContent], { type: "application/vnd.ms-excel" })
-
-        // Créer un URL pour le blob
-        const url = window.URL.createObjectURL(blob)
-
-        // Créer un élément <a> pour le téléchargement
-        const link = document.createElement("a")
-        link.href = url
-        link.download = "projets_electrification.xls" // Extension .xls au lieu de .xlsx
-
-        // Ajouter au DOM, cliquer, puis supprimer
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-
-        // Libérer l'URL
-        window.URL.revokeObjectURL(url)
-
-        showNotification("Exportation en Excel terminée avec succès !")
-      } catch (error) {
-        console.error("Erreur lors de l'exportation:", error)
-        showNotification("Erreur lors de l'exportation. Veuillez réessayer.")
-      }
-    }, 1500)
-  })
-
-  // Fonction pour générer un PDF à partir du contenu HTML
-  function generatePDF(htmlContent) {
-    // Créer un iframe invisible pour l'impression
-    const printFrame = document.createElement("iframe")
-    printFrame.name = "print-frame"
-    printFrame.style.position = "absolute"
-    printFrame.style.top = "-1000px"
-    printFrame.style.left = "-1000px"
-    document.body.appendChild(printFrame)
-
-    // Écrire le contenu dans l'iframe
-    printFrame.contentDocument.write(htmlContent)
-    printFrame.contentDocument.close()
-
-    // Attendre que le contenu soit chargé
-    return new Promise((resolve) => {
-      printFrame.onload = () => {
-        // Simuler le téléchargement d'un PDF
-        const pdfBlob = new Blob([htmlContent], { type: "application/pdf" })
-        const url = URL.createObjectURL(pdfBlob)
-
-        const link = document.createElement("a")
-        link.href = url
-        link.download = "projets_electrification.pdf"
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-
-        // Libérer l'URL
-        URL.revokeObjectURL(url)
-
-        // Supprimer l'iframe
-        document.body.removeChild(printFrame)
-
-        resolve()
+      if (project && project.observations) {
+        displayObservations(project.observations, container, showAllObservations)
+        this.innerHTML = showAllObservations
+          ? '<i class="fas fa-eye-slash"></i> Voir dernière observation'
+          : '<i class="fas fa-eye"></i> Voir toutes les observations'
       }
     })
   }
 
-  // Gestionnaire pour l'exportation PDF
-  exportPdf.addEventListener("click", () => {
-    exportOptions.classList.remove("show")
-    showNotification("Exportation en PDF en cours...")
+  function setupCommuneSelectors() {
+    updateCommuneOptions()
+    updateEditCommuneOptions()
+  }
 
-    // Simuler un délai de traitement
-    setTimeout(async () => {
-      try {
-        // Préparer le contenu pour l'impression PDF
-        const printContent = preparePrintContent()
+  // Fonction pour mettre à jour les communes selon la daïra
+  function updateCommuneOptions() {
+    const dairaSelect = document.getElementById("project-daira")
+    const communeSelect = document.getElementById("project-commune")
 
-        // Générer le PDF
-        await generatePDF(printContent)
+    if (!dairaSelect || !communeSelect) return
 
-        showNotification("Exportation en PDF terminée avec succès !")
-      } catch (error) {
-        console.error("Erreur lors de l'exportation:", error)
-        showNotification("Erreur lors de l'exportation. Veuillez réessayer.")
-      }
-    }, 1500)
-  })
+    const selectedDaira = dairaSelect.value
+    communeSelect.innerHTML = '<option value="">Sélectionner la commune</option>'
 
-  // Gestionnaire pour l'exportation CSV
-  exportCsv.addEventListener("click", () => {
-    exportOptions.classList.remove("show")
-    showNotification("Exportation en CSV en cours...")
+    if (selectedDaira && communesByDaira[selectedDaira]) {
+      communesByDaira[selectedDaira].forEach((commune) => {
+        const option = document.createElement("option")
+        option.value = commune.toLowerCase().replace(/\s+/g, "-")
+        option.textContent = commune
+        communeSelect.appendChild(option)
+      })
+    }
+  }
 
-    // Simuler un délai de traitement
-    setTimeout(() => {
-      try {
-        // Créer le fichier CSV
-        const blob = createExcelFile()
+  function updateEditCommuneOptions() {
+    const dairaSelect = document.getElementById("edit-project-daira")
+    const communeSelect = document.getElementById("edit-project-commune")
 
-        // Créer un URL pour le blob
-        const url = window.URL.createObjectURL(blob)
+    if (!dairaSelect || !communeSelect) return
 
-        // Créer un élément <a> pour le téléchargement
-        const link = document.createElement("a")
-        link.href = url
-        link.download = "projets_electrification.csv"
+    const selectedDaira = dairaSelect.value
+    communeSelect.innerHTML = '<option value="">Sélectionner la commune</option>'
 
-        // Ajouter au DOM, cliquer, puis supprimer
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
+    if (selectedDaira && communesByDaira[selectedDaira]) {
+      communesByDaira[selectedDaira].forEach((commune) => {
+        const option = document.createElement("option")
+        option.value = commune.toLowerCase().replace(/\s+/g, "-")
+        option.textContent = commune
+        communeSelect.appendChild(option)
+      })
+    }
+  }
 
-        // Libérer l'URL
-        window.URL.revokeObjectURL(url)
+  function loadProjects() {
+    if (!projectsTableBody) return
 
-        showNotification("Exportation en CSV terminée avec succès !")
-      } catch (error) {
-        console.error("Erreur lors de l'exportation:", error)
-        showNotification("Erreur lors de l'exportation. Veuillez réessayer.")
-      }
-    }, 1500)
-  })
+    projectsTableBody.innerHTML = ""
 
-  // Fonction pour préparer le contenu à imprimer
-  function preparePrintContent() {
-    const title = document.querySelector(".page-title h2").textContent
-    const date = new Date().toLocaleDateString()
+    electrificationProjects.forEach((project, index) => {
+      const row = createProjectRow(project)
+      projectsTableBody.appendChild(row)
 
-    // Cloner le tableau
-    const tableClone = document.querySelector(".projects-table").cloneNode(true)
+      // Animation d'apparition
+      setTimeout(() => {
+        row.style.opacity = "1"
+        row.style.transform = "translateY(0)"
+      }, index * 100)
+    })
 
-    // Supprimer la colonne des actions
-    const rows = tableClone.querySelectorAll("tr")
+    addRowEventListeners()
+  }
+
+  function createProjectRow(project) {
+    const row = document.createElement("tr")
+    row.style.opacity = "0"
+    row.style.transform = "translateY(20px)"
+    row.style.transition = "all 0.3s ease"
+
+    let statusClass = ""
+    let statusLabel = ""
+
+    switch (project.status) {
+      case "in-progress":
+        statusClass = "in-progress"
+        statusLabel = "En cours"
+        break
+      case "planned":
+        statusClass = "planned"
+        statusLabel = "Planifié"
+        break
+      case "completed":
+        statusClass = "completed"
+        statusLabel = "Terminé"
+        break
+    }
+
+    const natureLabels = {
+      "installation-lignes": "Installation lignes",
+      raccordement: "Raccordement",
+      "extension-reseau": "Extension réseau",
+      maintenance: "Maintenance",
+      transformation: "Transformation",
+      eclairage: "Éclairage public",
+    }
+
+    const wilayaLabels = {
+      guelma: "Guelma",
+      "oued-zenati": "Oued Zenati",
+      heliopolis: "Héliopolis",
+      bouchegouf: "Bouchegouf",
+    }
+
+    row.innerHTML = `
+            <td>
+                <div class="project-code">
+                    <strong>${project.code}</strong>
+                </div>
+            </td>
+            <td>
+                <div class="project-title">
+                    <strong>${project.title}</strong>
+                    <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">${project.contractor || "Non assigné"}</small>
+                </div>
+            </td>
+            <td>
+                <span class="nature-badge">${natureLabels[project.nature] || project.nature}</span>
+            </td>
+            <td>
+                <div>
+                    <strong>${wilayaLabels[project.daira] || project.daira}</strong>
+                    <small style="color: var(--text-secondary); display: block;">${project.commune}</small>
+                </div>
+            </td>
+            <td>
+                <strong>${formatCurrency(project.budget)}</strong>
+            </td>
+            <td>${formatDate(project.startDate)}</td>
+            <td>${formatDate(project.endDate)}</td>
+            <td>
+                <span class="status-badge status-${statusClass}">${statusLabel}</span>
+            </td>
+            <td>
+                <div class="actions-cell">
+                    <button class="action-btn view-btn" data-id="${project.id}" title="Voir les détails">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn edit-btn" data-id="${project.id}" title="Modifier">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete-btn" data-id="${project.id}" title="Supprimer">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        `
+
+    return row
+  }
+
+  function addRowEventListeners() {
+    // Boutons de visualisation
+    document.querySelectorAll(".view-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const projectId = e.currentTarget.getAttribute("data-id")
+        showProjectDetails(projectId)
+      })
+    })
+
+    // Boutons de modification
+    document.querySelectorAll(".edit-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const projectId = e.currentTarget.getAttribute("data-id")
+        openEditProjectModal(projectId)
+      })
+    })
+
+    // Boutons de suppression
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const projectId = e.currentTarget.getAttribute("data-id")
+        deleteProject(projectId)
+      })
+    })
+  }
+
+  function filterProjects() {
+    const searchTerm = searchInput?.value.toLowerCase() || ""
+    const selectedStatus = statusFilter?.value || "all"
+    const selectedDaira = dairaFilter?.value || "all"
+
+    const rows = document.querySelectorAll("#projects-table-body tr")
+
     rows.forEach((row) => {
-      const lastCell = row.lastElementChild
-      if (lastCell && (lastCell.classList.contains("actions-cell") || lastCell.textContent.trim() === "Actions")) {
-        row.removeChild(lastCell)
-      }
-    })
+      const title = row.querySelector(".project-title strong")?.textContent.toLowerCase() || ""
+      const code = row.querySelector(".project-code strong")?.textContent.toLowerCase() || ""
+      const status = getStatusFromBadge(row.querySelector(".status-badge"))
+      const wilayaText = row.querySelector("td:nth-child(4) strong")?.textContent.toLowerCase() || ""
 
-    // Créer le contenu HTML pour l'impression
-    return `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>Projets d'Électrification - ${date}</title>
-        <meta charset="UTF-8">
-        <style>
-          body { font-family: Arial, sans-serif; margin: 20px; }
-          .print-header { text-align: center; margin-bottom: 20px; }
-          .print-header h1 { font-size: 18px; margin-bottom: 5px; }
-          .print-header h2 { font-size: 16px; margin-bottom: 5px; }
-          .print-header p { font-size: 14px; color: #666; }
-          table { width: 100%; border-collapse: collapse; }
-          th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-          th { background-color: #f2f2f2; }
-          .print-footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; }
-          .status-badge { padding: 3px 8px; border-radius: 12px; font-size: 12px; }
-          .status-active { background-color: #28a745; color: white; }
-          .status-pending { background-color: #fd7e14; color: white; }
-          .status-completed { background-color: #2d4f4f; color: white; }
-        </style>
-      </head>
-      <body>
-        <div class="print-header">
-          <h1>Direction des Services Agricoles - Guelma</h1>
-          <h2>${title}</h2>
-          <p>Date d'impression: ${date}</p>
-        </div>
-        ${tableClone.outerHTML}
-        <div class="print-footer">
-          <p>&copy; 2024 Direction des Services Agricoles - Guelma. Tous droits réservés.</p>
-        </div>
-      </body>
-      </html>
-    `
-  }
+      const matchesSearch = title.includes(searchTerm) || code.includes(searchTerm)
+      const matchesStatus = selectedStatus === "all" || status === selectedStatus
+      const matchesDaira = selectedDaira === "all" || wilayaText.includes(selectedDaira.replace("-", " "))
 
-  // Gestionnaire pour le bouton d'impression
-  printBtn.addEventListener("click", () => {
-    showNotification("Préparation de l'impression...")
-
-    // Préparer le contenu pour l'impression
-    const printContent = preparePrintContent()
-
-    // Créer un iframe invisible pour l'impression
-    const printFrame = document.createElement("iframe")
-    printFrame.name = "print-frame"
-    printFrame.style.position = "absolute"
-    printFrame.style.top = "-1000px"
-    printFrame.style.left = "-1000px"
-    document.body.appendChild(printFrame)
-
-    // Écrire le contenu dans l'iframe
-    printFrame.contentDocument.write(printContent)
-    printFrame.contentDocument.close()
-
-    // Attendre que le contenu soit chargé
-    printFrame.onload = () => {
-      setTimeout(() => {
-        try {
-          // Imprimer l'iframe
-          window.frames["print-frame"].focus()
-          window.frames["print-frame"].print()
-
-          // Supprimer l'iframe après l'impression
-          setTimeout(() => {
-            document.body.removeChild(printFrame)
-          }, 1000)
-        } catch (error) {
-          console.error("Erreur lors de l'impression:", error)
-          showNotification("Erreur lors de l'impression. Veuillez réessayer.")
-        }
-      }, 500)
-    }
-  })
-
-  // Gestionnaire pour le bouton de carte - Utiliser le nouveau gestionnaire de carte
-  mapBtn.addEventListener("click", () => {
-    showNotification("Chargement de la carte...")
-
-    // Utiliser la fonction showMap du fichier map-manager.js
-    if (window.showMap) {
-      window.showMap()
-    } else {
-      console.error("La fonction showMap n'est pas disponible")
-      showNotification("Erreur lors du chargement de la carte. Veuillez réessayer.")
-    }
-  })
-
-  // Fermer la modal de carte
-  mapClose.addEventListener("click", () => {
-    mapModal.classList.remove("show")
-  })
-
-  // Fermer la modal de carte en cliquant en dehors
-  mapModal.addEventListener("click", (e) => {
-    if (e.target === mapModal) {
-      mapModal.classList.remove("show")
-    }
-  })
-
-  // Gestionnaire pour la recherche
-  searchInput.addEventListener("input", function () {
-    const searchTerm = this.value.toLowerCase()
-    const tableRows = document.querySelectorAll(".projects-table tbody tr")
-
-    tableRows.forEach((row) => {
-      const text = row.textContent.toLowerCase()
-      if (text.includes(searchTerm)) {
+      if (matchesSearch && matchesStatus && matchesDaira) {
         row.style.display = ""
+        row.style.animation = "fadeInUp 0.3s ease"
       } else {
         row.style.display = "none"
       }
     })
 
-    // Mettre à jour les statistiques en fonction des résultats de recherche
     updateStats()
-  })
-
-  // Générer un code de projet automatique
-  function generateProjectCode() {
-    const now = new Date()
-    const year = now.getFullYear()
-    const month = (now.getMonth() + 1).toString().padStart(2, "0")
-    const randomNum = Math.floor(Math.random() * 900) + 100
-
-    const code = `ELEC-${year}-${month}-${randomNum}`
-    document.getElementById("code_projet").value = code
   }
 
-  // Gestionnaire pour l'affichage du nom de fichier
-  fileInput.addEventListener("change", function () {
-    if (this.files.length > 0) {
-      fileName.textContent = this.files[0].name
-      fileName.style.color = "var(--dark-teal)"
-    } else {
-      fileName.textContent = "Aucun fichier choisi"
-      fileName.style.color = "var(--text-dark)"
-    }
-  })
+  function getStatusFromBadge(badge) {
+    if (badge?.classList.contains("status-in-progress")) return "in-progress"
+    if (badge?.classList.contains("status-planned")) return "planned"
+    if (badge?.classList.contains("status-completed")) return "completed"
+    return ""
+  }
 
-  // Gestionnaire pour la soumission du formulaire
-  form.addEventListener("submit", (e) => {
+  function openAddProjectModal() {
+    addProjectModal?.classList.add("show")
+    // Générer un nouveau code de projet
+    const newCode = generateProjectCode()
+    document.getElementById("project-code").value = newCode
+  }
+
+  function openEditProjectModal(projectId) {
+    const project = electrificationProjects.find((p) => p.id === projectId)
+    if (!project) return
+
+    currentEditingProject = project
+
+    // Remplir le formulaire avec les données du projet
+    document.getElementById("edit-project-code").value = project.code
+    document.getElementById("edit-project-title").value = project.title
+    document.getElementById("edit-project-nature").value = project.nature
+    document.getElementById("edit-project-installation-type").value = project.installationType || ""
+    document.getElementById("edit-project-daira").value = project.daira
+    document.getElementById("edit-project-budget").value = project.budget
+    document.getElementById("edit-project-contractor").value = project.contractor || ""
+    document.getElementById("edit-project-status").value = project.status
+    document.getElementById("edit-date-reception-demande").value = project.dateReceptionDemande || ""
+    document.getElementById("edit-date-envoi-sonelgaz").value = project.dateEnvoiSonelgaz || ""
+    document.getElementById("edit-date-accord-sonelgaz").value = project.dateAccordSonelgaz || ""
+    document.getElementById("edit-date-commencement").value = project.startDate
+    document.getElementById("edit-date-fin").value = project.endDate
+    document.getElementById("edit-project-description").value = project.description || ""
+
+    // Mettre à jour les communes
+    updateEditCommuneOptions()
+    setTimeout(() => {
+      document.getElementById("edit-project-commune").value = project.commune.toLowerCase().replace(/\s+/g, "-")
+    }, 100)
+
+    // Afficher les observations existantes
+    const observationsList = document.getElementById("edit-observations-list")
+    if (observationsList && project.observations) {
+      displayObservations(project.observations, observationsList, false)
+    }
+
+    editProjectModal?.classList.add("show")
+  }
+
+  function generateProjectCode() {
+    const year = new Date().getFullYear()
+    const month = (new Date().getMonth() + 1).toString().padStart(2, "0")
+    const existingCodes = electrificationProjects.map((p) => p.code)
+    let counter = 1
+
+    while (true) {
+      const code = `ELEC-${year}-${month}-${counter.toString().padStart(3, "0")}`
+      if (!existingCodes.includes(code)) {
+        return code
+      }
+      counter++
+    }
+  }
+
+  function handleAddProject(e) {
     e.preventDefault()
 
-    // Validation du formulaire
-    if (validateForm()) {
-      // Récupération des données du formulaire
-      const formData = new FormData(form)
+    const formData = new FormData(addProjectForm)
+    const newProject = {
+      id: `ELEC-${Date.now()}`,
+      code: formData.get("code"),
+      title: formData.get("title"),
+      nature: formData.get("nature"),
+      installationType: formData.get("installationType"),
+      daira: formData.get("daira"),
+      commune: formData.get("commune"),
+      budget: Number.parseInt(formData.get("budget")),
+      startDate: formData.get("startDate"),
+      endDate: formData.get("endDate"),
+      status: formData.get("status"),
+      contractor: formData.get("contractor") || "",
+      description: formData.get("description") || "",
+      dateReceptionDemande: formData.get("dateReceptionDemande") || "",
+      dateEnvoiSonelgaz: formData.get("dateEnvoiSonelgaz") || "",
+      dateAccordSonelgaz: formData.get("dateAccordSonelgaz") || "",
+      observations: "",
+    }
 
-      // Conversion en objet pour faciliter la manipulation
-      const projectData = {}
-      formData.forEach((value, key) => {
-        projectData[key] = value
+    electrificationProjects.push(newProject)
+    loadProjects()
+    updateStats()
+    closeModal()
+    addProjectForm.reset()
+    showNotification("Projet d'électrification ajouté avec succès", "success")
+  }
+
+  function handleEditProject(e) {
+    e.preventDefault()
+
+    if (!currentEditingProject) return
+
+    const formData = new FormData(editProjectForm)
+    const projectIndex = electrificationProjects.findIndex((p) => p.id === currentEditingProject.id)
+
+    if (projectIndex > -1) {
+      // Ajouter une nouvelle observation si elle existe
+      const newObservation = formData.get("newObservation")
+      const updatedObservations = currentEditingProject.observations || []
+
+      if (newObservation && newObservation.trim()) {
+        updatedObservations.push({
+          date: new Date().toISOString().split("T")[0],
+          text: newObservation.trim(),
+        })
+      }
+
+      electrificationProjects[projectIndex] = {
+        ...currentEditingProject,
+        title: formData.get("title"),
+        nature: formData.get("nature"),
+        installationType: formData.get("installationType"),
+        daira: formData.get("daira"),
+        commune: formData.get("commune"),
+        budget: Number.parseInt(formData.get("budget")),
+        startDate: formData.get("startDate"),
+        endDate: formData.get("endDate"),
+        status: formData.get("status"),
+        contractor: formData.get("contractor") || "",
+        description: formData.get("description") || "",
+        dateReceptionDemande: formData.get("dateReceptionDemande") || "",
+        dateEnvoiSonelgaz: formData.get("dateEnvoiSonelgaz") || "",
+        dateAccordSonelgaz: formData.get("dateAccordSonelgaz") || "",
+        observations: updatedObservations,
+      }
+
+      loadProjects()
+      updateStats()
+      closeModal()
+      showNotification("Projet d'électrification modifié avec succès", "success")
+    }
+
+    currentEditingProject = null
+  }
+
+  function showProjectDetails(projectId) {
+    const project = electrificationProjects.find((p) => p.id === projectId)
+    if (!project) return
+
+    const modal = document.getElementById("project-details-modal")
+    const content = modal?.querySelector(".project-details-content")
+
+    if (!content) return
+
+    const natureLabels = {
+      "installation-lignes": "Installation de lignes",
+      raccordement: "Raccordement électrique",
+      "extension-reseau": "Extension de réseau",
+      maintenance: "Maintenance électrique",
+      transformation: "Poste de transformation",
+      eclairage: "Éclairage public",
+    }
+
+    const wilayaLabels = {
+      guelma: "Guelma",
+      "oued-zenati": "Oued Zenati",
+      heliopolis: "Héliopolis",
+      bouchegouf: "Bouchegouf",
+    }
+
+    const statusLabels = {
+      "in-progress": "En cours",
+      planned: "Planifié",
+      completed: "Terminé",
+    }
+
+    content.innerHTML = `
+            <div class="project-detail-header">
+                <h4>${project.title}</h4>
+                <span style="font-family: monospace; background: var(--electric-light); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.9rem;">${project.code}</span>
+            </div>
+            <div class="project-detail-grid">
+                <div class="detail-item">
+                    <label>Nature de la tâche</label>
+                    <span>${natureLabels[project.nature] || project.nature}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Wilaya</label>
+                    <span>${wilayaLabels[project.daira] || project.daira}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Commune</label>
+                    <span>${project.commune}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Budget</label>
+                    <span>${formatCurrency(project.budget)}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Entrepreneur</label>
+                    <span>${project.contractor || "Non assigné"}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Statut</label>
+                    <span>${statusLabels[project.status] || project.status}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Date commencement</label>
+                    <span>${formatDate(project.startDate)}</span>
+                </div>
+                <div class="detail-item">
+                    <label>Date fin prévue</label>
+                    <span>${formatDate(project.endDate)}</span>
+                </div>
+                ${
+                  project.dateReceptionDemande
+                    ? `
+                <div class="detail-item">
+                    <label>Date réception demande</label>
+                    <span>${formatDate(project.dateReceptionDemande)}</span>
+                </div>`
+                    : ""
+                }
+                ${
+                  project.dateEnvoiSonelgaz
+                    ? `
+                <div class="detail-item">
+                    <label>Date envoi Sonelgaz</label>
+                    <span>${formatDate(project.dateEnvoiSonelgaz)}</span>
+                </div>`
+                    : ""
+                }
+                ${
+                  project.dateAccordSonelgaz
+                    ? `
+                <div class="detail-item">
+                    <label>Date accord Sonelgaz</label>
+                    <span>${formatDate(project.dateAccordSonelgaz)}</span>
+                </div>`
+                    : ""
+                }
+            </div>
+            ${
+              project.description
+                ? `
+            <div class="detail-description">
+                <label>Description</label>
+                <p>${project.description}</p>
+            </div>`
+                : ""
+            }
+            ${
+              project.observations
+                ? `
+            <div class="detail-description">
+                <label>Observations/Remarques</label>
+                <p>${project.observations}</p>
+            </div>`
+                : ""
+            }
+        `
+
+    modal?.classList.add("show")
+  }
+
+  function deleteProject(projectId) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce projet d'électrification ?")) {
+      const index = electrificationProjects.findIndex((p) => p.id === projectId)
+      if (index > -1) {
+        electrificationProjects.splice(index, 1)
+        loadProjects()
+        updateStats()
+        showNotification("Projet d'électrification supprimé avec succès", "success")
+      }
+    }
+  }
+
+  function printProjectDetails() {
+    if (!currentEditingProject && !document.querySelector(".project-details-content h4")) return
+
+    const projectTitle = document.querySelector(".project-details-content h4")?.textContent || "Projet"
+    const projectCode = document.querySelector(".project-details-content span")?.textContent || ""
+
+    const printWindow = window.open("", "_blank", "width=800,height=600")
+    const detailsContent = document.querySelector(".project-details-content").innerHTML
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Détails du Projet - ${projectTitle}</title>
+        <meta charset="UTF-8">
+        <style>
+          body { font-family: Arial, sans-serif; margin: 20px; }
+          h1 { text-align: center; margin-bottom: 20px; color: #1565c0; }
+          .print-date { text-align: right; margin-bottom: 20px; font-style: italic; }
+          .project-detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
+          .detail-item { padding: 10px; background-color: #f5f5f5; border-radius: 5px; }
+          .detail-item label { font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase; display: block; margin-bottom: 5px; }
+          .detail-item span { color: #1565c0; font-weight: 500; }
+          .detail-description { background-color: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+          .detail-description label { font-weight: bold; color: #666; font-size: 12px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+          .detail-description p { color: #333; line-height: 1.6; }
+          .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; }
+        </style>
+      </head>
+      <body>
+        <h1>Détails du Projet d'Électrification</h1>
+        <div class="print-date">Date d'impression: ${new Date().toLocaleDateString("fr-FR")}</div>
+        ${detailsContent}
+        <div class="footer">
+          Direction des Services Agricoles - Guelma
+        </div>
+      </body>
+      </html>
+    `
+
+    printWindow.document.write(printContent)
+    printWindow.document.close()
+
+    printWindow.onload = () => {
+      setTimeout(() => {
+        printWindow.print()
+        printWindow.onafterprint = () => {
+          printWindow.close()
+        }
+        showNotification("Impression lancée avec succès", "success")
+      }, 500)
+    }
+  }
+
+  function exportProjectDetails() {
+    if (!currentEditingProject && !document.querySelector(".project-details-content h4")) return
+
+    const projectTitle = document.querySelector(".project-details-content h4")?.textContent || "Projet"
+
+    showNotification("Génération du PDF en cours...", "info")
+
+    setTimeout(() => {
+      try {
+        const { jsPDF } = window.jspdf
+        const doc = new jsPDF()
+
+        // Configuration
+        doc.setFontSize(16)
+        doc.text(`Détails du Projet: ${projectTitle}`, 20, 20)
+
+        doc.setFontSize(10)
+        doc.text(`Date de génération: ${new Date().toLocaleDateString("fr-FR")}`, 20, 30)
+
+        // Extraire les informations du projet affiché
+        const detailItems = document.querySelectorAll(".detail-item")
+        let yPosition = 50
+
+        detailItems.forEach((item) => {
+          const label = item.querySelector("label")?.textContent || ""
+          const value = item.querySelector("span")?.textContent || ""
+
+          doc.setFont(undefined, "bold")
+          doc.setFontSize(9)
+          doc.text(label + ":", 20, yPosition)
+
+          doc.setFont(undefined, "normal")
+          doc.text(value, 80, yPosition)
+
+          yPosition += 8
+        })
+
+        // Description et observations
+        const descriptions = document.querySelectorAll(".detail-description")
+        descriptions.forEach((desc) => {
+          const label = desc.querySelector("label")?.textContent || ""
+          const text = desc.querySelector("p")?.textContent || ""
+
+          yPosition += 5
+          doc.setFont(undefined, "bold")
+          doc.setFontSize(9)
+          doc.text(label + ":", 20, yPosition)
+
+          yPosition += 8
+          doc.setFont(undefined, "normal")
+          const splitText = doc.splitTextToSize(text, 170)
+          doc.text(splitText, 20, yPosition)
+          yPosition += splitText.length * 5
+        })
+
+        // Sauvegarder le PDF
+        const fileName = `projet_electrification_${projectTitle.replace(/\s+/g, "_").toLowerCase()}.pdf`
+        doc.save(fileName)
+        showNotification("PDF généré avec succès !", "success")
+      } catch (error) {
+        console.error("Erreur lors de la génération du PDF:", error)
+        showNotification("Erreur lors de la génération du PDF", "error")
+      }
+    }, 1000)
+  }
+
+  function toggleExportMenu(e) {
+    e.stopPropagation()
+    exportDropdown?.classList.toggle("show")
+  }
+
+  function closeExportMenu(e) {
+    if (!e.target.closest(".export-container")) {
+      exportDropdown?.classList.remove("show")
+    }
+  }
+
+  function exportToPDF() {
+    exportDropdown?.classList.remove("show")
+    showNotification("Génération du PDF en cours...", "info")
+
+    setTimeout(() => {
+      try {
+        const { jsPDF } = window.jspdf
+        const doc = new jsPDF()
+
+        // Configuration
+        doc.setFontSize(16)
+        doc.text("Rapport des Projets d'Électrification - DSA Guelma", 20, 20)
+
+        doc.setFontSize(10)
+        doc.text(`Date de génération: ${new Date().toLocaleDateString("fr-FR")}`, 20, 30)
+
+        // En-têtes du tableau
+        const headers = ["Code", "Intitulé", "Nature", "Wilaya", "Budget", "Statut"]
+        let yPosition = 50
+
+        // Dessiner les en-têtes
+        doc.setFontSize(8)
+        doc.setFont(undefined, "bold")
+        headers.forEach((header, index) => {
+          doc.text(header, 20 + index * 30, yPosition)
+        })
+
+        yPosition += 10
+
+        // Dessiner les données
+        doc.setFont(undefined, "normal")
+        electrificationProjects.forEach((project) => {
+          const natureLabels = {
+            "installation-lignes": "Inst. lignes",
+            raccordement: "Raccord.",
+            "extension-reseau": "Ext. réseau",
+            maintenance: "Maint.",
+            transformation: "Transform.",
+            eclairage: "Éclairage",
+          }
+
+          const statusLabels = {
+            "in-progress": "En cours",
+            planned: "Planifié",
+            completed: "Terminé",
+          }
+
+          const row = [
+            project.code,
+            project.title.substring(0, 20) + "...",
+            natureLabels[project.nature] || project.nature,
+            project.daira,
+            formatCurrency(project.budget),
+            statusLabels[project.status] || project.status,
+          ]
+
+          row.forEach((cell, index) => {
+            doc.text(cell.toString(), 20 + index * 30, yPosition)
+          })
+
+          yPosition += 8
+
+          // Nouvelle page si nécessaire
+          if (yPosition > 270) {
+            doc.addPage()
+            yPosition = 20
+          }
+        })
+
+        // Sauvegarder le PDF
+        doc.save("projets_electrification_dsa_guelma.pdf")
+        showNotification("PDF généré avec succès !", "success")
+      } catch (error) {
+        console.error("Erreur lors de la génération du PDF:", error)
+        showNotification("Erreur lors de la génération du PDF", "error")
+      }
+    }, 1000)
+  }
+
+  function exportToExcel() {
+    exportDropdown?.classList.remove("show")
+    showNotification("Génération du fichier Excel en cours...", "info")
+
+    setTimeout(() => {
+      try {
+        const natureLabels = {
+          "installation-lignes": "Installation de lignes",
+          raccordement: "Raccordement électrique",
+          "extension-reseau": "Extension de réseau",
+          maintenance: "Maintenance électrique",
+          transformation: "Poste de transformation",
+          eclairage: "Éclairage public",
+        }
+
+        const statusLabels = {
+          "in-progress": "En cours",
+          planned: "Planifié",
+          completed: "Terminé",
+        }
+
+        // Préparer les données pour Excel
+        const excelData = electrificationProjects.map((project) => ({
+          Code: project.code,
+          Intitulé: project.title,
+          "Nature de la tâche": natureLabels[project.nature] || project.nature,
+          Wilaya: project.daira,
+          Commune: project.commune,
+          Budget: project.budget,
+          "Date commencement": formatDate(project.startDate),
+          "Date fin": formatDate(project.endDate),
+          Statut: statusLabels[project.status] || project.status,
+          Entrepreneur: project.contractor || "",
+          "Date réception demande": project.dateReceptionDemande ? formatDate(project.dateReceptionDemande) : "",
+          "Date envoi Sonelgaz": project.dateEnvoiSonelgaz ? formatDate(project.dateEnvoiSonelgaz) : "",
+          "Date accord Sonelgaz": project.dateAccordSonelgaz ? formatDate(project.dateAccordSonelgaz) : "",
+          Description: project.description || "",
+          Observations: project.observations || "",
+        }))
+
+        // Créer un nouveau workbook
+        const wb = XLSX.utils.book_new()
+        const ws = XLSX.utils.json_to_sheet(excelData)
+
+        // Ajouter la feuille au workbook
+        XLSX.utils.book_append_sheet(wb, ws, "Projets Électrification")
+
+        // Sauvegarder le fichier
+        XLSX.writeFile(wb, "projets_electrification_dsa_guelma.xlsx")
+        showNotification("Fichier Excel généré avec succès !", "success")
+      } catch (error) {
+        console.error("Erreur lors de la génération du fichier Excel:", error)
+        showNotification("Erreur lors de la génération du fichier Excel", "error")
+      }
+    }, 1000)
+  }
+
+  function printProjects() {
+    showNotification("Préparation de l'impression...", "info")
+
+    const printWindow = window.open("", "_blank", "width=800,height=600")
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Projets d'Électrification DSA Guelma - Impression</title>
+        <meta charset="UTF-8">
+        <style>
+          body { font-family: Arial, sans-serif; margin: 20px; }
+          h1 { text-align: center; margin-bottom: 20px; color: #1565c0; }
+          .print-date { text-align: right; margin-bottom: 20px; font-style: italic; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+          th, td { border: 1px solid #444; padding: 8px; text-align: left; font-size: 10px; }
+          th { background-color: #1565c0; color: white; }
+          tr:nth-child(even) { background-color: #f2f2f2; }
+          .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; }
+          .status { padding: 3px 8px; border-radius: 12px; font-size: 10px; display: inline-block; }
+          .status-in-progress { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
+          .status-completed { background-color: #e3f2fd; color: #1565c0; border: 1px solid #1565c0; }
+          .status-planned { background-color: #fff8e1; color: #f57f17; border: 1px solid #f57f17; }
+        </style>
+      </head>
+      <body>
+        <h1>Liste des Projets d'Électrification - DSA Guelma</h1>
+        <div class="print-date">Date d'impression: ${new Date().toLocaleDateString("fr-FR")}</div>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Intitulé</th>
+              <th>Nature</th>
+              <th>Wilaya/Commune</th>
+              <th>Budget</th>
+              <th>Période</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${electrificationProjects
+              .map((project) => {
+                const natureLabels = {
+                  "installation-lignes": "Installation lignes",
+                  raccordement: "Raccordement",
+                  "extension-reseau": "Extension réseau",
+                  maintenance: "Maintenance",
+                  transformation: "Transformation",
+                  eclairage: "Éclairage public",
+                }
+
+                const statusLabels = {
+                  "in-progress": "En cours",
+                  planned: "Planifié",
+                  completed: "Terminé",
+                }
+
+                return `
+                  <tr>
+                    <td>${project.code}</td>
+                    <td>${project.title}</td>
+                    <td>${natureLabels[project.nature] || project.nature}</td>
+                    <td>${project.daira}/${project.commune}</td>
+                    <td>${formatCurrency(project.budget)}</td>
+                    <td>${formatDate(project.startDate)} - ${formatDate(project.endDate)}</td>
+                    <td>
+                      <span class="status status-${project.status}">
+                        ${statusLabels[project.status] || project.status}
+                      </span>
+                    </td>
+                  </tr>
+                  `
+              })
+              .join("")}
+          </tbody>
+        </table>
+        
+        <div class="footer">
+          Direction des Services Agricoles - Guelma
+        </div>
+      </body>
+      </html>
+    `
+
+    printWindow.document.write(printContent)
+    printWindow.document.close()
+
+    printWindow.onload = () => {
+      setTimeout(() => {
+        printWindow.print()
+        printWindow.onafterprint = () => {
+          printWindow.close()
+        }
+        showNotification("Impression lancée avec succès", "success")
+      }, 500)
+    }
+  }
+
+  // Fonction pour afficher la carte Google Maps
+  function showProjectsMap() {
+    const mapModal = document.getElementById("map-modal")
+    if (mapModal) {
+      mapModal.classList.add("show")
+
+      // Fermeture du modal
+      mapModal.querySelector(".modal-close").addEventListener("click", () => {
+        mapModal.classList.remove("show")
       })
 
-      // Simulation d'envoi à la base de données
-      saveProject(projectData)
-    }
-  })
+      mapModal.querySelector(".modal-backdrop").addEventListener("click", () => {
+        mapModal.classList.remove("show")
+      })
 
-  // Fonction de validation du formulaire
-  function validateForm() {
-    let isValid = true
-    const requiredFields = form.querySelectorAll("[required]")
-
-    // Réinitialiser les styles d'erreur
-    form.querySelectorAll(".error-message").forEach((el) => el.remove())
-    form.querySelectorAll(".error-input").forEach((el) => el.classList.remove("error-input"))
-
-    // Vérifier chaque champ requis
-    requiredFields.forEach((field) => {
-      if (!field.value.trim()) {
-        isValid = false
-        field.classList.add("error-input")
-
-        // Créer un message d'erreur
-        const errorMsg = document.createElement("div")
-        errorMsg.className = "error-message"
-        errorMsg.textContent = "Ce champ est obligatoire"
-        errorMsg.style.color = "red"
-        errorMsg.style.fontSize = "0.8rem"
-        errorMsg.style.marginTop = "5px"
-
-        // Insérer après le champ
-        field.parentNode.insertBefore(errorMsg, field.nextSibling)
-      }
-    })
-
-    return isValid
-  }
-
-  // Fonction pour formater une date au format DD/MM/YYYY
-  function formatDate(dateString) {
-    const date = new Date(dateString)
-    const day = date.getDate().toString().padStart(2, "0")
-    const month = (date.getMonth() + 1).toString().padStart(2, "0")
-    const year = date.getFullYear()
-    return `${day}/${month}/${year}`
-  }
-
-  // Fonction pour sauvegarder le projet
-  function saveProject(projectData) {
-    // Simulation d'une requête AJAX
-    console.log("Données du projet à envoyer:", projectData)
-
-    // Afficher un indicateur de chargement
-    const submitBtn = form.querySelector(".btn-submit")
-    const originalText = submitBtn.innerHTML
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enregistrement...'
-    submitBtn.disabled = true
-
-    // Simuler un délai réseau
-    setTimeout(() => {
-      // Afficher une notification de succès
-      showNotification(`Projet "${projectData.intitule}" enregistré avec succès !`)
-
-      // Si nous sommes en mode édition, mettre à jour la ligne existante
-      if (editMode && currentEditRow) {
-        updateTableRow(currentEditRow, projectData)
+      // Utiliser la fonction du map-manager.js
+      if (window.showMap) {
+        window.showMap()
       } else {
-        // Sinon, ajouter une nouvelle ligne au tableau
-        addTableRow(projectData)
+        // Charger Google Maps si ce n'est pas déjà fait
+        if (!window.google || !window.google.maps) {
+          window.loadGoogleMaps()
+        } else {
+          window.initMap()
+        }
       }
-
-      // Réinitialiser le formulaire
-      form.reset()
-      fileName.textContent = "Aucun fichier choisi"
-
-      // Restaurer le bouton
-      submitBtn.innerHTML = originalText
-      submitBtn.disabled = false
-
-      // Revenir à la liste des projets
-      listView.classList.add("active")
-      formView.classList.remove("active")
-
-      // Réinitialiser le mode d'édition
-      editMode = false
-      currentEditRow = null
-
-      // Mettre à jour les statistiques
-      updateStats()
-    }, 1500)
-  }
-
-  // Fonction pour ajouter une nouvelle ligne au tableau
-  function addTableRow(projectData) {
-    // Créer une nouvelle ligne
-    const newRow = document.createElement("tr")
-    newRow.className = "table-row-animate"
-
-    // Déterminer le statut en fonction des dates
-    const today = new Date()
-    const startDate = new Date(projectData.date_debut)
-    const endDate = new Date(projectData.date_prevue_fin)
-
-    let status = ""
-    let statusClass = ""
-
-    if (today < startDate) {
-      status = "En attente"
-      statusClass = "status-pending"
-    } else if (today > endDate) {
-      status = "Terminé"
-      statusClass = "status-completed"
-    } else {
-      status = "En cours"
-      statusClass = "status-active"
-    }
-
-    // Formater les dates pour l'affichage
-    const formattedStartDate = formatDate(projectData.date_debut)
-    const formattedEndDate = formatDate(projectData.date_prevue_fin)
-
-    // Remplir la ligne avec les données du projet
-    newRow.innerHTML = `
-      <td>${projectData.code_projet}</td>
-      <td>${projectData.intitule}</td>
-      <td>${projectData.localisation}</td>
-      <td>${projectData.type_installation}</td>
-      <td>${formattedStartDate}</td>
-      <td>${formattedEndDate}</td>
-      <td><span class="status-badge ${statusClass}">${status}</span></td>
-      <td class="actions-cell">
-        <button class="action-btn" title="Modifier">
-          <i class="fas fa-edit"></i>
-        </button>
-        <button class="action-btn" title="Détails">
-          <i class="fas fa-eye"></i>
-        </button>
-        <button class="action-btn" title="Supprimer">
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </td>
-    `
-
-    // Ajouter la ligne au tableau
-    projectsTable.prepend(newRow)
-
-    // Ajouter les gestionnaires d'événements aux boutons d'action
-    const actionButtons = newRow.querySelectorAll(".action-btn")
-    actionButtons.forEach((btn) => {
-      btn.addEventListener("click", handleActionButtonClick)
-    })
-
-    // Ajouter une animation pour mettre en évidence la nouvelle ligne
-    newRow.style.backgroundColor = "rgba(212, 175, 55, 0.2)"
-    setTimeout(() => {
-      newRow.style.backgroundColor = ""
-    }, 3000)
-  }
-
-  // Fonction pour mettre à jour une ligne existante dans le tableau
-  function updateTableRow(row, projectData) {
-    // Déterminer le statut en fonction des dates
-    const today = new Date()
-    const startDate = new Date(projectData.date_debut)
-    const endDate = new Date(projectData.date_prevue_fin)
-
-    let status = ""
-    let statusClass = ""
-
-    if (today < startDate) {
-      status = "En attente"
-      statusClass = "status-pending"
-    } else if (today > endDate) {
-      status = "Terminé"
-      statusClass = "status-completed"
-    } else {
-      status = "En cours"
-      statusClass = "status-active"
-    }
-
-    // Formater les dates pour l'affichage
-    const formattedStartDate = formatDate(projectData.date_debut)
-    const formattedEndDate = formatDate(projectData.date_prevue_fin)
-
-    // Mettre à jour les cellules de la ligne
-    row.cells[0].textContent = projectData.code_projet
-    row.cells[1].textContent = projectData.intitule
-    row.cells[2].textContent = projectData.localisation
-    row.cells[3].textContent = projectData.type_installation
-    row.cells[4].textContent = formattedStartDate
-    row.cells[5].textContent = formattedEndDate
-    row.cells[6].innerHTML = `<span class="status-badge ${statusClass}">${status}</span>`
-
-    // Ajouter une animation pour mettre en évidence la ligne mise à jour
-    row.style.backgroundColor = "rgba(92, 141, 141, 0.2)"
-    setTimeout(() => {
-      row.style.backgroundColor = ""
-    }, 3000)
-  }
-
-  // Fonction pour afficher une notification
-  function showNotification(message) {
-    // Créer l'élément de notification
-    const notification = document.createElement("div")
-    notification.className = "notification"
-    notification.innerHTML = `
-      <div class="notification-content">
-        <i class="fas fa-check-circle"></i>
-        <span>${message}</span>
-      </div>
-    `
-
-    // Ajouter au DOM
-    document.body.appendChild(notification)
-
-    // Afficher la notification
-    setTimeout(() => {
-      notification.classList.add("show")
-
-      // Masquer après 3 secondes
-      setTimeout(() => {
-        notification.classList.remove("show")
-
-        // Supprimer du DOM après l'animation
-        setTimeout(() => {
-          document.body.removeChild(notification)
-        }, 500)
-      }, 3000)
-    }, 100)
-  }
-
-  // Fonction pour gérer les clics sur les boutons d'action
-  function handleActionButtonClick(e) {
-    e.stopPropagation()
-    const action = this.getAttribute("title")
-    const row = this.closest("tr")
-    const projectTitle = row.querySelector("td:nth-child(2)").textContent
-
-    if (action === "Modifier") {
-      // Définir le mode d'édition et stocker la référence à la ligne
-      editMode = true
-      currentEditRow = row
-
-      // Simuler l'édition d'un projet existant
-      listView.classList.remove("active")
-      formView.classList.add("active")
-      document.querySelector(".form-header h2").innerHTML = '<i class="fas fa-edit"></i> Modifier le Projet'
-      document.getElementById("intitule").value = projectTitle
-      document.getElementById("code_projet").value = row.querySelector("td:nth-child(1)").textContent
-      document.getElementById("localisation").value = row.querySelector("td:nth-child(3)").textContent
-      document.getElementById("type_installation").value = row.querySelector("td:nth-child(4)").textContent
-
-      // Simuler des dates
-      const dateDebut = row.querySelector("td:nth-child(5)").textContent
-      const dateFin = row.querySelector("td:nth-child(6)").textContent
-
-      // Convertir les dates au format YYYY-MM-DD pour l'input date
-      const dateDebutParts = dateDebut.split("/")
-      const dateFinParts = dateFin.split("/")
-
-      if (dateDebutParts.length === 3) {
-        document.getElementById("date_debut").value = `${dateDebutParts[2]}-${dateDebutParts[1]}-${dateDebutParts[0]}`
-      }
-
-      if (dateFinParts.length === 3) {
-        document.getElementById("date_prevue_fin").value = `${dateFinParts[2]}-${dateFinParts[1]}-${dateFinParts[0]}`
-      }
-    } else if (action === "Supprimer") {
-      if (confirm(`Êtes-vous sûr de vouloir supprimer le projet "${projectTitle}" ?`)) {
-        // Simuler la suppression
-        row.style.opacity = "0"
-        setTimeout(() => {
-          row.remove()
-          showNotification(`Projet "${projectTitle}" supprimé avec succès !`)
-          updateStats()
-        }, 300)
-      }
-    } else if (action === "Détails") {
-      showProjectDetails(row)
     }
   }
 
-  // Ajouter les gestionnaires d'événements aux boutons d'action existants
-  document.querySelectorAll(".action-btn").forEach((btn) => {
-    btn.removeEventListener("click", handleActionButtonClick) // Supprimer les anciens gestionnaires
-    btn.addEventListener("click", handleActionButtonClick)
-  })
+  // Fonction pour gérer les observations
+  function displayObservations(observations, container, showAll = false) {
+    if (!observations || observations.length === 0) {
+      container.innerHTML = '<p style="color: var(--text-secondary); font-style: italic;">Aucune observation</p>'
+      return
+    }
 
-  // Fonction pour afficher les détails du projet dans une modal
-  function showProjectDetails(row) {
-    const projectCode = row.querySelector("td:nth-child(1)").textContent
-    const projectTitle = row.querySelector("td:nth-child(2)").textContent
-    const location = row.querySelector("td:nth-child(3)").textContent
-    const type = row.querySelector("td:nth-child(4)").textContent
-    const startDate = row.querySelector("td:nth-child(5)").textContent
-    const endDate = row.querySelector("td:nth-child(6)").textContent
-    const status = row.querySelector("td:nth-child(7) .status-badge").textContent
+    const observationsToShow = showAll ? observations : [observations[observations.length - 1]]
 
-    // Remplir le contenu de la modal
-    projectDetailsContent.innerHTML = `
-      <div class="project-detail-card">
-        <div class="detail-header">
-          <h4>${projectTitle}</h4>
-          <span class="detail-code">${projectCode}</span>
+    container.innerHTML = observationsToShow
+      .map(
+        (obs) => `
+      <div class="observation-item" style="background: var(--light-bg); padding: 1rem; margin-bottom: 0.5rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: var(--primary);">Observation du ${formatDate(obs.date)}</strong>
         </div>
-        <div class="detail-body">
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-map-marker-alt"></i> Localisation:</span>
-            <span class="detail-value">${location}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-bolt"></i> Type d'installation:</span>
-            <span class="detail-value">${type}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-calendar-alt"></i> Période:</span>
-            <span class="detail-value">Du ${startDate} au ${endDate}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label"><i class="fas fa-info-circle"></i> Statut:</span>
-            <span class="detail-value status-text">${status}</span>
-          </div>
-        </div>
+        <p style="margin: 0; line-height: 1.5;">${obs.text}</p>
       </div>
-    `
-
-    // Ajouter une classe de couleur au statut
-    const statusText = projectDetailsContent.querySelector(".status-text")
-    if (status.includes("En cours")) {
-      statusText.classList.add("status-active-text")
-    } else if (status.includes("En attente")) {
-      statusText.classList.add("status-pending-text")
-    } else if (status.includes("Terminé")) {
-      statusText.classList.add("status-completed-text")
-    }
-
-    // Afficher la modal
-    projectDetailsModal.classList.add("show")
+    `,
+      )
+      .join("")
   }
 
-  // Fermer la modal
-  if (modalClose) {
-    modalClose.addEventListener("click", () => {
-      projectDetailsModal.classList.remove("show")
+  function closeModal() {
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.classList.remove("show")
+    })
+    currentEditingProject = null
+  }
+
+  function animateCounters() {
+    counters.forEach((counter) => {
+      const target = Number.parseInt(counter.getAttribute("data-target"))
+      const duration = 2000
+      const step = target / (duration / 16)
+      let current = 0
+
+      const timer = setInterval(() => {
+        current += step
+        if (current >= target) {
+          current = target
+          clearInterval(timer)
+        }
+        counter.textContent = Math.floor(current)
+      }, 16)
     })
   }
 
-  // Fermer la modal en cliquant en dehors du contenu
-  projectDetailsModal.addEventListener("click", (e) => {
-    if (e.target === projectDetailsModal) {
-      projectDetailsModal.classList.remove("show")
-    }
-  })
-
-  // Initialisation de la pagination
-  paginationItems.forEach((item) => {
-    item.addEventListener("click", function () {
-      if (!this.classList.contains("active") && !this.querySelector("i")) {
-        document.querySelector(".pagination .active").classList.remove("active")
-        this.classList.add("active")
-        showNotification(`Page ${this.textContent} chargée`)
-      }
-    })
-  })
-
-  // Animation des cartes statistiques
-  statCards.forEach((card) => {
-    card.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-10px)"
-    })
-
-    card.addEventListener("mouseleave", function () {
-      this.style.transform = ""
-    })
-  })
-
-  // Fonction pour mettre à jour les statistiques
   function updateStats() {
-    const visibleProjects = document.querySelectorAll(".projects-table tbody tr:not([style*='display: none'])")
-    const completedProjects = document.querySelectorAll(
-      ".projects-table tbody tr:not([style*='display: none']) .status-completed",
-    ).length
-    const activeProjects = document.querySelectorAll(
-      ".projects-table tbody tr:not([style*='display: none']) .status-active",
-    ).length
+    const totalProjects = electrificationProjects.length
+    const inProgressProjects = electrificationProjects.filter((p) => p.status === "in-progress").length
+    const completedProjects = electrificationProjects.filter((p) => p.status === "completed").length
+    const totalBudget = Math.round(electrificationProjects.reduce((sum, p) => sum + p.budget, 0) / 1000000)
 
     // Mettre à jour les statistiques
-    document.querySelector(".stats-cards .stat-card:nth-child(1) .stat-value").textContent = visibleProjects.length
-    document.querySelector(".stats-cards .stat-card:nth-child(3) .stat-value").textContent = completedProjects
-    document.querySelector(".stats-cards .stat-card:nth-child(4) .stat-value").textContent = activeProjects
+    const statValues = document.querySelectorAll(".stat-value")
+    if (statValues[0]) statValues[0].textContent = totalProjects
+    if (statValues[1]) statValues[1].textContent = inProgressProjects
+    if (statValues[2]) statValues[2].textContent = completedProjects
+    if (statValues[3]) statValues[3].textContent = totalBudget
   }
 
-  // Initialiser les statistiques au chargement
-  updateStats()
+  function showNotification(message, type = "success") {
+    const notification = document.createElement("div")
+    notification.className = `notification ${type}`
+    notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas ${getNotificationIcon(type)}"></i>
+                <span>${message}</span>
+            </div>
+        `
+
+    // Styles pour la notification
+    notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--surface);
+            border: 2px solid var(--${type === "success" ? "success" : type === "error" ? "error" : "info"});
+            border-radius: var(--border-radius-sm);
+            padding: 1rem;
+            box-shadow: 0 8px 24px var(--shadow);
+            z-index: 1100;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: var(--transition);
+            max-width: 400px;
+        `
+
+    notification.querySelector(".notification-content").style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-primary);
+        `
+
+    notification.querySelector("i").style.cssText = `
+            color: var(--${type === "success" ? "success" : type === "error" ? "error" : "info"});
+            font-size: 1.2rem;
+        `
+
+    document.body.appendChild(notification)
+
+    setTimeout(() => {
+      notification.style.transform = "translateX(0)"
+      notification.style.opacity = "1"
+    }, 100)
+
+    setTimeout(() => {
+      notification.style.transform = "translateX(100%)"
+      notification.style.opacity = "0"
+      setTimeout(() => {
+        document.body.removeChild(notification)
+      }, 300)
+    }, 3000)
+  }
+
+  function getNotificationIcon(type) {
+    switch (type) {
+      case "success":
+        return "fa-check-circle"
+      case "error":
+        return "fa-exclamation-circle"
+      case "warning":
+        return "fa-exclamation-triangle"
+      case "info":
+        return "fa-info-circle"
+      default:
+        return "fa-check-circle"
+    }
+  }
+
+  function formatCurrency(amount) {
+    return new Intl.NumberFormat("fr-DZ", {
+      style: "currency",
+      currency: "DZD",
+      minimumFractionDigits: 0,
+    }).format(amount)
+  }
+
+  function formatDate(dateString) {
+    if (!dateString) return ""
+    return new Date(dateString).toLocaleDateString("fr-FR")
+  }
+
+  function updateCurrentDate() {
+    const dateElement = document.getElementById("current-date")
+    if (dateElement) {
+      const now = new Date()
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }
+      dateElement.textContent = now.toLocaleDateString("fr-FR", options)
+    }
+  }
+
+  // Ajouter après la fonction init()
+  function updateCurrentTime() {
+    const timeElement = document.getElementById("current-time")
+    if (timeElement) {
+      const now = new Date()
+      const timeString = now.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
+      timeElement.textContent = timeString
+    }
+  }
+
+  function updateCurrentDateShort() {
+    const dateElement = document.getElementById("current-date-short")
+    if (dateElement) {
+      const now = new Date()
+      const dateString = now.toLocaleDateString("fr-FR", {
+        day: "2-digit",
+        month: "2-digit",
+      })
+      dateElement.textContent = dateString
+    }
+  }
+
+  function initCompactCalendar() {
+    const calendarGrid = document.getElementById("calendar-grid-compact")
+    const monthYearSpan = document.getElementById("calendar-month-year")
+    const prevMonthBtn = document.getElementById("prev-month")
+    const nextMonthBtn = document.getElementById("next-month")
+
+    const currentDate = new Date()
+
+    function generateCompactCalendar(date) {
+      const year = date.getFullYear()
+      const month = date.getMonth()
+      const firstDay = new Date(year, month, 1)
+      const lastDay = new Date(year, month + 1, 0)
+      const startDate = new Date(firstDay)
+
+      // Ajuster pour commencer le dimanche
+      startDate.setDate(startDate.getDate() - firstDay.getDay())
+
+      // Mettre à jour le titre
+      monthYearSpan.textContent = date.toLocaleDateString("fr-FR", {
+        month: "long",
+        year: "numeric",
+      })
+
+      // Vider la grille
+      calendarGrid.innerHTML = ""
+
+      // Générer 42 jours (6 semaines)
+      for (let i = 0; i < 42; i++) {
+        const cellDate = new Date(startDate)
+        cellDate.setDate(startDate.getDate() + i)
+
+        const dayElement = document.createElement("div")
+        dayElement.className = "calendar-day-compact"
+        dayElement.textContent = cellDate.getDate()
+
+        // Marquer les jours du mois précédent/suivant
+        if (cellDate.getMonth() !== month) {
+          dayElement.classList.add("other-month")
+        }
+
+        // Marquer le jour actuel
+        if (cellDate.toDateString() === new Date().toDateString()) {
+          dayElement.classList.add("today")
+        }
+
+        // Vérifier s'il y a des projets ce jour-là
+        const hasProjects = electrificationProjects.some((project) => {
+          const startDate = new Date(project.startDate)
+          const endDate = new Date(project.endDate)
+          return cellDate >= startDate && cellDate <= endDate
+        })
+
+        if (hasProjects) {
+          dayElement.classList.add("has-projects")
+          dayElement.title = "Projets actifs ce jour"
+        }
+
+        // Ajouter l'événement de clic
+        dayElement.addEventListener("click", () => {
+          // Retirer la sélection précédente
+          document.querySelectorAll(".calendar-day-compact.selected").forEach((d) => d.classList.remove("selected"))
+
+          // Ajouter la sélection au jour cliqué
+          if (!dayElement.classList.contains("other-month")) {
+            dayElement.classList.add("selected")
+          }
+
+          if (hasProjects) {
+            console.log(`Projets actifs le ${cellDate.toLocaleDateString("fr-FR")}`)
+            // Ici on pourrait filtrer les projets par date
+          }
+        })
+
+        calendarGrid.appendChild(dayElement)
+      }
+    }
+
+    // Event listeners pour la navigation
+    prevMonthBtn?.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() - 1)
+      generateCompactCalendar(currentDate)
+    })
+
+    nextMonthBtn?.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() + 1)
+      generateCompactCalendar(currentDate)
+    })
+
+    // Générer le calendrier initial
+    generateCompactCalendar(currentDate)
+  }
+  // Import de la librairie xlsx
+  const XLSX = require("xlsx")
 })
