@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function init() {
     loadProjects()
+    renderProjects()
     animateCounters()
     setupEventListeners()
     updateStats()
@@ -187,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Formulaires
     addProjectForm?.addEventListener("submit", handleAddProject)
-    editProjectForm?.addEventListener("submit", handleEditProject)
+    editProjectForm?.addEventListener("submit", handleEditProjectSubmit)
 
     // Boutons d'annulation
     document.getElementById("cancel-add")?.addEventListener("click", closeModal)
@@ -276,25 +277,65 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     }
   }
-
-  function loadProjects() {
+  function renderProjects() {
     if (!projectsTableBody) return
-
     projectsTableBody.innerHTML = ""
-
+  
     electrificationProjects.forEach((project, index) => {
       const row = createProjectRow(project)
       projectsTableBody.appendChild(row)
-
-      // Animation d'apparition
+  
+      // Animation
       setTimeout(() => {
         row.style.opacity = "1"
         row.style.transform = "translateY(0)"
       }, index * 100)
     })
-
+  
     addRowEventListeners()
   }
+  
+  
+
+  function loadProjects() {
+    fetch("http://localhost/DSA1/API/electrification/get_all.php")
+      .then(response => response.json())
+      .then(data => {
+        electrificationProjects.length = 0
+        data.forEach(project => {
+          electrificationProjects.push({
+            ...project,
+            id: project.code_projet, // 🟢 ICI : on rend l'id égal au code_projet
+            code: project.code_projet,
+            title: project.intitule,
+            nature: project.nature_juridique,
+            installationType: project.type_installation,
+            daira: project.daira,
+            commune: project.commune,
+            budget: parseFloat(project.budget),
+            startDate: project.date_debut,
+            endDate: project.date_prevue_fin,
+            status: project.statut,
+            contractor: project.entrepreneur,
+            description: project.description_technique,
+            dateReceptionDemande: project.date_reception_demande,
+            dateEnvoiSonelgaz: project.date_envoi_sonelgaz,
+            dateAccordSonelgaz: project.date_accord_sonelgaz,
+            observations: project.observations
+              ? [{ date: project.date_debut, text: project.observations }]
+              : [],
+          })
+        })
+        renderProjects()
+      })
+      .catch(error => {
+        console.error("Erreur de chargement des projets :", error)
+        showNotification("Impossible de charger les projets", "error")
+      })
+  }
+  
+  
+  
 
   function createProjectRow(project) {
     const row = document.createElement("tr")
@@ -504,84 +545,155 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleAddProject(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const formData = new FormData(addProjectForm)
-    const newProject = {
-      id: `ELEC-${Date.now()}`,
-      code: formData.get("code"),
-      title: formData.get("title"),
-      nature: formData.get("nature"),
-      installationType: formData.get("installationType"),
-      daira: formData.get("daira"),
-      commune: formData.get("commune"),
-      budget: Number.parseInt(formData.get("budget")),
-      startDate: formData.get("startDate"),
-      endDate: formData.get("endDate"),
-      status: formData.get("status"),
-      contractor: formData.get("contractor") || "",
-      description: formData.get("description") || "",
-      dateReceptionDemande: formData.get("dateReceptionDemande") || "",
-      dateEnvoiSonelgaz: formData.get("dateEnvoiSonelgaz") || "",
-      dateAccordSonelgaz: formData.get("dateAccordSonelgaz") || "",
-      observations: "",
-    }
+    const formData = new FormData(addProjectForm);
 
-    electrificationProjects.push(newProject)
-    loadProjects()
-    updateStats()
-    closeModal()
-    addProjectForm.reset()
-    showNotification("Projet d'électrification ajouté avec succès", "success")
-  }
-
-  function handleEditProject(e) {
-    e.preventDefault()
-
-    if (!currentEditingProject) return
-
-    const formData = new FormData(editProjectForm)
-    const projectIndex = electrificationProjects.findIndex((p) => p.id === currentEditingProject.id)
-
-    if (projectIndex > -1) {
-      // Ajouter une nouvelle observation si elle existe
-      const newObservation = formData.get("newObservation")
-      const updatedObservations = currentEditingProject.observations || []
-
-      if (newObservation && newObservation.trim()) {
-        updatedObservations.push({
-          date: new Date().toISOString().split("T")[0],
-          text: newObservation.trim(),
-        })
-      }
-
-      electrificationProjects[projectIndex] = {
-        ...currentEditingProject,
-        title: formData.get("title"),
-        nature: formData.get("nature"),
-        installationType: formData.get("installationType"),
+    // Construire l'objet JSON attendu par l'API
+    const data = {
+        intitule: formData.get("title"),
+        code_projet: formData.get("code"),
+        nature_juridique: formData.get("nature"),
+        localisation: "", // Si tu veux ajouter une valeur
         daira: formData.get("daira"),
         commune: formData.get("commune"),
-        budget: Number.parseInt(formData.get("budget")),
-        startDate: formData.get("startDate"),
-        endDate: formData.get("endDate"),
-        status: formData.get("status"),
-        contractor: formData.get("contractor") || "",
-        description: formData.get("description") || "",
-        dateReceptionDemande: formData.get("dateReceptionDemande") || "",
-        dateEnvoiSonelgaz: formData.get("dateEnvoiSonelgaz") || "",
-        dateAccordSonelgaz: formData.get("dateAccordSonelgaz") || "",
-        observations: updatedObservations,
-      }
-
-      loadProjects()
-      updateStats()
-      closeModal()
-      showNotification("Projet d'électrification modifié avec succès", "success")
+        adresse: "", // facultatif
+        type_installation: formData.get("installationType"),
+        description_technique: formData.get("description"),
+        budget: parseFloat(formData.get("budget")),
+        entrepreneur: formData.get("contractor"),
+        statut: formData.get("status"),
+        date_debut: formData.get("startDate"),
+        date_prevue_fin: formData.get("endDate"),
+        date_reception_demande: formData.get("dateReceptionDemande") || null,
+        date_envoi_sonelgaz: formData.get("dateEnvoiSonelgaz") || null,
+        date_accord_sonelgaz: formData.get("dateAccordSonelgaz") || null,
+        observations: "", // ou laisse null
+        fichier_justificatif: null,
+        created_by: 1
     }
 
-    currentEditingProject = null
+    // Envoi de la requête POST à ton API
+    fetch("http://localhost/DSA1/API/electrification/ajouter.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then((result) => {
+        if (result.message?.includes("créé")) {
+            showNotification("Projet ajouté avec succès", "success");
+            closeModal();
+            addProjectForm.reset();
+        } else {
+            showNotification("Erreur: " + result.message, "error");
+        }
+    })
+    .catch((error) => {
+        console.error("Erreur réseau:", error);
+        showNotification("Erreur lors de l’envoi de la requête", "error");
+    });
+}
+function ajouterObservation(codeProjet, texte, date) {
+  const projet = electrificationProjects.find(p => p.code === codeProjet);
+
+  if (!projet || !projet.id) {
+    console.warn("Projet introuvable pour observation :", codeProjet);
+    showNotification("Projet non trouvé pour ajouter l'observation", "error");
+    return;
   }
+
+  const data = {
+    projet_id: projet.id,
+    observation_text: texte,
+    date_observation: date,
+    created_by: 1
+  };
+
+  fetch("http://localhost/DSA1/API/electrification/ajouter_observation.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+    .then(async (res) => {
+      const text = await res.text();
+
+      try {
+        const json = JSON.parse(text);
+        console.log("Réponse de l'API observation :", json);
+
+        if (json.message?.includes("succès")) {
+          showNotification("Observation ajoutée", "success");
+        } else {
+          showNotification("Erreur : " + json.message, "error");
+        }
+      } catch (e) {
+        console.error("Erreur JSON (contenu brut) :", text);
+        showNotification("Erreur : réponse inattendue du serveur", "error");
+      }
+    })
+    .catch((err) => {
+      console.error("Erreur fetch observation :", err);
+      showNotification("Erreur réseau lors de l’ajout de l’observation", "error");
+    });
+}
+
+
+
+function handleEditProjectSubmit(e) {
+  e.preventDefault();
+
+  const formData = new FormData(editProjectForm);
+  const codeProjet = formData.get("code");
+
+  const updatedProject = {
+    code_projet: codeProjet,
+    intitule: formData.get("title"),
+    nature_juridique: formData.get("nature"),
+    daira: formData.get("daira"),
+    commune: formData.get("commune"),
+    type_installation: formData.get("installationType"),
+    budget: parseFloat(formData.get("budget")),
+    statut: formData.get("status"),
+    date_debut: formData.get("startDate"),
+    date_prevue_fin: formData.get("endDate"),
+    description_technique: formData.get("description") || null,
+    entrepreneur: formData.get("contractor") || null
+  };
+
+  fetch("http://localhost/DSA1/API/electrification/modifier.php", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedProject)
+  })
+    .then(res => res.json())
+    .then(result => {
+      console.log("Résultat brut de l'API :", result); // 🔍 Ajouté pour vérif
+
+      if (result.message === "Projet mis à jour avec succès.") {
+        showNotification("Projet modifié avec succès", "success");
+
+        const obsText = formData.get("newObservation");
+        if (obsText && obsText.trim().length > 0) {
+          const today = new Date().toISOString().slice(0, 10);
+          ajouterObservation(codeProjet, obsText, today);
+        }
+
+        closeModal();
+        loadProjects();
+      } else {
+        showNotification("Erreur : " + result.message, "error");
+      }
+    })
+    .catch(err => {
+      console.error("Erreur API modification :", err);
+      showNotification("Erreur lors de la mise à jour", "error");
+    });
+}
+
+
 
   function showProjectDetails(projectId) {
     const project = electrificationProjects.find((p) => p.id === projectId)
@@ -704,16 +816,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function deleteProject(projectId) {
-    if (confirm("Êtes-vous sûr de vouloir supprimer ce projet d'électrification ?")) {
-      const index = electrificationProjects.findIndex((p) => p.id === projectId)
-      if (index > -1) {
-        electrificationProjects.splice(index, 1)
-        loadProjects()
-        updateStats()
-        showNotification("Projet d'électrification supprimé avec succès", "success")
-      }
+    const project = electrificationProjects.find(p => p.id === projectId)
+  
+    if (!project) {
+      showNotification("Projet introuvable", "error")
+      return
+    }
+  
+    if (confirm(`Voulez-vous vraiment supprimer le projet "${project.title}" ?`)) {
+      fetch("http://localhost/DSA1/API/electrification/supprimer.php", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ code_projet: project.code })
+      })
+        .then(res => res.json())
+        .then(result => {
+          if (result.message?.includes("succès")) {
+            showNotification("Projet supprimé avec succès", "success")
+            loadProjects()
+          } else {
+            showNotification("Erreur : " + result.message, "error")
+          }
+        })
+        .catch(error => {
+          console.error("Erreur :", error)
+          showNotification("Erreur réseau lors de la suppression", "error")
+        })
     }
   }
+  
+  
 
   function printProjectDetails() {
     if (!currentEditingProject && !document.querySelector(".project-details-content h4")) return
@@ -926,61 +1060,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function exportToExcel() {
-    exportDropdown?.classList.remove("show")
-    showNotification("Génération du fichier Excel en cours...", "info")
+    exportDropdown?.classList.remove("show");
+    showNotification("Génération du fichier Excel en cours...", "info");
 
-    setTimeout(() => {
-      try {
+    try {
         const natureLabels = {
-          "installation-lignes": "Installation de lignes",
-          raccordement: "Raccordement électrique",
-          "extension-reseau": "Extension de réseau",
-          maintenance: "Maintenance électrique",
-          transformation: "Poste de transformation",
-          eclairage: "Éclairage public",
-        }
+            "installation-lignes": "Installation de lignes",
+            raccordement: "Raccordement électrique",
+            "extension-reseau": "Extension de réseau",
+            maintenance: "Maintenance électrique",
+            transformation: "Poste de transformation",
+            eclairage: "Éclairage public",
+        };
 
         const statusLabels = {
-          "in-progress": "En cours",
-          planned: "Planifié",
-          completed: "Terminé",
-        }
+            "in-progress": "En cours",
+            planned: "Planifié",
+            completed: "Terminé",
+        };
 
         // Préparer les données pour Excel
         const excelData = electrificationProjects.map((project) => ({
-          Code: project.code,
-          Intitulé: project.title,
-          "Nature de la tâche": natureLabels[project.nature] || project.nature,
-          Wilaya: project.daira,
-          Commune: project.commune,
-          Budget: project.budget,
-          "Date commencement": formatDate(project.startDate),
-          "Date fin": formatDate(project.endDate),
-          Statut: statusLabels[project.status] || project.status,
-          Entrepreneur: project.contractor || "",
-          "Date réception demande": project.dateReceptionDemande ? formatDate(project.dateReceptionDemande) : "",
-          "Date envoi Sonelgaz": project.dateEnvoiSonelgaz ? formatDate(project.dateEnvoiSonelgaz) : "",
-          "Date accord Sonelgaz": project.dateAccordSonelgaz ? formatDate(project.dateAccordSonelgaz) : "",
-          Description: project.description || "",
-          Observations: project.observations || "",
-        }))
+            Code: project.code,
+            Intitulé: project.title,
+            "Nature de la tâche": natureLabels[project.nature] || project.nature,
+            Wilaya: project.daira,
+            Commune: project.commune,
+            Budget: project.budget,
+            "Date commencement": formatDate(project.startDate),
+            "Date fin": formatDate(project.endDate),
+            Statut: statusLabels[project.status] || project.status,
+            Entrepreneur: project.contractor || "",
+            "Date réception demande": project.dateReceptionDemande ? formatDate(project.dateReceptionDemande) : "",
+            "Date envoi Sonelgaz": project.dateEnvoiSonelgaz ? formatDate(project.dateEnvoiSonelgaz) : "",
+            "Date accord Sonelgaz": project.dateAccordSonelgaz ? formatDate(project.dateAccordSonelgaz) : "",
+            Description: project.description || "",
+            Observations: project.observations ? project.observations.map(obs => `${formatDate(obs.date)}: ${obs.text}`).join('\n') : ""
+        }));
 
         // Créer un nouveau workbook
-        const wb = XLSX.utils.book_new()
-        const ws = XLSX.utils.json_to_sheet(excelData)
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(excelData);
 
         // Ajouter la feuille au workbook
-        XLSX.utils.book_append_sheet(wb, ws, "Projets Électrification")
+        XLSX.utils.book_append_sheet(wb, ws, "Projets Électrification");
 
         // Sauvegarder le fichier
-        XLSX.writeFile(wb, "projets_electrification_dsa_guelma.xlsx")
-        showNotification("Fichier Excel généré avec succès !", "success")
-      } catch (error) {
-        console.error("Erreur lors de la génération du fichier Excel:", error)
-        showNotification("Erreur lors de la génération du fichier Excel", "error")
-      }
-    }, 1000)
-  }
+        XLSX.writeFile(wb, "projets_electrification_dsa_guelma.xlsx");
+        showNotification("Fichier Excel généré avec succès !", "success");
+    } catch (error) {
+        console.error("Erreur lors de la génération du fichier Excel:", error);
+        showNotification("Erreur lors de la génération du fichier Excel", "error");
+    }
+}
 
   function printProjects() {
     showNotification("Préparation de l'impression...", "info")

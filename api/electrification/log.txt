@@ -1,0 +1,10 @@
+stdClass Object
+(
+    [intitule] => Test
+    [code_projet] => ELEC-001
+    [nature_juridique] => raccordement
+    [daira] => Guelma
+    [commune] => Guelma
+    [type_installation] => puits
+    [budget] => 2000000
+)

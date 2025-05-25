@@ -1,25 +1,26 @@
 <?php
 class Database {
-    private $host = 'localhost';
-    private $db_name = 'suivre_investissement';
-    private $username = 'root';
-    private $password = '';
-    private $conn;
+    private $host = "localhost";
+    private $db_name = "suivre_investessement";
+    private $username = "root";
+    private $password = "";
+    public $conn;
 
-    public function connect() {
+    public function getConnection() {
         $this->conn = null;
+
         try {
             $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->db_name}", 
-                $this->username, 
+                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                $this->username,
                 $this->password
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->exec("SET NAMES 'utf8'");
+            $this->conn->exec("set names utf8");
         } catch(PDOException $e) {
-            die("Erreur de connexion : " . $e->getMessage());
+            echo "Erreur de connexion: " . $e->getMessage();
         }
+
         return $this->conn;
     }
 }
-?>

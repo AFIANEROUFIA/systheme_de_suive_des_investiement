@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire Test</title>
+</head>
+<body>
+  <h2>Ajouter un projet</h2>
+
+  <form method="POST" action="API/electrification/ajouter.php">
+    <label>Intitulé:</label><br>
+    <input type="text" name="intitule" value="Test"><br><br>
+
+    <label>Code Projet:</label><br>
+    <input type="text" name="code_projet" value="ELEC-001"><br><br>
+
+    <label>Nature Juridique:</label><br>
+    <input type="text" name="nature_juridique" value="raccordement"><br><br>
+
+    <label>Daïra:</label><br>
+    <input type="text" name="daira" value="Guelma"><br><br>
+
+    <label>Commune:</label><br>
+    <input type="text" name="commune" value="Guelma"><br><br>
+
+    <label>Type Installation:</label><br>
+    <input type="text" name="type_installation" value="puits"><br><br>
+
+    <label>Budget:</label><br>
+    <input type="number" name="budget" value="2000000"><br><br>
+
+    <input type="submit" value="Envoyer">
+  </form>
+</body>
+</html>
