@@ -2,34 +2,26 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Formulaire Test</title>
+  <title>Test Formulaire</title>
 </head>
 <body>
-  <h2>Ajouter un projet</h2>
-
-  <form method="POST" action="API/electrification/ajouter.php">
-    <label>Intitulé:</label><br>
-    <input type="text" name="intitule" value="Test"><br><br>
-
-    <label>Code Projet:</label><br>
-    <input type="text" name="code_projet" value="ELEC-001"><br><br>
-
-    <label>Nature Juridique:</label><br>
-    <input type="text" name="nature_juridique" value="raccordement"><br><br>
-
-    <label>Daïra:</label><br>
-    <input type="text" name="daira" value="Guelma"><br><br>
-
-    <label>Commune:</label><br>
-    <input type="text" name="commune" value="Guelma"><br><br>
-
-    <label>Type Installation:</label><br>
-    <input type="text" name="type_installation" value="puits"><br><br>
-
-    <label>Budget:</label><br>
-    <input type="number" name="budget" value="2000000"><br><br>
-
-    <input type="submit" value="Envoyer">
+  <form id="addProjectForm">
+    <input type="text" name="code" placeholder="Code projet" required />
+    <input type="text" name="title" placeholder="Titre du projet" required />
+    <button type="submit">Enregistrer</button>
   </form>
+
+  <script>
+    const addProjectForm = document.getElementById("addProjectForm");
+
+    function handleAddProject(e) {
+      e.preventDefault();
+      console.log("✅ Le formulaire est bien soumis !");
+      const formData = new FormData(addProjectForm);
+      alert("Code : " + formData.get("code") + " - Titre : " + formData.get("title"));
+    }
+
+    addProjectForm.addEventListener("submit", handleAddProject);
+  </script>
 </body>
 </html>

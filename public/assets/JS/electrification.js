@@ -545,56 +545,70 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleAddProject(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(addProjectForm);
+  const formData = new FormData(addProjectForm);
 
-    // Construire l'objet JSON attendu par l'API
-    const data = {
-        intitule: formData.get("title"),
-        code_projet: formData.get("code"),
-        nature_juridique: formData.get("nature"),
-        localisation: "", // Si tu veux ajouter une valeur
-        daira: formData.get("daira"),
-        commune: formData.get("commune"),
-        adresse: "", // facultatif
-        type_installation: formData.get("installationType"),
-        description_technique: formData.get("description"),
-        budget: parseFloat(formData.get("budget")),
-        entrepreneur: formData.get("contractor"),
-        statut: formData.get("status"),
-        date_debut: formData.get("startDate"),
-        date_prevue_fin: formData.get("endDate"),
-        date_reception_demande: formData.get("dateReceptionDemande") || null,
-        date_envoi_sonelgaz: formData.get("dateEnvoiSonelgaz") || null,
-        date_accord_sonelgaz: formData.get("dateAccordSonelgaz") || null,
-        observations: "", // ou laisse null
-        fichier_justificatif: null,
-        created_by: 1
-    }
+  const data = {
+    intitule: formData.get("title"),
+    code_projet: formData.get("code"),
+    nature_juridique: formData.get("nature"),
+    localisation: "", // peut être amélioré si utile
+    daira: formData.get("daira"),
+    commune: formData.get("commune"),
+    adresse: "",
+    type_installation: formData.get("installationType"),
+    description_technique: formData.get("description"),
+    budget: parseFloat(formData.get("budget")),
+    entrepreneur: formData.get("contractor"),
+    statut: formData.get("status") || "planned",
+    date_debut: formData.get("startDate"),
+    date_prevue_fin: formData.get("endDate"),
+    date_reception_demande: formData.get("dateReceptionDemande") || null,
+    date_envoi_sonelgaz: formData.get("dateEnvoiSonelgaz") || null,
+    date_accord_sonelgaz: formData.get("dateAccordSonelgaz") || null,
+    observations: null, // ou formData.get("observations") si utilisé
+    fichier_justificatif: null, // ou une URL si tu gères les fichiers
+    created_by: 1 // ou récupéré dynamiquement si login utilisateur
+  };
 
-    // Envoi de la requête POST à ton API
-    fetch("http://localhost/DSA1/API/electrification/ajouter.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    .then((response) => response.json())
-    .then((result) => {
-        if (result.message?.includes("créé")) {
-            showNotification("Projet ajouté avec succès", "success");
-            closeModal();
-            addProjectForm.reset();
-        } else {
-            showNotification("Erreur: " + result.message, "error");
-        }
+  fetch("http://localhost/DSA1/API/electrification/ajouter.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+    .then(async (response) => {
+      const text = await response.text();
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (err) {
+        console.error("Réponse NON JSON :", text);
+        showNotification("Erreur : Réponse invalide du serveur", "error");
+        return;
+      }
+
+      console.log("Réponse JSON :", result);
+
+      if (result.success === true) {
+        showNotification(result.message, "success");
+        closeModal();
+        addProjectForm.reset();
+        loadProjects();
+      } else {
+        showNotification("Erreur : " + result.message, "error");
+      }
     })
     .catch((error) => {
-        console.error("Erreur réseau:", error);
-        showNotification("Erreur lors de l’envoi de la requête", "error");
+      console.error("Erreur réseau :", error);
+      showNotification("Erreur réseau lors de l’envoi", "error");
     });
+
+
+
+
 }
 function ajouterObservation(codeProjet, texte, date) {
   const projet = electrificationProjects.find(p => p.code === codeProjet);
@@ -642,56 +656,82 @@ function ajouterObservation(codeProjet, texte, date) {
 
 
 
-function handleEditProjectSubmit(e) {
+
+
+if (addProjectForm) {
+  addProjectForm.addEventListener("submit", handleAddProject);
+}
+
+function handleAddProject(e) {
   e.preventDefault();
 
-  const formData = new FormData(editProjectForm);
-  const codeProjet = formData.get("code");
+  const formData = new FormData(addProjectForm);
 
-  const updatedProject = {
-    code_projet: codeProjet,
-    intitule: formData.get("title"),
-    nature_juridique: formData.get("nature"),
-    daira: formData.get("daira"),
-    commune: formData.get("commune"),
-    type_installation: formData.get("installationType"),
-    budget: parseFloat(formData.get("budget")),
-    statut: formData.get("status"),
-    date_debut: formData.get("startDate"),
-    date_prevue_fin: formData.get("endDate"),
-    description_technique: formData.get("description") || null,
-    entrepreneur: formData.get("contractor") || null
+  // Construction de l'objet à envoyer
+  const data = {
+    intitule: formData.get("title") || "",
+    code_projet: formData.get("code") || "",
+    nature_juridique: formData.get("nature") || "",
+    localisation: "",
+    daira: formData.get("daira") || "",
+    commune: formData.get("commune") || "",
+    adresse: "",
+    type_installation: formData.get("installationType") || "",
+    description_technique: formData.get("description") || "",
+    budget: parseFloat(formData.get("budget")) || 0,
+    entrepreneur: formData.get("contractor") || "",
+    statut: formData.get("status") || "planned",
+    date_debut: formData.get("startDate") || null,
+    date_prevue_fin: formData.get("endDate") || null,
+    date_reception_demande: formData.get("dateReceptionDemande") || null,
+    date_envoi_sonelgaz: formData.get("dateEnvoiSonelgaz") || null,
+    date_accord_sonelgaz: formData.get("dateAccordSonelgaz") || null,
+    observations: null,
+    fichier_justificatif: null,
+    created_by: 1
   };
 
-  fetch("http://localhost/DSA1/API/electrification/modifier.php", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedProject)
+  fetch("http://localhost/DSA1/API/electrification/ajouter.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
   })
-    .then(res => res.json())
-    .then(result => {
-      console.log("Résultat brut de l'API :", result); // 🔍 Ajouté pour vérif
+    .then(async (response) => {
+      const text = await response.text();
 
-      if (result.message === "Projet mis à jour avec succès.") {
-        showNotification("Projet modifié avec succès", "success");
+      console.log("🟡 Réponse brute du serveur :", text);
 
-        const obsText = formData.get("newObservation");
-        if (obsText && obsText.trim().length > 0) {
-          const today = new Date().toISOString().slice(0, 10);
-          ajouterObservation(codeProjet, obsText, today);
-        }
+      let result;
+      try {
+        result = JSON.parse(text);
+      } catch (err) {
+        console.error("❌ Réponse non JSON :", err);
+        showNotification("Erreur : réponse du serveur non valide", "error");
+        return;
+      }
 
+      console.log("✅ Réponse JSON :", result);
+
+      if (result.success === true) {
+        showNotification(result.message || "Ajout réussi", "success");
+        addProjectForm.reset();
         closeModal();
-        loadProjects();
+        loadProjects(); // recharge les projets affichés
       } else {
-        showNotification("Erreur : " + result.message, "error");
+        showNotification("Erreur : " + (result.message || "Échec de l'ajout"), "error");
       }
     })
-    .catch(err => {
-      console.error("Erreur API modification :", err);
-      showNotification("Erreur lors de la mise à jour", "error");
+    .catch((error) => {
+      console.error("❌ Erreur réseau :", error);
+      showNotification("Erreur réseau lors de l'ajout", "error");
     });
 }
+
+
+
+
 
 
 
@@ -815,38 +855,40 @@ function handleEditProjectSubmit(e) {
     modal?.classList.add("show")
   }
 
-  function deleteProject(projectId) {
-    const project = electrificationProjects.find(p => p.id === projectId)
-  
-    if (!project) {
-      showNotification("Projet introuvable", "error")
-      return
-    }
-  
-    if (confirm(`Voulez-vous vraiment supprimer le projet "${project.title}" ?`)) {
-      fetch("http://localhost/DSA1/API/electrification/supprimer.php", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ code_projet: project.code })
-      })
-        .then(res => res.json())
-        .then(result => {
-          if (result.message?.includes("succès")) {
-            showNotification("Projet supprimé avec succès", "success")
-            loadProjects()
-          } else {
-            showNotification("Erreur : " + result.message, "error")
-          }
-        })
-        .catch(error => {
-          console.error("Erreur :", error)
-          showNotification("Erreur réseau lors de la suppression", "error")
-        })
-    }
+ function deleteProject(projectId) {
+  const project = electrificationProjects.find(p => p.id === projectId);
+
+  if (!project) {
+    showNotification("Projet introuvable", "error");
+    return;
   }
-  
+
+  if (confirm(`Voulez-vous vraiment supprimer le projet "${project.title}" ?`)) {
+    fetch("http://localhost/DSA1/API/electrification/supprimer.php", {
+      method: "POST", // ✅ pas DELETE
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ code_projet: project.code }) // ✅ doit être correct
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message?.includes("succès")) {
+          showNotification("Projet supprimé avec succès", "success");
+          loadProjects();
+        } else {
+          showNotification("Erreur : " + result.message, "error");
+        }
+      })
+      .catch(error => {
+        console.error("Erreur JS suppression :", error);
+        showNotification("Erreur réseau lors de la suppression", "error");
+      });
+  }
+}
+
+
+
   
 
   function printProjectDetails() {

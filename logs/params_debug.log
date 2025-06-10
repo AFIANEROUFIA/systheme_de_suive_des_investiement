@@ -1,0 +1,58 @@
+Paramètres SQL:
+Array
+(
+    [:code_projet] => 
+    [:intitule] => roufia_afiane@
+    [:localisation] => guelma
+    [:type_programme] => normale
+    [:annee_budget] => 2025
+    [:budget_alloue] => 0
+    [:montant_engage] => 0
+    [:montant_payee] => 0
+    [:etat_avancement] => 0
+    [:entreprise] => mohamed 
+    [:situation] => non lancé
+    [:cause_non_lancement] => 
+    [:description] => asdfghj
+    [:date_debut] => 
+    [:date_prevue_fin] => 
+    [:type_budget] => pcd
+    [:numero_operation] => 
+    [:maitre_ouvrage] => mohamed 
+    [:fichier_justificatif] => 
+    [:daira] => guelma
+    [:commune] => guelma
+    [:beneficiaire] => mohamed 
+    [:created_by] => 1
+)
+
+
+Paramètres SQL:
+Array
+(
+    [:code_projet] => 
+    [:intitule] => roufia_afiane@
+    [:localisation] => guelma
+    [:type_programme] => normale
+    [:annee_budget] => 2025
+    [:budget_alloue] => 0
+    [:montant_engage] => 0
+    [:montant_payee] => 0
+    [:etat_avancement] => 0
+    [:entreprise] => mohamed 
+    [:situation] => non lancé
+    [:cause_non_lancement] => 
+    [:description] => asdfghj
+    [:date_debut] => 
+    [:date_prevue_fin] => 
+    [:type_budget] => pcd
+    [:numero_operation] => 
+    [:maitre_ouvrage] => mohamed 
+    [:fichier_justificatif] => 
+    [:daira] => guelma
+    [:commune] => guelma
+    [:beneficiaire] => mohamed 
+    [:created_by] => 1
+)
+
+

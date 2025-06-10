@@ -1,0 +1,105 @@
+Paramètres envoyés à la requête : Array
+(
+    [:id] => 82
+    [:code_projet] => INV-2025-05-004
+    [:intitule] => imen
+    [:localisation] => 
+    [:type_programme] => psre
+    [:annee_budget] => 2024
+    [:budget_alloue] => 123
+    [:montant_engage] => 344
+    [:montant_payee] => 12
+    [:etat_avancement] => 2
+    [:entreprise] => 
+    [:situation] => non lancé
+    [:cause_non_lancement] => JHJHJ
+    [:date_debut] => 2025-05-25
+    [:date_prevue_fin] => 2025-05-11
+    [:type_budget] => pcd
+    [:numero_operation] => INV-2025-05-004
+    [:maitre_ouvrage] => mohamed 
+)
+Paramètres envoyés à la requête : Array
+(
+    [:id] => 81
+    [:code_projet] => INV-2025-05-003
+    [:intitule] => Électrification du périmètre agricole
+    [:localisation] => 
+    [:type_programme] => normale
+    [:annee_budget] => 2025
+    [:budget_alloue] => 20000000
+    [:montant_engage] => 20000000
+    [:montant_payee] => 200000
+    [:etat_avancement] => 60
+    [:entreprise] => 
+    [:situation] => lancé
+    [:cause_non_lancement] => sxdcfghjk
+    [:date_debut] => 2025-05-01
+    [:date_prevue_fin] => 2025-05-02
+    [:type_budget] => pcd
+    [:numero_operation] => INV-2025-05-003
+    [:maitre_ouvrage] => mohamed 
+)
+Paramètres envoyés à la requête : Array
+(
+    [:id] => 78
+    [:code_projet] => INV-2025-06-102
+    [:intitule] => installation agricole
+    [:localisation] => 
+    [:type_programme] => normale
+    [:annee_budget] => 2025
+    [:budget_alloue] => 12000000
+    [:montant_engage] => 8000000
+    [:montant_payee] => 6000000
+    [:etat_avancement] => 50
+    [:entreprise] => HydroBat Guelma
+    [:situation] => clôturé
+    [:cause_non_lancement] => Retenue prévue pour irriguer 120 ha
+    [:date_debut] => 2025-06-01
+    [:date_prevue_fin] => 2025-12-31
+    [:type_budget] => pcd
+    [:numero_operation] => INV-2025-06-102
+    [:maitre_ouvrage] => Association des agriculteurs de l&#039;Est
+)
+Paramètres envoyés à la requête : Array
+(
+    [:id] => 76
+    [:code_projet] => INV-2025-06-111
+    [:intitule] => instalation agricole
+    [:localisation] => 
+    [:type_programme] => normale
+    [:annee_budget] => 2025
+    [:budget_alloue] => 12000000
+    [:montant_engage] => 8000000
+    [:montant_payee] => 6000000
+    [:etat_avancement] => 50
+    [:entreprise] => HydroBat Guelma
+    [:situation] => abandonné
+    [:cause_non_lancement] => Retenue prévue pour irriguer 120 ha
+    [:date_debut] => 2025-06-01
+    [:date_prevue_fin] => 2025-12-31
+    [:type_budget] => pcd
+    [:numero_operation] => INV-2025-06-111
+    [:maitre_ouvrage] => Association des agriculteurs de l&amp;#039;Est
+)
+Paramètres envoyés à la requête : Array
+(
+    [:id] => 74
+    [:code_projet] => INV-2025-06-101
+    [:intitule] => Construction d&amp;#039;une retenue d&amp;#039;eau agricole
+    [:localisation] => 
+    [:type_programme] => normale
+    [:annee_budget] => 2025
+    [:budget_alloue] => 12000000
+    [:montant_engage] => 8000000
+    [:montant_payee] => 6000000
+    [:etat_avancement] => 50
+    [:entreprise] => HydroBat Guelma
+    [:situation] => non lancé
+    [:cause_non_lancement] => Retenue prévue pour irriguer 120 ha
+    [:date_debut] => 2025-06-01
+    [:date_prevue_fin] => 2025-12-31
+    [:type_budget] => pcd
+    [:numero_operation] => INV-2025-06-101
+    [:maitre_ouvrage] => Association des agriculteurs de l&amp;#039;Est
+)

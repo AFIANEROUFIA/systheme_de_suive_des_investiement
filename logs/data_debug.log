@@ -1,0 +1,54 @@
+Données reçues:
+Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia_afiane@
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfghj
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+
+Données reçues:
+Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia_afiane@
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfghj
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+

@@ -1,0 +1,2715 @@
+2025-05-28 13:18:29 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-002
+    [numero_operation] => INV-2025-05-002
+    [intitule] => hakim
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => hakin 
+    [type_programme] => normal
+    [annee_budget] => 2024
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 0
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => asdfghjm
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => hakin 
+)
+
+2025-05-28 13:19:57 - SUPPRIMER - Array
+(
+    [id] => 13
+)
+
+2025-05-28 13:21:19 - MODIFIER - Array
+(
+    [id] => 24
+    [code_projet] => INV-2025-05-002
+    [numero_operation] => INV-2025-05-002
+    [intitule] => hakim_hafiane
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => hakin 
+    [type_programme] => normal
+    [annee_budget] => 2024
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfghjm
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => hakin 
+)
+
+2025-05-28 13:24:23 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-003
+    [numero_operation] => INV-2025-05-003
+    [intitule] => rania_hafiane
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => rania
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 20000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => termine
+    [description] => sdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rania
+)
+
+2025-05-28 13:32:37 - MODIFIER - Array
+(
+    [id] => 25
+    [code_projet] => INV-2025-05-003
+    [numero_operation] => INV-2025-05-003
+    [intitule] => rania_hafiane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => rania
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 20000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => termine
+    [description] => sdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rania
+)
+
+2025-05-28 13:38:48 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => asdfgh
+    [localisation] => hammam-debagh
+    [daira] => hammam-debagh
+    [commune] => hammam-debagh
+    [beneficiaire] => rachide 
+    [type_programme] => urgence
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rachide 
+)
+
+2025-05-28 13:38:50 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => asdfgh
+    [localisation] => hammam-debagh
+    [daira] => hammam-debagh
+    [commune] => hammam-debagh
+    [beneficiaire] => rachide 
+    [type_programme] => urgence
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rachide 
+)
+
+2025-05-28 13:38:52 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => asdfgh
+    [localisation] => hammam-debagh
+    [daira] => hammam-debagh
+    [commune] => hammam-debagh
+    [beneficiaire] => rachide 
+    [type_programme] => urgence
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rachide 
+)
+
+2025-05-28 13:40:40 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => rachide 
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 200000000000000
+    [montant_engage] => 200000000000000
+    [montant_payee] => 200000000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => termine
+    [description] => asdfg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-28 17:20:20 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-005
+    [numero_operation] => INV-2025-05-005
+    [intitule] => benabdalh
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => benabdalh
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 200000000
+    [montant_engage] => 200000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => sdfg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => benabdalh
+)
+
+2025-05-28 17:34:09 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => rahil
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => marwan
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => sdfghgg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => marwan
+)
+
+2025-05-28 18:29:53 - MODIFIER - Array
+(
+    [id] => 31
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => rahil
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => marwan
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => sdfghgg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => marwan
+)
+
+2025-05-28 18:31:00 - MODIFIER - Array
+(
+    [id] => 31
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => rahil
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => marwan
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => sdfghgg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => marwan
+)
+
+2025-05-28 18:31:42 - SUPPRIMER - Array
+(
+    [id] => 31
+)
+
+2025-05-28 18:38:51 - SUPPRIMER - Array
+(
+    [id] => 30
+)
+
+2025-05-28 19:03:12 - MODIFIER - Array
+(
+    [id] => 29
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => rachide 
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 10000000000000
+    [montant_engage] => 10000000000000
+    [montant_payee] => 200000000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => asdfg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-28 19:03:53 - MODIFIER - Array
+(
+    [id] => 29
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => rachide 
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 10000000000000
+    [montant_engage] => 10000000000000
+    [montant_payee] => 200000000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => suspendu
+    [description] => asdfg
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-28 19:05:19 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-005
+    [numero_operation] => INV-2025-05-005
+    [intitule] => Pompage Solaire
+    [localisation] => ain-hessainia
+    [daira] => oued-zenati
+    [commune] => ain-hessainia
+    [beneficiaire] => mohamed 
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => sdfghj
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 19:17:24 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => imene
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 80000000
+    [montant_engage] => 80000000
+    [montant_payee] => 40000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => ertyhjj
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 19:24:51 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-007
+    [numero_operation] => INV-2025-05-007
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normal
+    [annee_budget] => 2025
+    [budget_alloue] => 200000000
+    [montant_engage] => 200000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => en-cours
+    [description] => qwertyuiol
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 19:47:57 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => meriem
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => dfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 19:56:49 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 50000000
+    [montant_engage] => 50000000
+    [montant_payee] => 50000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => termine
+    [description] => sdfghyjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 20:10:20 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-010
+    [numero_operation] => INV-2025-05-010
+    [intitule] => rftgyhj
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => rghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 20:42:57 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-011
+    [numero_operation] => INV-2025-05-011
+    [intitule] => hadil
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 70000000
+    [montant_engage] => 70000000
+    [montant_payee] => 7000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => zsxdfghj
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 20:54:55 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-012
+    [numero_operation] => INV-2025-05-012
+    [intitule] => amine
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => zxcfvgbhjm,l.
+    [date_debut] => 2025-05-05
+    [date_prevue_fin] => 2025-05-06
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 21:35:58 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-013
+    [numero_operation] => INV-2025-05-013
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => special
+    [annee_budget] => 2023
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => sdfghj
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 21:52:39 - AJOUTER - Array
+(
+    [code_projet] => PRJ001
+    [numero_operation] => OP001
+    [intitule] => Projet Électrification
+    [localisation] => Guelma
+    [daira] => Guelma
+    [commune] => Nechmaya
+    [beneficiaire] => Ferme modèle
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 1000000
+    [montant_engage] => 500000
+    [montant_payee] => 200000
+    [etat_avancement] => 20
+    [entreprise] => SARL ElecDZ
+    [statut] => en-cours
+    [description] => Démarré partiellement.
+    [date_debut] => 2025-01-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => DSA Guelma
+    [created_by] => 1
+)
+
+2025-05-28 21:55:55 - AJOUTER - Array
+(
+    [code_projet] => PRJ001
+    [numero_operation] => OP001
+    [intitule] => Projet 01
+    [localisation] => Guelma
+    [daira] => Guelma
+    [commune] => Nechmaya
+    [beneficiaire] => Ferme modèle
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 1000000
+    [montant_engage] => 500000
+    [montant_payee] => 200000
+    [etat_avancement] => 20
+    [entreprise] => SARL ElecDZ
+    [statut] => en-cours
+    [description] => Démarré partiellement.
+    [date_debut] => 2025-01-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => DSA Guelma
+    [created_by] => 1
+)
+
+2025-05-28 21:56:29 - AJOUTER - Array
+(
+    [code_projet] => PRJ010
+    [numero_operation] => OP010
+    [intitule] => Projet 01
+    [localisation] => Guelma
+    [daira] => Guelma
+    [commune] => Nechmaya
+    [beneficiaire] => Ferme modèle
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 1000000
+    [montant_engage] => 500000
+    [montant_payee] => 200000
+    [etat_avancement] => 20
+    [entreprise] => SARL ElecDZ
+    [statut] => en-cours
+    [description] => Démarré partiellement.
+    [date_debut] => 2025-01-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => DSA Guelma
+    [created_by] => 1
+)
+
+2025-05-28 22:03:33 - AJOUTER - Array
+(
+    [code_projet] => INV001
+    [numero_operation] => INV001
+    [intitule] => Projet Test
+    [localisation] => Guelma
+    [daira] => Guelma
+    [commune] => Guelma
+    [beneficiaire] => FERME PILOTE
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 5000000
+    [montant_engage] => 2500000
+    [montant_payee] => 1500000
+    [etat_avancement] => 50
+    [entreprise] => ENTR TEST
+    [statut] => en-cours
+    [description] => Projet en cours
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => DSA Guelma
+    [created_by] => 1
+)
+
+2025-05-28 22:13:05 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-014
+    [numero_operation] => INV-2025-05-014
+    [intitule] => roufia21
+    [localisation] => belkheir
+    [daira] => guelma
+    [commune] => belkheir
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => zxdcfvghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:13:07 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-014
+    [numero_operation] => INV-2025-05-014
+    [intitule] => roufia21
+    [localisation] => belkheir
+    [daira] => guelma
+    [commune] => belkheir
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => zxdcfvghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:27 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:28 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:28 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:30 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:18:02 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:20:18 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => qwsedftyhj
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => ASDFGH
+    [type_programme] => normale
+    [annee_budget] => 2023
+    [budget_alloue] => 12345
+    [montant_engage] => 12345
+    [montant_payee] => 12340
+    [etat_avancement] => 80
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => ASDFGH
+    [created_by] => 1
+)
+
+2025-05-28 22:22:09 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:22:11 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:30:52 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:30:54 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:32:05 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:32:37 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:32:38 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:32:39 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:33:14 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:33:19 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:35:47 - AJOUTER - Array
+(
+    [wilaya] => Guelma
+    [commune] => Hammam Debagh
+    [secteur] => Agriculture
+    [source_financement] => Budget de l'Etat
+    [intitule_projet] => Création d'une station de pompage
+    [date_inscription] => 2025-05-28
+    [montant] => 5000000
+    [annee] => 2025
+    [observation] => Urgent
+)
+
+2025-05-28 22:36:47 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:37:02 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:37:13 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:55:20 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-017
+    [numero_operation] => INV-2025-05-017
+    [intitule] => mamabeya
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => zxcvb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000000
+    [montant_engage] => 200000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => en-cours
+    [description] => asdfgh
+    [date_debut] => 2025-05-12
+    [date_prevue_fin] => 2025-05-10
+    [type_budget] => pcd
+    [maitre_ouvrage] => zxcvb
+    [created_by] => 1
+)
+
+2025-05-28 22:57:36 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-018
+    [numero_operation] => INV-2025-05-018
+    [intitule] => ffffffffffffff
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => xcvb
+    [type_programme] => psre
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 200
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => zxdcfghj
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => xcvb
+    [created_by] => 1
+)
+
+2025-05-28 22:59:36 - MODIFIER - Array
+(
+    [id] => 51
+    [code_projet] => INV-2025-05-018
+    [numero_operation] => INV-2025-05-018
+    [intitule] => gggg
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => xcvb
+    [type_programme] => normale
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 200
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => zxdcfghj
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => xcvb
+)
+
+2025-05-28 22:59:54 - SUPPRIMER - Array
+(
+    [id] => 51
+)
+
+2025-05-28 22:59:59 - SUPPRIMER - Array
+(
+    [id] => 49
+)
+
+2025-05-28 23:00:22 - SUPPRIMER - Array
+(
+    [id] => 50
+)
+
+2025-05-28 23:00:25 - SUPPRIMER - Array
+(
+    [id] => 48
+)
+
+2025-05-28 23:00:28 - SUPPRIMER - Array
+(
+    [id] => 45
+)
+
+2025-05-28 23:00:31 - SUPPRIMER - Array
+(
+    [id] => 44
+)
+
+2025-05-28 23:00:33 - SUPPRIMER - Array
+(
+    [id] => 43
+)
+
+2025-05-28 23:00:36 - SUPPRIMER - Array
+(
+    [id] => 41
+)
+
+2025-05-28 23:00:40 - SUPPRIMER - Array
+(
+    [id] => 40
+)
+
+2025-05-28 23:00:44 - SUPPRIMER - Array
+(
+    [id] => 39
+)
+
+2025-05-28 23:00:47 - SUPPRIMER - Array
+(
+    [id] => 38
+)
+
+2025-05-28 23:00:50 - SUPPRIMER - Array
+(
+    [id] => 37
+)
+
+2025-05-28 23:00:53 - SUPPRIMER - Array
+(
+    [id] => 36
+)
+
+2025-05-28 23:00:59 - SUPPRIMER - Array
+(
+    [id] => 34
+)
+
+2025-05-28 23:01:03 - SUPPRIMER - Array
+(
+    [id] => 33
+)
+
+2025-05-28 23:01:09 - SUPPRIMER - Array
+(
+    [id] => 9
+)
+
+2025-05-28 23:01:13 - SUPPRIMER - Array
+(
+    [id] => 11
+)
+
+2025-05-28 23:01:20 - SUPPRIMER - Array
+(
+    [id] => 4
+)
+
+2025-05-28 23:01:26 - SUPPRIMER - Array
+(
+    [id] => 3
+)
+
+2025-05-28 23:01:33 - SUPPRIMER - Array
+(
+    [id] => 24
+)
+
+2025-05-28 23:01:39 - SUPPRIMER - Array
+(
+    [id] => 2
+)
+
+2025-05-28 23:01:43 - SUPPRIMER - Array
+(
+    [id] => 35
+)
+
+2025-05-28 23:01:48 - SUPPRIMER - Array
+(
+    [id] => 32
+)
+
+2025-05-28 23:03:52 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-002
+    [numero_operation] => INV-2025-05-002
+    [intitule] => hakim 
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => asdfgh
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => zsxcfvbnm
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-05
+    [type_budget] => pcd
+    [maitre_ouvrage] => asdfgh
+    [created_by] => 1
+)
+
+2025-05-28 23:10:36 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-005
+    [numero_operation] => INV-2025-05-005
+    [intitule] => roufia_afiane@
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => xcvb
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => sxdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-08
+    [type_budget] => pcd
+    [maitre_ouvrage] => xcvb
+    [created_by] => 1
+)
+
+2025-05-28 23:27:17 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => xcvgbhnjkl
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 200000000
+    [montant_engage] => 200000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => xdcfvgbhnjmk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 23:38:23 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => Pompage Solaire
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => sdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 23:39:54 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-007
+    [numero_operation] => INV-2025-05-007
+    [intitule] => yanis
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => sdfgh
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-08
+    [type_budget] => pcd
+    [maitre_ouvrage] => sdfgh
+    [created_by] => 1
+)
+
+2025-05-29 00:31:01 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 00:44:26 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia_afiane@
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfghj
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 00:44:28 - AJOUTER - Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia_afiane@
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfghj
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 01:29:41 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-009
+    [intitule] => gfd
+    [type_programme] => psre
+    [annee_budget] => 2024
+    [budget_alloue] => 333
+    [montant_engage] => 44
+    [montant_payee] => 23
+    [etat_avancement] => 3
+    [statut] => termine
+    [entreprise] => 
+    [cause_non_lancement] => ghjshgjhsjj
+    [date_debut] => 2025-05-03
+    [date_prevue_fin] => 2025-05-03
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => selmq
+    [created_by] => 1
+)
+
+2025-05-29 01:40:42 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-010
+    [intitule] => zxcfvgbhjk
+    [type_programme] => normale
+    [annee_budget] => 2023
+    [budget_alloue] => 34
+    [montant_engage] => 5
+    [montant_payee] => 4
+    [etat_avancement] => 80
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => asdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 01:52:15 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-011
+    [intitule] => roufia@afiane
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => zsdfghjm,
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => asdfghj
+    [created_by] => 1
+)
+
+2025-05-29 01:55:41 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-012
+    [intitule] => rachide 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [statut] => termine
+    [entreprise] => 
+    [cause_non_lancement] => xcfvbnm
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => oued-zenati
+    [commune] => ain-hessainia
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 01:56:55 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-013
+    [intitule] => rachide 1
+    [type_programme] => normale
+    [annee_budget] => 2023
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => zsxdfgbnm
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-03
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 01:57:24 - SUPPRIMER - Array
+(
+    [id] => 63
+)
+
+2025-05-29 01:57:28 - SUPPRIMER - Array
+(
+    [id] => 62
+)
+
+2025-05-29 01:57:33 - SUPPRIMER - Array
+(
+    [id] => 61
+)
+
+2025-05-29 01:57:37 - SUPPRIMER - Array
+(
+    [id] => 60
+)
+
+2025-05-29 01:58:08 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:09 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:09 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - MODIFIER - Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:39 - MODIFIER - Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:40 - MODIFIER - Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:40 - MODIFIER - Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:40 - MODIFIER - Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:49 - SUPPRIMER - Array
+(
+    [id] => 14
+)
+
+2025-05-29 01:58:53 - SUPPRIMER - Array
+(
+    [id] => 18
+)
+
+2025-05-29 01:58:58 - SUPPRIMER - Array
+(
+    [id] => 25
+)
+
+2025-05-29 01:59:03 - SUPPRIMER - Array
+(
+    [id] => 29
+)
+
+2025-05-29 01:59:07 - SUPPRIMER - Array
+(
+    [id] => 52
+)
+
+2025-05-29 01:59:11 - SUPPRIMER - Array
+(
+    [id] => 54
+)
+
+2025-05-29 01:59:16 - SUPPRIMER - Array
+(
+    [id] => 53
+)
+
+2025-05-29 01:59:23 - SUPPRIMER - Array
+(
+    [id] => 12
+)
+
+2025-05-29 01:59:51 - MODIFIER - Array
+(
+    [id] => 55
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => Pompage Solaire
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => sdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 02:50:44 - MODIFIER - Array
+(
+    [id] => 64
+    [code_projet] => INV-2025-05-013
+    [numero_operation] => INV-2025-05-013
+    [intitule] => rochide 1
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2023
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => en-cours
+    [description] => zsxdfgbnm
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-03
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 02:51:32 - SUPPRIMER - Array
+(
+    [id] => 64
+)
+
+2025-05-29 02:53:00 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-001
+    [intitule] => rachide 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => asdfghj
+    [date_debut] => 2025-05-29
+    [date_prevue_fin] => 2025-05-06
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 03:40:24 - MODIFIER - Array
+(
+    [id] => 71
+    [code_projet] => INV-2025-05-002
+    [numero_operation] => INV-2025-05-002
+    [intitule] => rabilitation des canaux
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => Collectif Agricole
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 18000000
+    [montant_payee] => 16000000
+    [etat_avancement] => 80
+    [entreprise] => ENTP Batna
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-04-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => Collectif Agricole
+)
+
+2025-05-29 03:52:07 - AJOUTER - Array
+(
+    [numero] => INV-2025-06-001
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => lancé
+    [situation] => lancé
+    [entreprise] => HydroBat Guelma
+    [cause_non_lancement] => 
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+2025-05-29 04:07:53 - AJOUTER - Array
+(
+    [numero] => INV-2025-06-001
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+2025-05-29 04:11:11 - AJOUTER - Array
+(
+    [numero] => INV-2025-06-101
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+2025-05-29 04:21:40 - AJOUTER - Array
+(
+    [numero] => INV-2025-06-101
+    [intitule] => instalation agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+2025-05-29 04:21:48 - AJOUTER - Array
+(
+    [numero] => INV-2025-06-111
+    [intitule] => instalation agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+2025-05-29 04:39:20 - AJOUTER - Array
+(
+    [numero] => INV-2025-06-123
+    [intitule] => Aménagement de pistes agricoles
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 15000000
+    [montant_engage] => 10000000
+    [montant_payee] => 7500000
+    [etat_avancement] => 70
+    [statut] => en-cours
+    [entreprise] => TPR Guelma
+    [description] => Travaux de désenclavement sur 12 km
+    [date_debut] => 2025-06-15
+    [date_prevue_fin] => 2025-12-15
+    [daira] => Hammam N'bails
+    [commune] => Bouhachana
+    [beneficiaire] => Coopérative El Amal
+    [created_by] => 1
+)
+
+2025-05-29 04:41:14 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-003
+    [intitule] => roufia
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 60
+    [statut] => en-cours
+    [entreprise] => 
+    [cause_non_lancement] => sxdcfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 04:43:03 - AJOUTER - Array
+(
+    [numero] => INV-2025-05-004
+    [intitule] => imen
+    [type_programme] => special
+    [annee_budget] => 2024
+    [budget_alloue] => 123
+    [montant_engage] => 344
+    [montant_payee] => 12
+    [etat_avancement] => 2
+    [statut] => termine
+    [entreprise] => 
+    [cause_non_lancement] => JHJHJ
+    [date_debut] => 2025-05-25
+    [date_prevue_fin] => 2025-05-11
+    [daira] => oued-zenati
+    [commune] => ain-hessainia
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 04:43:55 - MODIFIER - Array
+(
+    [id] => 82
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => imen
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2024
+    [budget_alloue] => 123
+    [montant_engage] => 344
+    [montant_payee] => 12
+    [etat_avancement] => 2
+    [entreprise] => 
+    [statut] => planifie
+    [description] => JHJHJ
+    [date_debut] => 2025-05-25
+    [date_prevue_fin] => 2025-05-11
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 08:25:43 - SUPPRIMER - Array
+(
+    [id] => 82
+)
+
+2025-05-29 08:25:53 - SUPPRIMER - Array
+(
+    [id] => 69
+)
+
+2025-05-29 08:26:00 - SUPPRIMER - Array
+(
+    [id] => 67
+)
+
+2025-05-29 08:28:50 - MODIFIER - Array
+(
+    [id] => 81
+    [code_projet] => INV-2025-05-003
+    [numero_operation] => INV-2025-05-003
+    [intitule] => Électrification du périmètre agricole
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 60
+    [entreprise] => 
+    [statut] => en-cours
+    [description] => sxdcfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 08:29:10 - SUPPRIMER - Array
+(
+    [id] => 79
+)
+
+2025-05-29 08:29:26 - MODIFIER - Array
+(
+    [id] => 78
+    [code_projet] => INV-2025-06-102
+    [numero_operation] => INV-2025-06-102
+    [intitule] => installation agricole
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [entreprise] => HydroBat Guelma
+    [statut] => termine
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => Association des agriculteurs de l'Est
+)
+
+2025-05-29 08:29:49 - MODIFIER - Array
+(
+    [id] => 76
+    [code_projet] => INV-2025-06-111
+    [numero_operation] => INV-2025-06-111
+    [intitule] => instalation agricole
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => Association des agriculteurs de l&#039;Est
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [entreprise] => HydroBat Guelma
+    [statut] => suspendu
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => Association des agriculteurs de l&#039;Est
+)
+
+2025-05-29 08:30:08 - MODIFIER - Array
+(
+    [id] => 74
+    [code_projet] => INV-2025-06-101
+    [numero_operation] => INV-2025-06-101
+    [intitule] => Construction d&#039;une retenue d&#039;eau agricole
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => Association des agriculteurs de l&#039;Est
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [entreprise] => HydroBat Guelma
+    [statut] => planifie
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => Association des agriculteurs de l&#039;Est
+)
+

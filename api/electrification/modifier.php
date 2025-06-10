@@ -5,10 +5,17 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // En-têtes
+
+// Autoriser l'origine (ajuster selon besoin)
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: PUT");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Gérer la requête OPTIONS (preflight)
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 // Connexion à la base
 include_once '../../config/database.php';
@@ -68,3 +75,5 @@ if (!empty($data->code_projet)) {
     http_response_code(400);
     echo json_encode(["message" => "Code projet manquant."]);
 }
+
+// Pas de fermeture PHP pour éviter les erreurs d’envoi de contenu non voulu

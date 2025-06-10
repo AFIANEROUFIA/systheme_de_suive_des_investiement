@@ -9,6 +9,8 @@ $database = new Database();
 $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
+file_put_contents("debug_update.json", json_encode($data, JSON_PRETTY_PRINT));
+
 
 if (!empty($data->projet_id) && !empty($data->observation_text) && !empty($data->date_observation)) {
     $query = "INSERT INTO electrification_observations 

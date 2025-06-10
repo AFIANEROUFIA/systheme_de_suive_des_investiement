@@ -1,0 +1,422 @@
+Statut reçu : null
+Situation mappée : non lancé
+Statut reçu : termine
+Situation mappée : clôturé
+Statut reçu : termine
+Situation mappée : clôturé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : en-cours
+Situation mappée : lancé
+Statut reçu : en-cours
+Situation mappée : lancé
+Statut reçu : en-cours
+Situation mappée : lancé
+Statut reçu : en-cours
+Situation mappée : lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu : planifie
+Situation mappée : non lancé
+Statut reçu dans ajouter : en-cours
+Situation mappée dans ajouter : lancé
+Statut reçu : termine
+Situation mappée : clôturé
+Statut reçu : planifie
+Situation mappée : non lancé
+Données reçues : Array
+(
+    [code_projet] => INV-2025-05-005
+    [numero_operation] => INV-2025-05-005
+    [intitule] => roufia_afiane@
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => xcvb
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => sxdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-08
+    [type_budget] => pcd
+    [maitre_ouvrage] => xcvb
+    [created_by] => 1
+)
+
+Statut reçu : termine
+Situation mappée : clôturé
+Données reçues : Array
+(
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => Pompage Solaire
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => sdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+Statut reçu : termine
+Situation mappée : clôturé
+Données reçues : Array
+(
+    [code_projet] => INV-2025-05-007
+    [numero_operation] => INV-2025-05-007
+    [intitule] => yanis
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => sdfgh
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-08
+    [type_budget] => pcd
+    [maitre_ouvrage] => sdfgh
+    [created_by] => 1
+)
+
+Statut reçu : termine
+Situation mappée : clôturé
+Données reçues : Array
+(
+    [numero] => INV-2025-05-009
+    [intitule] => gfd
+    [type_programme] => psre
+    [annee_budget] => 2024
+    [budget_alloue] => 333
+    [montant_engage] => 44
+    [montant_payee] => 23
+    [etat_avancement] => 3
+    [statut] => termine
+    [entreprise] => 
+    [cause_non_lancement] => ghjshgjhsjj
+    [date_debut] => 2025-05-03
+    [date_prevue_fin] => 2025-05-03
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => selmq
+    [created_by] => 1
+)
+
+Statut reçu : termine
+Situation mappée : clôturé
+Données reçues : Array
+(
+    [numero] => INV-2025-05-010
+    [intitule] => zxcfvgbhjk
+    [type_programme] => normale
+    [annee_budget] => 2023
+    [budget_alloue] => 34
+    [montant_engage] => 5
+    [montant_payee] => 4
+    [etat_avancement] => 80
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => asdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+Statut reçu : planifie
+Situation mappée : non lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-05-013
+    [intitule] => rachide 1
+    [type_programme] => normale
+    [annee_budget] => 2023
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => zsxdfgbnm
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-03
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+Statut reçu : planifie
+Situation mappée : non lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-05-001
+    [intitule] => rachide 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => asdfghj
+    [date_debut] => 2025-05-29
+    [date_prevue_fin] => 2025-05-06
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+Statut reçu : planifie
+Situation mappée : non lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-06-001
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => lancé
+    [situation] => lancé
+    [entreprise] => HydroBat Guelma
+    [cause_non_lancement] => 
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+Statut reçu : lancé
+Situation mappée : non lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-06-001
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+Statut reçu : en-cours
+Situation mappée : lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-06-101
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+Statut reçu : en-cours
+Situation mappée : lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-06-101
+    [intitule] => instalation agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+Statut reçu : en-cours
+Situation mappée : lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-06-111
+    [intitule] => instalation agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+Statut reçu : en-cours
+Situation mappée : lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-06-123
+    [intitule] => Aménagement de pistes agricoles
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 15000000
+    [montant_engage] => 10000000
+    [montant_payee] => 7500000
+    [etat_avancement] => 70
+    [statut] => en-cours
+    [entreprise] => TPR Guelma
+    [description] => Travaux de désenclavement sur 12 km
+    [date_debut] => 2025-06-15
+    [date_prevue_fin] => 2025-12-15
+    [daira] => Hammam N'bails
+    [commune] => Bouhachana
+    [beneficiaire] => Coopérative El Amal
+    [created_by] => 1
+)
+
+Statut reçu : en-cours
+Situation mappée : lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-05-003
+    [intitule] => roufia
+    [type_programme] => psre
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 60
+    [statut] => en-cours
+    [entreprise] => 
+    [cause_non_lancement] => sxdcfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+Statut reçu : en-cours
+Situation mappée : lancé
+Données reçues : Array
+(
+    [numero] => INV-2025-05-004
+    [intitule] => imen
+    [type_programme] => special
+    [annee_budget] => 2024
+    [budget_alloue] => 123
+    [montant_engage] => 344
+    [montant_payee] => 12
+    [etat_avancement] => 2
+    [statut] => termine
+    [entreprise] => 
+    [cause_non_lancement] => JHJHJ
+    [date_debut] => 2025-05-25
+    [date_prevue_fin] => 2025-05-11
+    [daira] => oued-zenati
+    [commune] => ain-hessainia
+    [beneficiaire] => mohamed 
+    [created_by] => 1
+)
+
+Statut reçu : termine
+Situation mappée : clôturé

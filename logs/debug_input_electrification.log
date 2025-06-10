@@ -1,0 +1,23 @@
+stdClass Object
+(
+    [intitule] => rahima 
+    [code_projet] => ELEC-2025-05-005
+    [nature_juridique] => installation-lignes
+    [localisation] => 
+    [daira] => oued-zenati
+    [commune] => nechmaya
+    [adresse] => 
+    [type_installation] => forage
+    [description_technique] => sdfgh
+    [budget] => 1000000
+    [entrepreneur] => Entreprise Électrique SARL
+    [statut] => in-progress
+    [date_debut] => 2025-05-31
+    [date_prevue_fin] => 2025-06-01
+    [date_reception_demande] => 2025-05-01
+    [date_envoi_sonelgaz] => 2025-05-08
+    [date_accord_sonelgaz] => 2025-05-30
+    [observations] => 
+    [fichier_justificatif] => 
+    [created_by] => 1
+)

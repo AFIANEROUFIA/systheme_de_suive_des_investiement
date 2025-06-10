@@ -3,147 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Gestion des Investissements - Wilaya de Guelma</title>
+    <title>Projets d'Investissement - DSA Guelma</title>
     <link rel="stylesheet" href="assets/CSS/investissement_style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/CSS/map-styles.css">
+    <script src="assets/js/map-manager.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar -->
         <div class="sidebar">
-            <div class="sidebar-content">
-                <div class="profile-section">
-                    <div class="profile-pic">AD</div>
-                    <div class="profile-info">
-                        <h3>Admin DSA</h3>
-                        <p>admin@dsa-agriculture.dz</p>
-                    </div>
+            <div class="profile-section">
+                <div class="profile-pic">AD</div>
+                <div class="profile-info">
+                    <h3>Admin DSA</h3>
+                    <p>admin@dsa-agriculture.dz</p>
                 </div>
-                
-                <ul class="nav-links">
-                    <li class="nav-item">
-                        <a href="dsa-dashboard.html">
-                            <div class="nav-icon">📊</div>
-                            <span class="nav-text">TABLEAU DE BORD</span>
-                            <div class="active-indicator"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="projects.html">
-                            <div class="nav-icon">🌱</div>
-                            <span class="nav-text">PROJETS AGRICOLES</span>
-                            <div class="active-indicator"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a href="investissement.html">
-                            <div class="nav-icon">💰</div>
-                            <span class="nav-text">INVESTISSEMENT</span>
-                            <div class="active-indicator"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="electrification.html">
-                            <div class="nav-icon">⚡</div>
-                            <span class="nav-text">ÉLECTRIFICATION</span>
-                            <div class="active-indicator"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="stats.html">  
-                         <div class="nav-icon">📈</div>
-                            <span class="nav-text">STATISTIQUES</span>
-                            <div class="active-indicator"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="parametres.html">
-                            <div class="nav-icon">⚙️</div>
-                          <span class="nav-text">PARAMÈTRES</span>
-                         <div class="active-indicator"></div>
-                        </a>
-                    </li>
-                </ul>
-                
-                <div class="active-users">
-                    <div class="users-count">24</div>
-                    <span>UTILISATEURS ACTIFS</span>
-                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="index.html">
+                        <div class="nav-icon">📊</div>
+                        <span class="nav-text">TABLEAU DE BORD</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html">
+                        <div class="nav-icon">🌱</div>
+                        <span class="nav-text">PROJETS AGRICOLES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="investissement.html">
+                        <div class="nav-icon">💰</div>
+                        <span class="nav-text">INVESTISSEMENT</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="electrification.html">
+                        <div class="nav-icon">⚡</div>
+                        <span class="nav-text">ÉLECTRIFICATION</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stats.html">  
+                        <div class="nav-icon">📈</div>
+                        <span class="nav-text">STATISTIQUES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="parametres.html">
+                        <div class="nav-icon">⚙️</div>
+                        <span class="nav-text">PARAMÈTRES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="active-users">
+                <div class="users-count">24</div>
+                <span>PROJETS ACTIFS</span>
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Contenu principal -->
         <div class="main-content">
-            <header class="app-header">
-                <div class="header-left">
-                    <h1><i class="fas fa-chart-line"></i> Gestion des Investissements</h1>
-                    <p>Wilaya de Guelma - Direction des Services Agricoles</p>
-                </div>
-                <div class="header-right">
-                    <div class="user-menu">
-                        <span>Admin DSA</span>
-                        <div class="user-avatar">AD</div>
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">Direction des Services Agricoles - Guelma</div>
+                <div class="header-actions">
+                    <div class="time-widget">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time"></span>
+                    </div>
+                    <div class="cart-icon">
+                        🛒
+                        <div class="cart-badge">3</div>
                     </div>
                 </div>
-            </header>
-
-            <main class="app-main">
-                <section class="filters-section">
-                    <div class="year-selector">
-                        <label for="year"><i class="fas fa-calendar"></i> Année :</label>
-                        <select id="year" class="form-control">
-                            <option value="2023">2023</option>
-                            <option value="2024" selected>2024</option>
-                            <option value="2025">2025</option>
-                        </select>
+            </div>
+            
+            <!-- Page content -->
+            <div class="page-content">
+                <!-- Page header -->
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1>💰 Gestion des Investissements</h1>
+                        <p>Gérez et suivez tous vos projets d'investissement agricole</p>
                     </div>
-
-                    <div class="program-type">
-                        <label for="program"><i class="fas fa-project-diagram"></i> Programme :</label>
-                            <select id="program" class="form-control">
-                                <option value="">Tous les programmes</option>
-                                <option>Normal</option>
-                                <option>PSNE</option>
-                                <option>HP</option>
-                                <option>Urgence</option>
-                                <option>Spécial</option>
-                                <option>PCSC</option>
-                            </select>
-                    </div>
-
-                    <div class="search-box">
-                        <input type="text" placeholder="Rechercher un investissement...">
-                        <button class="search-btn"><i class="fas fa-search"></i></button>
-                    </div>
-
-                    <button class="btn btn-primary" id="new-investment-btn">
-                        <i class="fas fa-plus"></i> Nouvel Investissement
-                    </button>
-
-                    <button class="btn btn-map" id="map-btn">
-                        <i class="fas fa-map-marked-alt"></i> Carte des Investissements
-                    </button>
-                </section>
-
-                <section class="investments-table-container">
-                    <div class="table-header">
-                        <h2><i class="fas fa-table"></i> Liste des Investissements</h2>
-                        <div class="table-actions">
-                            <div class="dropdown">
-                                <button class="btn btn-outline btn-export">
-                                    <i class="fas fa-file-export"></i> Exporter
+                    <div class="page-controls-layout">
+                        <!-- Zone de contrôles à gauche -->
+                        <div class="controls-section">
+                            <!-- Champs de recherche et filtres (verticaux) -->
+                            <div class="search-filters-vertical">
+                                <div class="search-container">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher un investissement...">
+                                </div>
+                                <div class="filters-row">
+                                    <select id="year-filter" class="filter-select">
+                                        <option value="all">Toutes années</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024" selected>2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                    <select id="programme-filter" class="filter-select">
+                                        <option value="all">Tous programmes</option>
+                                        <option value="normal">Normal</option>
+                                        <option value="psne">PSNE</option>
+                                        <option value="hp">HP</option>
+                                        <option value="urgence">Urgence</option>
+                                        <option value="special">Spécial</option>
+                                        <option value="pcsc">PCSC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Boutons (horizontaux) -->
+                            <div class="buttons-row">
+                                <div class="export-container">
+                                    <button class="btn btn-export" id="export-btn">
+                                        <i class="fas fa-download"></i>
+                                        Exporter
+                                    </button>
+                                    <div class="export-dropdown" id="export-dropdown">
+                                        <button class="export-option" id="export-pdf">
+                                            <i class="fas fa-file-pdf"></i>
+                                            PDF
+                                        </button>
+                                        <button class="export-option" id="export-excel">
+                                            <i class="fas fa-file-excel"></i>
+                                            Excel
+                                        </button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-print" id="print-btn">
+                                    <i class="fas fa-print"></i>
+                                    Imprimer
+                                </button>
+                                <button class="btn btn-primary" id="add-investment-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Nouvel investissement
+                                </button>
+                                <button class="btn btn-info" id="maps-btn">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    Carte des investissements
                                 </button>
                             </div>
-                            <button class="btn btn-outline btn-print">
-                                <i class="fas fa-print"></i> Imprimer
-                            </button>
+                        </div>
+                        
+                        <!-- Zone calendrier à droite -->
+                        <div class="calendar-section">
+                            <div class="calendar-widget-compact">
+                                <div class="calendar-header-compact">
+                                    <button class="calendar-nav-compact" id="prev-month">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <h4 id="calendar-month-year">mai 2025</h4>
+                                    <button class="calendar-nav-compact" id="next-month">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="calendar-days-header">
+                                    <div class="calendar-day-header">Dim</div>
+                                    <div class="calendar-day-header">Lun</div>
+                                    <div class="calendar-day-header">Mar</div>
+                                    <div class="calendar-day-header">Mer</div>
+                                    <div class="calendar-day-header">Jeu</div>
+                                    <div class="calendar-day-header">Ven</div>
+                                    <div class="calendar-day-header">Sam</div>
+                                </div>
+                                <div class="calendar-grid-compact" id="calendar-grid-compact">
+                                    <!-- Calendrier généré dynamiquement -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="investments-table-scroll">
-                        <table class="investments-table">
+                </div>
+
+                <!-- Stats cards -->
+                <div class="stats-section">
+                    <h3>📊 Aperçu des Investissements</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <h3>Total des investissements</h3>
+                            <div class="stat-value counter" data-target="24">0</div>
+                            <p>Projets d'investissement</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">💎</div>
+                            <h3>Budget total</h3>
+                            <div class="stat-value counter" data-target="450">0</div>
+                            <p>Millions DA</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">💳</div>
+                            <h3>Montant engagé</h3>
+                            <div class="stat-value counter" data-target="320">0</div>
+                            <p>Millions DA</p>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <h3>Montant payé</h3>
+                            <div class="stat-value counter" data-target="280">0</div>
+                            <p>Millions DA</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="projects-table">
                             <thead>
                                 <tr>
                                     <th>N° Op</th>
@@ -163,23 +248,373 @@
                             </tbody>
                         </table>
                     </div>
-                </section>
-
-                <div class="modal-overlay hidden" id="investment-details-modal">
-                    <div class="modal-content">
-                        <!-- Les détails seront chargés dynamiquement -->
-                    </div>
                 </div>
-
-                <div class="modal-overlay hidden" id="new-investment-modal">
-                    <div class="modal-content">
-                        <!-- Le formulaire sera chargé dynamiquement -->
-                    </div>
-                </div>
-            </main>
+            </div>
         </div>
     </div>
 
-    <script src="assets/js/investissement_script.js" defer></script>
+    <!-- Modal pour ajouter un investissement -->
+    <div id="add-investment-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Nouvel Investissement</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-investment-form" class="project-form" method="post">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="investment-numero">N° Opération *</label>
+                            <input type="text" id="investment-numero" name="numero" required placeholder="Ex: INV-2024-001">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-intitule">Intitulé *</label>
+                            <input type="text" id="investment-intitule" name="intitule" required placeholder="Intitulé de l'investissement">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-programme">Programme *</label>
+                            <select id="investment-programme" name="programme" required>
+                            <option value="">Sélectionner le programme</option>
+                            <option value="normale">Normal</option> <!-- CORRECT -->
+                            <option value="psre">PSRE</option>
+                            <option value="special">Spécial</option>
+                            <option value="urgence">Urgence</option>
+                            <option value="hp">HP</option>
+                            <option value="pcsc">PCSC</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-annee">Année *</label>
+                            <select id="investment-annee" name="annee" required>
+                                <option value="">Sélectionner l'année</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-budget">Budget (DA) *</label>
+                            <input type="number" id="investment-budget" name="budget" required placeholder="0" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-engage">Montant Engagé (DA)</label>
+                            <input type="number" id="investment-engage" name="engage" placeholder="0" step="0.01" value="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-paye">Montant Payé (DA)</label>
+                            <input type="number" id="investment-paye" name="paye" placeholder="0" step="0.01" value="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-avancement">Avancement (%)</label>
+                            <input type="number" id="investment-avancement" name="avancement" placeholder="0" min="0" max="100" value="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-statut">Statut *</label>
+                             <select id="investment-statut" name="statut" required>
+                                <option value="planifie">Planifié</option> <!-- sera transformé en "non lancé" -->
+                                <option value="en-cours">En cours</option> <!-- → "lancé" -->
+                                <option value="termine">Terminé</option>   <!-- → "clôturé" -->
+                                <option value="annule">Annulé</option>     <!-- → "abandonné" -->
+                                <option value="suspendu">Suspendu</option> <!-- → "abandonné" -->
+                             </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-daira">Daïra</label>
+                            <select id="investment-daira" name="daira">
+                                <option value="">Sélectionner la daïra</option>
+                                <option value="guelma">Guelma</option>
+                                <option value="oued-zenati">Oued Zenati</option>
+                                <option value="heliopolis">Héliopolis</option>
+                                <option value="bouchegouf">Bouchegouf</option>
+                                <option value="hammam-debagh">Hammam Debagh</option>
+                                <option value="ain-makhlouf">Ain Makhlouf</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="investment-commune">Commune</label>
+                            <select id="investment-commune" name="commune">
+                                <option value="">Sélectionner la commune</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-beneficiaire">Bénéficiaire</label>
+                            <input type="text" id="investment-beneficiaire" name="beneficiaire" placeholder="Nom du bénéficiaire">
+                        </div>
+                    </div>
+                    
+                    <div class="dates-section">
+                        <h4><i class="fas fa-calendar"></i> Dates importantes</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="investment-date-debut">Date de début</label>
+                                <input type="date" id="investment-date-debut" name="dateDebut">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-date-fin">Date de fin prévue</label>
+                                <input type="date" id="investment-date-fin" name="dateFin">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-date-engagement">Date d'engagement</label>
+                                <input type="date" id="investment-date-engagement" name="dateEngagement">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment-date-paiement">Date de paiement</label>
+                                <input type="date" id="investment-date-paiement" name="datePaiement">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="investment-description">Description</label>
+                        <textarea id="investment-description" name="description" rows="4" placeholder="Description détaillée de l'investissement"></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-add">
+                            <i class="fas fa-times"></i>
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier un investissement -->
+    <div id="edit-investment-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Modifier l'Investissement</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-investment-form" class="project-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-investment-numero">N° Opération *</label>
+                            <input type="text" id="edit-investment-numero" name="numero" required readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-intitule">Intitulé *</label>
+                            <input type="text" id="edit-investment-intitule" name="intitule" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-programme">Programme *</label>
+                            <select id="investment-programme" name="programme" required>
+                            <option value="">Sélectionner le programme</option>
+                            <option value="normale">Normal</option> <!-- CORRECT -->
+                            <option value="psre">PSRE</option>
+                            <option value="special">Spécial</option>
+                            <option value="urgence">Urgence</option>
+                            <option value="hp">HP</option>
+                            <option value="pcsc">PCSC</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-annee">Année *</label>
+                            <select id="edit-investment-annee" name="annee" required>
+                                <option value="">Sélectionner l'année</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-budget">Budget (DA) *</label>
+                            <input type="number" id="edit-investment-budget" name="budget" required step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-engage">Montant Engagé (DA)</label>
+                            <input type="number" id="edit-investment-engage" name="engage" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-paye">Montant Payé (DA)</label>
+                            <input type="number" id="edit-investment-paye" name="paye" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-avancement">Avancement (%)</label>
+                            <input type="number" id="edit-investment-avancement" name="avancement" min="0" max="100">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-statut">Statut *</label>
+                            <select id="edit-investment-statut" name="statut" required>
+                                <option value="en-cours">En cours</option>
+                                <option value="planifie">Planifié</option>
+                                <option value="termine">Terminé</option>
+                                <option value="suspendu">Suspendu</option>
+                                <option value="annule">Annulé</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-daira">Daïra</label>
+                            <select id="edit-investment-daira" name="daira">
+                                <option value="">Sélectionner la daïra</option>
+                                <option value="guelma">Guelma</option>
+                                <option value="oued-zenati">Oued Zenati</option>
+                                <option value="heliopolis">Héliopolis</option>
+                                <option value="bouchegouf">Bouchegouf</option>
+                                <option value="hammam-debagh">Hammam Debagh</option>
+                                <option value="ain-makhlouf">Ain Makhlouf</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-commune">Commune</label>
+                            <select id="edit-investment-commune" name="commune">
+                                <option value="">Sélectionner la commune</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-investment-beneficiaire">Bénéficiaire</label>
+                            <input type="text" id="edit-investment-beneficiaire" name="beneficiaire">
+                        </div>
+                    </div>
+                    
+                    <div class="dates-section">
+                        <h4><i class="fas fa-calendar"></i> Dates importantes</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="edit-investment-date-debut">Date de début</label>
+                                <input type="date" id="edit-investment-date-debut" name="dateDebut">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-investment-date-fin">Date de fin prévue</label>
+                                <input type="date" id="edit-investment-date-fin" name="dateFin">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-investment-date-engagement">Date d'engagement</label>
+                                <input type="date" id="edit-investment-date-engagement" name="dateEngagement">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edit-investment-date-paiement">Date de paiement</label>
+                                <input type="date" id="edit-investment-date-paiement" name="datePaiement">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="observations-section">
+                        <h4><i class="fas fa-clipboard-list"></i> Observations</h4>
+                        <div class="observations-list" id="edit-observations-list">
+                            <!-- Les observations existantes seront affichées ici -->
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-new-observation">Nouvelle observation</label>
+                            <textarea id="edit-new-observation" name="newObservation" rows="3" placeholder="Ajouter une nouvelle observation..."></textarea>
+                        </div>
+                        <div class="observation-controls">
+                            <button type="button" class="btn btn-sm btn-secondary" id="toggle-observations">
+                                <i class="fas fa-eye"></i>
+                                Voir toutes les observations
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="edit-investment-description">Description</label>
+                        <textarea id="edit-investment-description" name="description" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-edit">
+                            <i class="fas fa-times"></i>
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Sauvegarder
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour les détails de l'investissement -->
+    <div id="investment-details-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Détails de l'investissement</h3>
+                <div class="modal-header-actions">
+                    <button class="btn btn-sm btn-secondary" id="print-details-btn">
+                        <i class="fas fa-print"></i>
+                        Imprimer
+                    </button>
+                    <button class="btn btn-sm btn-export" id="export-details-btn">
+                        <i class="fas fa-download"></i>
+                        Exporter
+                    </button>
+                    <button class="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body project-details-content">
+                <!-- Le contenu sera chargé dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour la carte Google Maps -->
+    <div id="map-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-map-marked-alt"></i> Carte des Investissements</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="map-container" style="width: 100%; height: 500px; border-radius: 8px; overflow: hidden;">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; background-color: #f8f9fa;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #2d4f4f; margin-bottom: 1rem;"></i>
+                            <p>Chargement de la carte...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/investissement_script.js"></script>
 </body>
 </html>

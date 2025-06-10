@@ -1,0 +1,1263 @@
+2025-05-28 13:38:48 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => asdfgh
+    [localisation] => hammam-debagh
+    [daira] => hammam-debagh
+    [commune] => hammam-debagh
+    [beneficiaire] => rachide 
+    [type_programme] => urgence
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rachide 
+)
+
+2025-05-28 13:38:50 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => asdfgh
+    [localisation] => hammam-debagh
+    [daira] => hammam-debagh
+    [commune] => hammam-debagh
+    [beneficiaire] => rachide 
+    [type_programme] => urgence
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rachide 
+)
+
+2025-05-28 13:38:52 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-004
+    [numero_operation] => INV-2025-05-004
+    [intitule] => asdfgh
+    [localisation] => hammam-debagh
+    [daira] => hammam-debagh
+    [commune] => hammam-debagh
+    [beneficiaire] => rachide 
+    [type_programme] => urgence
+    [annee_budget] => 2023
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [situation] => planifie
+    [description] => asdfgh
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => rachide 
+)
+
+2025-05-28 21:55:55 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'PRJ001' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => PRJ001
+    [numero_operation] => OP001
+    [intitule] => Projet 01
+    [localisation] => Guelma
+    [daira] => Guelma
+    [commune] => Nechmaya
+    [beneficiaire] => Ferme modèle
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 1000000
+    [montant_engage] => 500000
+    [montant_payee] => 200000
+    [etat_avancement] => 20
+    [entreprise] => SARL ElecDZ
+    [statut] => en-cours
+    [description] => Démarré partiellement.
+    [date_debut] => 2025-01-01
+    [date_prevue_fin] => 2025-12-31
+    [type_budget] => pcd
+    [maitre_ouvrage] => DSA Guelma
+    [created_by] => 1
+)
+
+2025-05-28 22:13:05 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'INV-2025-05-014' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-014
+    [numero_operation] => INV-2025-05-014
+    [intitule] => roufia21
+    [localisation] => belkheir
+    [daira] => guelma
+    [commune] => belkheir
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => zxdcfvghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:13:07 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'INV-2025-05-014' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-014
+    [numero_operation] => INV-2025-05-014
+    [intitule] => roufia21
+    [localisation] => belkheir
+    [daira] => guelma
+    [commune] => belkheir
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => zxdcfvghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:27 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:28 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:28 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:17:30 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:18:02 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-015
+    [numero_operation] => INV-2025-05-015
+    [intitule] => sihemehakim
+    [localisation] => oued-zenati
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => asdfghjk
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-28 22:22:09 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:22:11 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:30:52 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:30:54 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rachide 
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dcfvgb
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => cfvb
+    [date_debut] => 2025-05-10
+    [date_prevue_fin] => 2025-05-07
+    [type_budget] => pcd
+    [maitre_ouvrage] => dcfvgb
+    [created_by] => 1
+)
+
+2025-05-28 22:32:05 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:32:37 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:32:38 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:32:39 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:33:14 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:33:19 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:36:47 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-28 22:37:02 - Method: ajouter - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [code_projet] => INV-2025-05-016
+    [numero_operation] => INV-2025-05-016
+    [intitule] => rahma
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => dftgy
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 20000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => planifie
+    [description] => swed5rftgyhui
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => dftgy
+    [created_by] => 1
+)
+
+2025-05-29 00:44:26 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia_afiane@
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfghj
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 00:44:28 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'code_projet'
+Data: Array
+(
+    [code_projet] => INV-2025-05-009
+    [numero_operation] => INV-2025-05-009
+    [intitule] => roufia_afiane@
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 2000000
+    [montant_engage] => 2000000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => asdfghj
+    [date_debut] => 2025-05-02
+    [date_prevue_fin] => 2025-05-09
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+    [created_by] => 1
+)
+
+2025-05-29 01:58:08 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:09 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:09 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:10 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:11 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 57
+    [code_projet] => INV-2025-05-008
+    [numero_operation] => INV-2025-05-008
+    [intitule] => imane
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 2000
+    [etat_avancement] => 50
+    [entreprise] => mohamed 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:39 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:40 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:40 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:58:40 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 12
+    [code_projet] => PROJ-2025-68369fe0bb9c2
+    [numero_operation] => PROJ-2025-68369fe0bb9c2
+    [intitule] => Électrification Ferme A1
+    [localisation] => guelma
+    [daira] => guelma
+    [commune] => guelma
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2024
+    [budget_alloue] => 1500000
+    [montant_engage] => 500000
+    [montant_payee] => 300000
+    [etat_avancement] => 20
+    [entreprise] => 
+    [statut] => planifie
+    [description] => 
+    [date_debut] => 2024-06-01
+    [date_prevue_fin] => 2024-12-01
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 01:59:51 - Method: modifier - Error: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Data: Array
+(
+    [id] => 55
+    [code_projet] => INV-2025-05-006
+    [numero_operation] => INV-2025-05-006
+    [intitule] => Pompage Solaire
+    [localisation] => 
+    [daira] => 
+    [commune] => 
+    [beneficiaire] => mohamed 
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 200000
+    [montant_engage] => 200000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [entreprise] => 
+    [statut] => termine
+    [description] => sdfghjkl
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [type_budget] => pcd
+    [maitre_ouvrage] => mohamed 
+)
+
+2025-05-29 04:07:53 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'INV-2025-06-001' for key 'code_projet'
+Data: Array
+(
+    [numero] => INV-2025-06-001
+    [intitule] => Construction d'une retenue d'eau agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+
+2025-05-29 04:21:40 - Method: ajouter - Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'INV-2025-06-101' for key 'code_projet'
+Data: Array
+(
+    [numero] => INV-2025-06-101
+    [intitule] => instalation agricole
+    [type_programme] => urgence
+    [annee_budget] => 2025
+    [budget_alloue] => 12000000
+    [montant_engage] => 8000000
+    [montant_payee] => 6000000
+    [etat_avancement] => 50
+    [statut] => en-cours
+    [entreprise] => HydroBat Guelma
+    [description] => Retenue prévue pour irriguer 120 ha
+    [date_debut] => 2025-06-01
+    [date_prevue_fin] => 2025-12-31
+    [daira] => Oued Zenati
+    [commune] => Ain Hessainia
+    [beneficiaire] => Association des agriculteurs de l'Est
+    [created_by] => 1
+)
+

@@ -1,0 +1,62 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+require_once("../../config/Database.php");
+require_once("../../models/ProjetInvestissement.php");
+require_once("../../models/ProjetElectrification.php");
+
+$database = new Database();
+$db = $database->getConnection();
+
+$investModel = new ProjetInvestissement($db);
+$electModel = new ProjetElectrification($db);
+
+// Récupérer l'ID du projet à supprimer
+$data = json_decode(file_get_contents("php://input"));
+
+if (!isset($data->id)) {
+    http_response_code(400);
+    echo json_encode([
+        "status" => "error",
+        "message" => "ID du projet manquant"
+    ]);
+    exit;
+}
+
+try {
+    $projectId = $data->id;
+    $success = false;
+    
+    // Déterminer le type de projet et supprimer
+    if (strpos($projectId, 'INV-') === 0) {
+        $id = substr($projectId, 4);
+        $success = $investModel->supprimer($id);
+    } else if (strpos($projectId, 'ELEC-') === 0) {
+        $id = substr($projectId, 5);
+        $success = $electModel->supprimer($id);
+    }
+
+    if ($success) {
+        echo json_encode([
+            "status" => "success",
+            "message" => "Projet supprimé avec succès"
+        ]);
+    } else {
+        http_response_code(404);
+        echo json_encode([
+            "status" => "error",
+            "message" => "Projet non trouvé"
+        ]);
+    }
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Erreur lors de la suppression du projet",
+        "error" => $e->getMessage()
+    ]);
+}

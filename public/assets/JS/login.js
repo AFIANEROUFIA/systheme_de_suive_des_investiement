@@ -1,49 +1,47 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Récupération des éléments du formulaire
-  const form = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", () => {
+  const form          = document.getElementById("loginForm");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
-  const errorMsg = document.getElementById("errorMsg");
+  const errorMsg      = document.querySelector(".msg");
 
-  // Gestion de la soumission du formulaire
-  form.addEventListener("submit", function(e) {
-      e.preventDefault(); // Empêche l'envoi classique du formulaire
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    errorMsg.textContent = "";
 
-      const username = usernameInput.value.trim();
-      const password = passwordInput.value.trim();
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
 
-      // Réinitialisation du message d'erreur
-      errorMsg.textContent = "";
+    // Basic front-end validation
+    if (!username || !password) {
+      errorMsg.textContent = "Veuillez remplir tous les champs.";
+      return;
+    }
+    if (username.length < 3) {
+      errorMsg.textContent = "Nom d'utilisateur trop court (≥ 3).";
+      return;
+    }
+    if (password.length < 5) {
+      errorMsg.textContent = "Mot de passe trop court (≥ 5).";
+      return;
+    }
 
-      // Validation des champs
-      if (username === "" || password === "") {
-          errorMsg.textContent = "Veuillez remplir tous les champs.";
-          return;
-      }
-
-      if (username.length < 3) {
-          errorMsg.textContent = "Nom d'utilisateur trop court (minimum 3 caractères).";
-          return;
-      }
-
-      if (password.length < 5) {
-          errorMsg.textContent = "Mot de passe trop court (minimum 5 caractères).";
-          return;
-      }
-
-      // Vérification des identifiants (exemple avec un compte admin)
-      if (username === "admin" && password === "admin123") {
-          alert("✅ Connexion réussie ! Vous allez être redirigé...");
-          window.location.href = "dashboard.html"; // Redirection après connexion
+    // Send to PHP login endpoint
+    fetch("../API/auth/login.php", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = "dsa-dashboard.html"; // 👈 your custom redirect
       } else {
-          errorMsg.textContent = "❌ Nom d'utilisateur ou mot de passe incorrect.";
+        errorMsg.textContent = data.message;
       }
-  });
-
-  // Réinitialisation des erreurs lors de la saisie
-  [usernameInput, passwordInput].forEach(input => {
-      input.addEventListener("input", () => {
-          errorMsg.textContent = "";
-      });
+    })
+    .catch(() => {
+      errorMsg.textContent = "❌ Une erreur réseau est survenue.";
+    });
   });
 });

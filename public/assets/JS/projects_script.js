@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+   let projectsData = [];
   // Éléments du DOM
   const projectsTableBody = document.getElementById("projects-table-body")
   const searchInput = document.querySelector(".search-input")
@@ -13,101 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectTypeModal = document.getElementById("project-type-modal")
 
   // Données combinées des projets (électrification + investissement)
-  const projectsData = [
-    // Projets d'électrification
-    {
-      id: "ELEC-2024-001",
-      code: "ELEC-2024-05-123",
-      type: "electrification",
-      title: "Électrification Zone Agricole Oued Zenati",
-      location: "Oued Zenati",
-      budget: 45000000,
-      startDate: "2024-03-15",
-      endDate: "2024-09-30",
-      status: "in-progress",
-      contractor: "Entreprise Électrique SARL",
-      description: "Installation de lignes électriques pour la zone agricole",
-    },
-    {
-      id: "ELEC-2024-002",
-      code: "ELEC-2024-04-089",
-      type: "electrification",
-      title: "Réseau Électrique Fermes Héliopolis",
-      location: "Héliopolis",
-      budget: 32000000,
-      startDate: "2024-06-01",
-      endDate: "2024-12-15",
-      status: "planned",
-      contractor: "ElectroPower Algérie",
-      description: "Mise en place d'un réseau électrique pour les fermes",
-    },
-    {
-      id: "ELEC-2024-003",
-      code: "ELEC-2024-03-045",
-      type: "electrification",
-      title: "Électrification Forage Bouchegouf",
-      location: "Bouchegouf",
-      budget: 28500000,
-      startDate: "2023-11-01",
-      endDate: "2024-04-20",
-      status: "completed",
-      contractor: "TechElec SARL",
-      description: "Électrification complète du système de forage",
-    },
-    // Projets d'investissement
-    {
-      id: "INV-2024-001",
-      code: "INV-2024-001",
-      type: "investment",
-      title: "Construction Centre Santé",
-      location: "Guelma",
-      budget: 150000000,
-      startDate: "2024-01-15",
-      endDate: "2024-11-30",
-      status: "in-progress",
-      contractor: "Entreprise BTP SARL",
-      description: "Construction d'un centre de santé moderne",
-    },
-    {
-      id: "INV-2024-002",
-      code: "INV-2023-004",
-      type: "investment",
-      title: "Réhabilitation Route Principale",
-      location: "Oued Zenati",
-      budget: 280000000,
-      startDate: "2023-02-01",
-      endDate: "2023-10-15",
-      status: "completed",
-      contractor: "Génie Civil EURL",
-      description: "Réhabilitation complète de la route principale",
-    },
-    {
-      id: "INV-2024-003",
-      code: "INV-2024-002",
-      type: "investment",
-      title: "Modernisation Marché Municipal",
-      location: "Guelma",
-      budget: 95000000,
-      startDate: "2024-04-01",
-      endDate: "2024-10-30",
-      status: "in-progress",
-      contractor: "Construction Moderne SARL",
-      description: "Modernisation et extension du marché municipal",
-    },
-    {
-      id: "INV-2024-004",
-      code: "INV-2024-003",
-      type: "investment",
-      title: "Aménagement Parc Public",
-      location: "Héliopolis",
-      budget: 45000000,
-      startDate: "2024-07-01",
-      endDate: "2024-12-31",
-      status: "planned",
-      contractor: "Espaces Verts EURL",
-      description: "Création d'un parc public avec aires de jeux",
-    },
-  ]
+  
 
   // Importation de XLSX
   const XLSX = window.XLSX
@@ -116,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   init()
 
   function init() {
-    loadProjects()
+    fetchProjects()
+    
     animateCounters()
     setupEventListeners()
     updateStats()
@@ -179,91 +87,234 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "electrification.html?action=new"
     }
   }
+  
 
-  function loadProjects() {
-    if (!projectsTableBody) return
 
-    projectsTableBody.innerHTML = ""
 
-    projectsData.forEach((project, index) => {
-      const row = createProjectRow(project)
-      projectsTableBody.appendChild(row)
 
-      // Animation d'apparition
-      setTimeout(() => {
-        row.style.opacity = "1"
-        row.style.transform = "translateY(0)"
-      }, index * 100)
-    })
 
-    addRowEventListeners()
+ async function fetchProjects() {
+    try {
+      console.log("Tentative de chargement des projets...");
+      const response = await fetch("../API/projects/lire.php", {
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Erreur HTTP ${response.status}: ${errorText}`);
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error("Réponse non-JSON reçue");
+      }
+
+      const result = await response.json();
+      console.log("Données reçues :", result);
+
+      if (!result.success) {
+        throw new Error(result.message || "Erreur serveur");
+      }
+
+      projectsData = result.data || [];
+      console.log(`${projectsData.length} projets chargés avec succès`);
+
+      loadProjects();
+      updateStats();
+
+    } catch (error) {
+      console.error("Échec du chargement des projets:", error);
+      displayError(error.message);
+    }
   }
+
+ function displayError(message) {
+    const container = document.getElementById("projects-container") || document.body;
+
+    const errorHTML = `
+      <div class="error-message">
+        <div class="error-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="error-content">
+          <h3>Erreur de chargement</h3>
+          <p>${message}</p>
+          <button onclick="window.location.reload()" class="btn-retry">
+            <i class="fas fa-sync-alt"></i> Réessayer
+          </button>
+        </div>
+      </div>
+    `;
+
+    container.innerHTML = errorHTML;
+
+    const style = document.createElement('style');
+    style.textContent = `
+      .error-message {
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 600px;
+        background: #fff8f8;
+        border: 1px solid #ffdddd;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .error-icon {
+        color: #d32f2f;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .btn-retry {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: #d32f2f;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+// Ajoutez ceci à votre CSS
+const style = document.createElement('style');
+style.textContent = `
+  .error-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #FFF8F8;
+    border: 1px solid #FFDDDD;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 2rem auto;
+    color: #D32F2F;
+  }
+  
+  .error-icon {
+    font-size: 2.5rem;
+  }
+  
+  .error-content h3 {
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .reload-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #D32F2F;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+`;
+document.head.appendChild(style);
+
+
+
+
+
+
+  
+  function loadProjects() {
+  console.log("Chargement des projets dans le tableau..."); // ← ajoute ça
+  if (!projectsTableBody) return;
+
+  projectsTableBody.innerHTML = "";
+
+  projectsData.forEach((project, index) => {
+    const row = createProjectRow(project);
+    projectsTableBody.appendChild(row);
+
+    setTimeout(() => {
+      row.style.opacity = "1";
+      row.style.transform = "translateY(0)";
+    }, index * 100);
+  });
+
+  addRowEventListeners();
+}
+
+
 
   function createProjectRow(project) {
-    const row = document.createElement("tr")
-    row.style.opacity = "0"
-    row.style.transform = "translateY(20px)"
-    row.style.transition = "all 0.3s ease"
+  const row = document.createElement("tr");
+  row.style.opacity = "0";
+  row.style.transform = "translateY(20px)";
+  row.style.transition = "all 0.3s ease";
 
-    const typeClass = project.type === "electrification" ? "electrification" : "investment"
-    const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
+  const typeClass = project.type === "electrification" ? "electrification" : "investment";
+  const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement";
 
-    let statusClass = ""
-    let statusLabel = ""
+  let statusClass = "";
+  let statusLabel = "";
 
-    switch (project.status) {
-      case "in-progress":
-        statusClass = "in-progress"
-        statusLabel = "En cours"
-        break
-      case "planned":
-        statusClass = "planned"
-        statusLabel = "Planifié"
-        break
-      case "completed":
-        statusClass = "completed"
-        statusLabel = "Terminé"
-        break
-    }
-
-    row.innerHTML = `
-            <td>
-                <div class="project-code">
-                    <strong>${project.code}</strong>
-                </div>
-            </td>
-            <td>
-                <span class="type-badge type-${typeClass}">${typeLabel}</span>
-            </td>
-            <td>
-                <div class="project-title">
-                    <strong>${project.title}</strong>
-                    <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">${project.contractor}</small>
-                </div>
-            </td>
-            <td>${project.location}</td>
-            <td>
-                <strong>${formatCurrency(project.budget)}</strong>
-            </td>
-            <td>${formatDate(project.startDate)}</td>
-            <td>${formatDate(project.endDate)}</td>
-            <td>
-                <span class="status-badge status-${statusClass}">${statusLabel}</span>
-            </td>
-            <td>
-                <div class="actions-cell">
-                    <button class="action-btn view-btn" data-id="${project.id}" title="Voir les détails">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="action-btn delete-btn" data-id="${project.id}" title="Supprimer">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            </td>
-        `
-
-    return row
+  switch (project.status) {
+    case "in-progress":
+      statusClass = "in-progress";
+      statusLabel = "En cours";
+      break;
+    case "planned":
+      statusClass = "planned";
+      statusLabel = "Planifié";
+      break;
+    case "completed":
+      statusClass = "completed";
+      statusLabel = "Terminé";
+      break;
+    default:
+      statusClass = "unknown";
+      statusLabel = "—";
   }
+
+  row.innerHTML = `
+    <td>
+      <div class="project-code">
+        <strong>${project.code || "-"}</strong>
+      </div>
+    </td>
+    <td>
+      <span class="type-badge type-${typeClass}">${typeLabel}</span>
+    </td>
+    <td>
+      <div class="project-title">
+        <strong>${project.title || "-"}</strong>
+        <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
+          ${project.contractor || "-"}
+        </small>
+      </div>
+    </td>
+    <td>${project.location || "-"}</td>
+    <td><strong>${formatCurrency(project.budget || 0)}</strong></td>
+    <td>${formatDate(project.startDate)}</td>
+    <td>${formatDate(project.endDate)}</td>
+    <td>
+      <span class="status-badge status-${statusClass}">${statusLabel}</span>
+    </td>
+    <td>
+      <div class="actions-cell">
+        <button class="action-btn view-btn" data-id="${project.id}" title="Voir les détails">
+          <i class="fas fa-eye"></i>
+        </button>
+        <button class="action-btn delete-btn" data-id="${project.id}" title="Supprimer">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </td>
+  `;
+
+  return row;
+ }
+
 
   function addRowEventListeners() {
     // Boutons de visualisation

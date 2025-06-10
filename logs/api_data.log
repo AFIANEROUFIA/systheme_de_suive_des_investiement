@@ -1,0 +1,21 @@
+2025-05-29 01:52:15 - Data received: Array
+(
+    [numero] => INV-2025-05-011
+    [intitule] => roufia@afiane
+    [type_programme] => normale
+    [annee_budget] => 2025
+    [budget_alloue] => 20000000
+    [montant_engage] => 20000000
+    [montant_payee] => 200000
+    [etat_avancement] => 50
+    [statut] => planifie
+    [entreprise] => 
+    [cause_non_lancement] => zsdfghjm,
+    [date_debut] => 2025-05-01
+    [date_prevue_fin] => 2025-05-02
+    [daira] => oued-zenati
+    [commune] => oued-zenati
+    [beneficiaire] => asdfghj
+    [created_by] => 1
+)
+
