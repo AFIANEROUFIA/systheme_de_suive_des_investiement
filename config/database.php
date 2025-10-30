@@ -1,7 +1,7 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "suivre_investessement";
+    private $db_name = "suivre_investessement"; // or "suivre_investessement (3)" if you didn’t rename
     private $username = "root";
     private $password = "";
     public $conn;
@@ -11,16 +11,16 @@ class Database {
 
         try {
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                "mysql:host={$this->host};dbname={$this->db_name};charset=utf8",
                 $this->username,
                 $this->password
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->conn->exec("set names utf8");
+            return $this->conn;
         } catch(PDOException $e) {
-            echo "Erreur de connexion: " . $e->getMessage();
+            echo "Erreur de connexion : " . $e->getMessage();
+            return null;
         }
-
-        return $this->conn;
     }
 }
+?>

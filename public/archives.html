@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Projets - DSA Guelma</title>
+    <title>Projets Archivés - DSA Guelma</title>
     <link rel="stylesheet" href="assets/CSS/projects_style.css">
+    <link rel="stylesheet" href="assets/CSS/dark-theme-new.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar identique au dashboard -->
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile-section">
                 <div class="profile-pic" id="profile-pic">AD</div>
@@ -30,7 +29,7 @@
                         <div class="active-indicator"></div>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a href="projects.html">
                         <div class="nav-icon">🌱</div>
                         <span class="nav-text">PROJETS AGRICOLES</span>
@@ -65,8 +64,7 @@
                         <div class="active-indicator"></div>
                     </a>
                 </li>
-                <!-- Added archives link -->
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a href="archives.html">
                         <div class="nav-icon">📦</div>
                         <span class="nav-text">PROJETS ARCHIVÉS</span>
@@ -76,111 +74,83 @@
             </ul>
             
             <div class="active-users">
-                <div class="users-count">24</div>
-                <span>PROJETS ACTIFS</span>
+                <div class="users-count" id="archived-count">0</div>
+                <span>PROJETS ARCHIVÉS</span>
             </div>
         </div>
 
-        <!-- Contenu principal -->
+        <!-- Main Content -->
         <div class="main-content">
             <!-- Header -->
             <div class="header">
                 <div class="header-title">Direction des Services Agricoles - Guelma</div>
                 <div class="header-actions">
-                    <div class="cart-icon">
-                        🛒
-                        <div class="cart-badge">3</div>
+                    <div class="time-widget">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time"></span>
                     </div>
                 </div>
             </div>
-            
-            <!-- Page content -->
+
+            <!-- Page Content -->
             <div class="page-content">
-                <!-- Page header -->
                 <div class="page-header">
                     <div class="page-title">
-                        <h1>🌱 Tous les Projets</h1>
-                        <p>Gérez et suivez tous vos projets agricoles</p>
+                        <h1>📦 Projets Archivés</h1>
+                        <p>Consultez l'historique de vos projets terminés et archivés</p>
                     </div>
                     <div class="page-actions">
                         <div class="search-container">
                             <i class="fas fa-search"></i>
-                            <input type="text" class="search-input" placeholder="Rechercher un projet...">
+                            <input type="text" class="search-input" id="search-input" placeholder="Rechercher un projet archivé...">
                         </div>
                         <select id="type-filter" class="filter-select">
                             <option value="all">Tous les types</option>
                             <option value="electrification">Électrification</option>
                             <option value="investment">Investissement</option>
                         </select>
-                        <select id="status-filter" class="filter-select">
-                            <option value="all">Tous les statuts</option>
-                            <option value="in-progress">En cours</option>
-                            <option value="planned">Planifié</option>
-                            <option value="completed">Terminé</option>
-                        </select>
-                        <div class="export-container">
-                            <button class="btn btn-export" id="export-btn">
-                                <i class="fas fa-download"></i>
-                                Exporter
-                            </button>
-                            <div class="export-dropdown" id="export-dropdown">
-                                <button class="export-option" id="export-pdf">
-                                    <i class="fas fa-file-pdf"></i>
-                                    PDF
-                                </button>
-                                <button class="export-option" id="export-excel">
-                                    <i class="fas fa-file-excel"></i>
-                                    Excel
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn btn-print" id="print-btn">
-                            <i class="fas fa-print"></i>
-                            Imprimer
-                        </button>
-                        <button class="btn btn-primary" id="add-project-btn">
-                            <i class="fas fa-plus"></i>
-                            Nouveau projet
+                        <button class="btn btn-export" id="export-btn">
+                            <i class="fas fa-download"></i>
+                            Exporter
                         </button>
                     </div>
                 </div>
 
                 <!-- Stats cards -->
                 <div class="stats-section">
-                    <h3>📊 Aperçu des Projets</h3>
+                    <h3>📊 Statistiques des Projets Archivés</h3>
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-icon">🌱</div>
-                            <h3>Total des projets</h3>
-                            <div class="stat-value counter" data-target="24">0</div>
-                            <p>Ce mois-ci</p>
+                            <div class="stat-icon">📦</div>
+                            <h3>Total archivés</h3>
+                            <div class="stat-value counter" id="total-archived" data-target="12">0</div>
+                            <p>Projets terminés</p>
                         </div>
                         
                         <div class="stat-card">
                             <div class="stat-icon">⚡</div>
-                            <h3>Projets d'électrification</h3>
-                            <div class="stat-value counter" data-target="14">0</div>
-                            <p>Sites électrifiés</p>
+                            <h3>Électrification</h3>
+                            <div class="stat-value counter" id="archived-electrification" data-target="7">0</div>
+                            <p>Projets archivés</p>
                         </div>
                         
                         <div class="stat-card">
                             <div class="stat-icon">💰</div>
-                            <h3>Projets d'investissement</h3>
-                            <div class="stat-value counter" data-target="10">0</div>
-                            <p>Investissements</p>
+                            <h3>Investissement</h3>
+                            <div class="stat-value counter" id="archived-investment" data-target="5">0</div>
+                            <p>Projets archivés</p>
                         </div>
                         
                         <div class="stat-card">
                             <div class="stat-icon">✅</div>
-                            <h3>Projets terminés</h3>
-                            <div class="stat-value counter" data-target="8">0</div>
-                            <p>Complétés</p>
+                            <h3>Budget total</h3>
+                            <div class="stat-value counter" id="total-budget" data-target="45">0</div>
+                            <p>Millions DA</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projects table -->
-                 <main id="projects-container"></main>
+                <!-- Archives table -->
                 <div class="table-container">
                     <div class="table-wrapper">
                         <table class="projects-table">
@@ -193,12 +163,12 @@
                                     <th>Budget</th>
                                     <th>Date début</th>
                                     <th>Date fin</th>
-                                    <th>Statut</th>
+                                    <th>Date archivage</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="projects-table-body">
-                                <!-- Les données seront chargées dynamiquement -->
+                            <tbody id="archives-table-body">
+                                <!-- Archived projects loaded dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -206,63 +176,24 @@
             </div>
         </div>
     </div>
-    </main>
 
-    <!-- Modal pour sélectionner le type de projet -->
-    <div id="project-type-modal" class="modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-plus-circle"></i> Choisir le type de projet</h3>
-                <button class="modal-close">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="project-type-selection">
-                    <div class="type-option" data-type="investment">
-                        <div class="type-icon">💰</div>
-                        <h4>Projet d'Investissement</h4>
-                        <p>Créer un nouveau projet d'investissement avec gestion budgétaire complète</p>
-                        <div class="type-features">
-                            <span><i class="fas fa-check"></i> Gestion budgétaire</span>
-                            <span><i class="fas fa-check"></i> Suivi des paiements</span>
-                            <span><i class="fas fa-check"></i> Rapports financiers</span>
-                        </div>
-                    </div>
-                    
-                    <div class="type-option" data-type="electrification">
-                        <div class="type-icon">⚡</div>
-                        <h4>Projet d'Électrification</h4>
-                        <p>Créer un nouveau projet d'électrification agricole avec suivi technique</p>
-                        <div class="type-features">
-                            <span><i class="fas fa-check"></i> Suivi technique</span>
-                            <span><i class="fas fa-check"></i> Gestion des installations</span>
-                            <span><i class="fas fa-check"></i> Cartographie</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal pour les détails du projet -->
+    <!-- Modal for project details -->
     <div id="project-details-modal" class="modal">
         <div class="modal-backdrop"></div>
-        <div class="modal-content">
+        <div class="modal-content large-modal">
             <div class="modal-header">
-                <h3>Détails du projet</h3>
+                <h3><i class="fas fa-info-circle"></i> Détails du projet archivé</h3>
                 <button class="modal-close">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body project-details-content">
-                <!-- Le contenu sera chargé dynamiquement -->
+                <!-- Content loaded dynamically -->
             </div>
         </div>
     </div>
 
     <script src="assets/JS/session-manager.js"></script>
-    <script src="assets/js/projects_script.js"></script>
+    <script src="assets/js/archives.js"></script>
 </body>
 </html>

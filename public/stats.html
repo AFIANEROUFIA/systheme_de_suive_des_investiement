@@ -1,146 +1,241 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stats - Wilaya de Guelma</title>
+    <title>Statistiques - DSA Guelma</title>
+    <link rel="stylesheet" href="assets/CSS/electrification.css">
+    <link rel="stylesheet" href="assets/CSS/dark-theme-new.css">
     <link rel="stylesheet" href="assets/CSS/stats.css">
-    <link rel="stylesheet" href="dark-theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="stats-container">
-        <!-- En-tête avec période de sélection -->
-        <div class="stats-header">
-          <h2><i class="fas fa-chart-bar"></i> Tableau de Bord Statistique</h2>
-          <div class="period-selector">
-            <select class="form-control" id="stats-year">
-              <option value="2024">2024</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-            </select>
-            <button class="btn btn-outline">
-              <i class="fas fa-download"></i> Exporter
-            </button>
-          </div>
-        </div>
-      
-        <!-- Cartes indicateurs clés -->
-        <div class="kpi-cards">
-          <div class="kpi-card primary">
-            <div class="kpi-value">28</div>
-            <div class="kpi-label">Projets Actifs</div>
-            <div class="kpi-trend"><i class="fas fa-arrow-up"></i> 12% vs 2023</div>
-          </div>
-          
-          <div class="kpi-card success">
-            <div class="kpi-value">14.2M</div>
-            <div class="kpi-label">DA Engagés</div>
-            <div class="kpi-trend"><i class="fas fa-arrow-up"></i> 24%</div>
-          </div>
-          
-          <div class="kpi-card warning">
-            <div class="kpi-value">78%</div>
-            <div class="kpi-label">Taux Réalisation</div>
-            <div class="kpi-trend"><i class="fas fa-arrow-down"></i> 3%</div>
-          </div>
-          
-          <div class="kpi-card danger">
-            <div class="kpi-value">3</div>
-            <div class="kpi-label">Projets En Retard</div>
-            <div class="kpi-trend"><i class="fas fa-minus"></i> Stable</div>
-          </div>
-        </div>
-      
-        <!-- Graphiques principaux -->
-        <div class="main-charts">
-          <!-- Évolution mensuelle -->
-          <div class="chart-container">
-            <div class="chart-header">
-              <h3>Avancement des Projets par Mois</h3>
-              <div class="chart-legend">
-                <span class="legend-item"><i class="fas fa-square" style="color: #0056b3"></i> Planifié</span>
-                <span class="legend-item"><i class="fas fa-square" style="color: #ffc107"></i> Réalisé</span>
-              </div>
+    <div class="app-container">
+        <!-- Sidebar - Same as other pages -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-pic">AD</div>
+                <div class="profile-info">
+                    <h3>Admin DSA</h3>
+                    <p>admin@dsa-agriculture.dz</p>
+                </div>
             </div>
-            <canvas id="monthlyProgressChart"></canvas>
-          </div>
-          
-          <!-- Répartition géographique -->
-          <div class="chart-container">
-            <div class="chart-header">
-              <h3>Répartition par Daïra</h3>
+            
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="electrification.html">
+                        <div class="nav-icon">📊</div>
+                        <span class="nav-text">TABLEAU DE BORD</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html">
+                        <div class="nav-icon">🌱</div>
+                        <span class="nav-text">PROJETS AGRICOLES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="investissement.html">
+                        <div class="nav-icon">💰</div>
+                        <span class="nav-text">INVESTISSEMENT</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="electrification.html">
+                        <div class="nav-icon">⚡</div>
+                        <span class="nav-text">ÉLECTRIFICATION</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="stats.html">  
+                        <div class="nav-icon">📈</div>
+                        <span class="nav-text">STATISTIQUES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="parametres.html">
+                        <div class="nav-icon">⚙️</div>
+                        <span class="nav-text">PARAMÈTRES</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+                 <li class="nav-item active">
+                    <a href="archives.html">
+                        <div class="nav-icon">📦</div>
+                        <span class="nav-text">PROJETS ARCHIVÉS</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="active-users">
+                <div class="users-count" id="activeProjectsCount">0</div>
+                <span>PROJETS ACTIFS</span>
             </div>
-            <canvas id="locationDistributionChart"></canvas>
-          </div>
         </div>
-      
-        <!-- Graphiques secondaires -->
-        <div class="secondary-charts">
-          <!-- Types de projets -->
-          <div class="chart-container small">
-            <div class="chart-header">
-              <h3>Types d'Installations</h3>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">Direction des Services Agricoles - Guelma</div>
+                <div class="header-actions">
+                    <div class="time-widget">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time"></span>
+                    </div>
+                    <div class="theme-language-controls">
+                        <button class="theme-toggle-btn" id="themeToggle" title="Basculer le thème">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <select id="languageSelect" class="language-selector">
+                            <option value="fr">FR</option>
+                            <option value="ar">عربي</option>
+                            <option value="en">EN</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <canvas id="projectTypesChart"></canvas>
-          </div>
-          
-          <!-- Statut des projets -->
-          <div class="chart-container small">
-            <div class="chart-header">
-              <h3>Statut des Projets</h3>
+            
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title">
+                        <h1><i class="fas fa-chart-bar"></i> Tableau de Bord Statistique</h1>
+                        <p>Suivi et analyse des projets d'électrification et d'investissement</p>
+                    </div>
+                    <div class="page-controls-layout">
+                        <div class="controls-section">
+                            <div class="search-filters-vertical">
+                                <div class="search-container">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" class="search-input" placeholder="Rechercher...">
+                                </div>
+                                <div class="filters-row">
+                                    <select id="stats-year" class="filter-select">
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2022">2022</option>
+                                    </select>
+                                    <select id="stats-type" class="filter-select">
+                                        <option value="all">Tous les types</option>
+                                        <option value="electrification">Électrification</option>
+                                        <option value="investment">Investissement</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="buttons-row">
+                                <button class="btn btn-export" id="export-btn">
+                                    <i class="fas fa-download"></i>
+                                    Exporter
+                                </button>
+                                <button class="btn btn-print" id="print-btn">
+                                    <i class="fas fa-print"></i>
+                                    Imprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="kpi-cards">
+                    <div class="kpi-card primary">
+                        <div class="kpi-value" id="totalProjects">0</div>
+                        <div class="kpi-label">Projets Actifs</div>
+                        <div class="kpi-trend"><i class="fas fa-arrow-up"></i> <span id="projectsTrend">0%</span></div>
+                    </div>
+                    
+                    <div class="kpi-card success">
+                        <div class="kpi-value" id="totalBudget">0M</div>
+                        <div class="kpi-label">DA Engagés</div>
+                        <div class="kpi-trend"><i class="fas fa-arrow-up"></i> <span id="budgetTrend">0%</span></div>
+                    </div>
+                    
+                    <div class="kpi-card warning">
+                        <div class="kpi-value" id="completionRate">0%</div>
+                        <div class="kpi-label">Taux Réalisation</div>
+                        <div class="kpi-trend"><i class="fas fa-arrow-down"></i> <span id="completionTrend">0%</span></div>
+                    </div>
+                    
+                    <div class="kpi-card danger">
+                        <div class="kpi-value" id="delayedProjects">0</div>
+                        <div class="kpi-label">Projets En Retard</div>
+                        <div class="kpi-trend"><i class="fas fa-minus"></i> Stable</div>
+                    </div>
+                </div>
+
+                <!-- Main Charts -->
+                <div class="main-charts">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Avancement des Projets par Mois</h3>
+                        </div>
+                        <canvas id="monthlyProgressChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Répartition par Daïra</h3>
+                        </div>
+                        <canvas id="locationDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Secondary Charts -->
+                <div class="secondary-charts">
+                    <div class="chart-container small">
+                        <div class="chart-header">
+                            <h3>Types d'Installations</h3>
+                        </div>
+                        <canvas id="projectTypesChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container small">
+                        <div class="chart-header">
+                            <h3>Statut des Projets</h3>
+                        </div>
+                        <canvas id="projectStatusChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container small">
+                        <div class="chart-header">
+                            <h3>Engagement Budgétaire</h3>
+                        </div>
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Stats Table -->
+                <div class="stats-table-container">
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>Indicateur</th>
+                                <th>Valeur</th>
+                                <th>Cible</th>
+                                <th>Atteinte</th>
+                                <th>Tendance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statsTableBody">
+                            <!-- Data will be loaded from database -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <canvas id="projectStatusChart"></canvas>
-          </div>
-          
-          <!-- Budget vs Dépenses -->
-          <div class="chart-container small">
-            <div class="chart-header">
-              <h3>Engagement Budgétaire</h3>
-            </div>
-            <canvas id="budgetChart"></canvas>
-          </div>
         </div>
-      
-        <!-- Tableau des indicateurs -->
-        <div class="stats-table-container">
-          <table class="stats-table">
-            <thead>
-              <tr>
-                <th>Indicateur</th>
-                <th>Valeur</th>
-                <th>Cible</th>
-                <th>Atteinte</th>
-                <th>Tendance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Taux d'électrification rurale</td>
-                <td>92%</td>
-                <td>95%</td>
-                <td><div class="progress-bar" style="width: 92%"></div></td>
-                <td><i class="fas fa-arrow-up text-success"></i></td>
-              </tr>
-              <tr>
-                <td>Délai moyen de réalisation</td>
-                <td>4.2 mois</td>
-                <td>3.5 mois</td>
-                <td><div class="progress-bar" style="width: 83%"></div></td>
-                <td><i class="fas fa-arrow-down text-danger"></i></td>
-              </tr>
-              <tr>
-                <td>Coût moyen par ménage</td>
-                <td>12,500 DA</td>
-                <td>11,000 DA</td>
-                <td><div class="progress-bar" style="width: 88%"></div></td>
-                <td><i class="fas fa-minus text-warning"></i></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <script src="theme-language-manager.js"></script>
-      <script src="assets/js/stats.js"></script>
+    </div>
+
+    <script src="assets/JS/theme-manager-new.js"></script>
+    <script src="assets/JS/stats-new.js"></script>
 </body>
 </html>

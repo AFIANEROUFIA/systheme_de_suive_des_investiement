@@ -12,10 +12,11 @@
         <div class="menu-container">
             <div class="menu">
                 <div class="profile-section">
-                    <div class="profile-pic">AD</div>
+                    <!-- Updated to show dynamic username from session -->
+                    <div class="profile-pic" id="profile-pic">AD</div>
                     <div class="profile-info">
-                        <h3>Admin DSA</h3>
-                        <p>admin@dsa-agriculture.dz</p>
+                        <h3 id="username-display">Admin DSA</h3>
+                        <p id="email-display">admin@dsa-agriculture.dz</p>
                     </div>
                 </div>
                 
@@ -61,6 +62,13 @@
                          <div class="active-indicator"></div>
                         </a>
                     </li>
+                     <li class="nav-item active">
+                    <a href="archives.html">
+                        <div class="nav-icon">📦</div>
+                        <span class="nav-text">PROJETS ARCHIVÉS</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </li>
                 </ul>
                 
                 <div class="algeria-map"></div>

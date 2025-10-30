@@ -1,0 +1,322 @@
+/* Improved dark mode colors for all pages */
+
+:root {
+  /* Primary Colors - Improved for dark mode */
+  --primary-color: #2d5a4f;
+  --primary-dark: #1a3a32;
+  --primary-light: #4a8b7f;
+
+  /* Accent Colors */
+  --accent-color: #d4af37;
+  --accent-light: #e8c547;
+  --accent-dark: #b8941f;
+
+  /* Status Colors */
+  --success-color: #4ade80;
+  --warning-color: #facc15;
+  --danger-color: #f87171;
+  --info-color: #60a5fa;
+
+  /* Light Mode */
+  --bg-light: #f8fafb;
+  --surface-light: #ffffff;
+  --surface-light-secondary: #f3f4f6;
+  --text-light: #1a1a1a;
+  --text-light-secondary: #666666;
+  --border-light: #e0e0e0;
+
+  /* Dark Mode */
+  --bg-dark: #0f1419;
+  --surface-dark: #1a2332;
+  --surface-dark-secondary: #242f3f;
+  --text-dark: #e8eaed;
+  --text-dark-secondary: #a8adb5;
+  --border-dark: #2a3a4a;
+}
+
+/* Dark Theme Application */
+body.dark-theme {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* Sidebar Dark Mode */
+body.dark-theme .sidebar {
+  background-color: var(--surface-dark);
+  border-color: var(--border-dark);
+}
+
+body.dark-theme .profile-section {
+  border-bottom-color: var(--border-dark);
+}
+
+body.dark-theme .nav-item a {
+  color: var(--text-dark);
+}
+
+body.dark-theme .nav-item:hover a,
+body.dark-theme .nav-item.active a {
+  color: var(--accent-color);
+}
+
+/* Header Dark Mode */
+body.dark-theme .header {
+  background-color: var(--surface-dark);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+body.dark-theme .header-title {
+  color: var(--accent-color);
+}
+
+/* Main Content Dark Mode */
+body.dark-theme .main-content {
+  background-color: var(--bg-dark);
+}
+
+body.dark-theme .page-content {
+  background-color: var(--bg-dark);
+}
+
+body.dark-theme .page-header {
+  background-color: var(--surface-dark);
+  border-color: var(--border-dark);
+}
+
+body.dark-theme .page-title h1 {
+  color: var(--accent-color);
+}
+
+body.dark-theme .page-title p {
+  color: var(--text-dark-secondary);
+}
+
+/* Cards Dark Mode */
+body.dark-theme .stat-card,
+body.dark-theme .kpi-card,
+body.dark-theme .chart-container {
+  background-color: var(--surface-dark);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+body.dark-theme .stat-card h3,
+body.dark-theme .kpi-card h3,
+body.dark-theme .chart-header h3 {
+  color: var(--text-dark);
+}
+
+/* KPI Cards - Better text visibility */
+body.dark-theme .kpi-card .kpi-value {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+body.dark-theme .kpi-card .kpi-label {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+body.dark-theme .kpi-card .kpi-trend {
+  color: var(--text-dark-secondary);
+}
+
+/* Stat Cards - Better text visibility */
+body.dark-theme .stat-card h3 {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+body.dark-theme .stat-card .stat-value {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+body.dark-theme .stat-card p {
+  color: var(--text-dark-secondary);
+}
+
+/* Tables Dark Mode */
+body.dark-theme .projects-table,
+body.dark-theme .stats-table {
+  background-color: var(--surface-dark);
+  color: var(--text-dark);
+}
+
+body.dark-theme .projects-table th,
+body.dark-theme .stats-table th {
+  background-color: var(--surface-dark-secondary);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+  font-weight: 600;
+}
+
+body.dark-theme .projects-table td,
+body.dark-theme .stats-table td {
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+body.dark-theme .projects-table tbody tr:hover,
+body.dark-theme .stats-table tbody tr:hover {
+  background-color: var(--surface-dark-secondary);
+}
+
+/* Forms Dark Mode */
+body.dark-theme .form-control,
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background-color: var(--surface-dark-secondary);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+body.dark-theme .form-control:focus,
+body.dark-theme input:focus,
+body.dark-theme textarea:focus,
+body.dark-theme select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+body.dark-theme .form-control::placeholder,
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: var(--text-dark-secondary);
+}
+
+/* Buttons Dark Mode */
+body.dark-theme .btn {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  font-weight: 500;
+}
+
+body.dark-theme .btn:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light);
+}
+
+body.dark-theme .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+body.dark-theme .btn-primary:hover {
+  background-color: var(--primary-light);
+}
+
+body.dark-theme .btn-export,
+body.dark-theme .btn-print {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+body.dark-theme .btn-export:hover,
+body.dark-theme .btn-print:hover {
+  background-color: var(--primary-light);
+}
+
+body.dark-theme .btn-outline {
+  background-color: transparent;
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+body.dark-theme .btn-outline:hover {
+  background-color: var(--surface-dark-secondary);
+}
+
+/* Modals Dark Mode */
+body.dark-theme .modal-content {
+  background-color: var(--surface-dark);
+  color: var(--text-dark);
+}
+
+body.dark-theme .modal-header {
+  background-color: var(--surface-dark-secondary);
+  border-color: var(--border-dark);
+}
+
+body.dark-theme .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Charts Dark Mode */
+body.dark-theme canvas {
+  background-color: var(--surface-dark-secondary);
+}
+
+/* Badges and Status Indicators */
+body.dark-theme .badge-success {
+  background-color: rgba(74, 222, 128, 0.2);
+  color: var(--success-color);
+}
+
+body.dark-theme .badge-warning {
+  background-color: rgba(250, 204, 21, 0.2);
+  color: var(--warning-color);
+}
+
+body.dark-theme .badge-danger {
+  background-color: rgba(248, 113, 113, 0.2);
+  color: var(--danger-color);
+}
+
+/* Scrollbar Dark Mode */
+body.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+  background: var(--surface-dark);
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 4px;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dark-secondary);
+}
+
+/* RTL Support for Arabic */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+body.rtl .sidebar {
+  border-radius: 0 16px 16px 0;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+}
+
+body.rtl .nav-item a {
+  flex-direction: row-reverse;
+}
+
+body.rtl .nav-icon {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+body.rtl .page-title h1 {
+  flex-direction: row-reverse;
+}
+
+body.rtl .form-group label {
+  flex-direction: row-reverse;
+}
+
+body.rtl .form-group label i {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}

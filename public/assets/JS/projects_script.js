@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-   let projectsData = [];
+  let projectsData = []
   // Éléments du DOM
   const projectsTableBody = document.getElementById("projects-table-body")
   const searchInput = document.querySelector(".search-input")
@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectTypeModal = document.getElementById("project-type-modal")
 
   // Données combinées des projets (électrification + investissement)
-  
 
   // Importation de XLSX
   const XLSX = window.XLSX
@@ -24,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function init() {
     fetchProjects()
-    
+
     animateCounters()
     setupEventListeners()
     updateStats()
@@ -87,52 +86,46 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "electrification.html?action=new"
     }
   }
-  
 
-
-
-
-
- async function fetchProjects() {
+  async function fetchProjects() {
     try {
-      console.log("Tentative de chargement des projets...");
+      console.log("Tentative de chargement des projets...")
       const response = await fetch("../API/projects/lire.php", {
         headers: {
-          'Accept': 'application/json'
-        }
-      });
+          Accept: "application/json",
+        },
+      })
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Erreur HTTP ${response.status}: ${errorText}`);
+        const errorText = await response.text()
+        throw new Error(`Erreur HTTP ${response.status}: ${errorText}`)
       }
 
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error("Réponse non-JSON reçue");
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Réponse non-JSON reçue")
       }
 
-      const result = await response.json();
-      console.log("Données reçues :", result);
+      const result = await response.json()
+      console.log("Données reçues :", result)
 
       if (!result.success) {
-        throw new Error(result.message || "Erreur serveur");
+        throw new Error(result.message || "Erreur serveur")
       }
 
-      projectsData = result.data || [];
-      console.log(`${projectsData.length} projets chargés avec succès`);
+      projectsData = result.data || []
+      console.log(`${projectsData.length} projets chargés avec succès`)
 
-      loadProjects();
-      updateStats();
-
+      loadProjects()
+      updateStats()
     } catch (error) {
-      console.error("Échec du chargement des projets:", error);
-      displayError(error.message);
+      console.error("Échec du chargement des projets:", error)
+      displayError(error.message)
     }
   }
 
- function displayError(message) {
-    const container = document.getElementById("projects-container") || document.body;
+  function displayError(message) {
+    const container = document.getElementById("projects-container") || document.body
 
     const errorHTML = `
       <div class="error-message">
@@ -147,11 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
           </button>
         </div>
       </div>
-    `;
+    `
 
-    container.innerHTML = errorHTML;
+    container.innerHTML = errorHTML
 
-    const style = document.createElement('style');
+    const style = document.createElement("style")
     style.textContent = `
       .error-message {
         padding: 2rem;
@@ -176,107 +169,98 @@ document.addEventListener("DOMContentLoaded", () => {
         border-radius: 4px;
         cursor: pointer;
       }
-    `;
-    document.head.appendChild(style);
+    `
+    document.head.appendChild(style)
   }
 
-// Ajoutez ceci à votre CSS
-const style = document.createElement('style');
-style.textContent = `
-  .error-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: #FFF8F8;
-    border: 1px solid #FFDDDD;
-    border-radius: 8px;
-    max-width: 600px;
-    margin: 2rem auto;
-    color: #D32F2F;
-  }
-  
-  .error-icon {
-    font-size: 2.5rem;
-  }
-  
-  .error-content h3 {
-    margin: 0 0 0.5rem 0;
-  }
-  
-  .reload-btn {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #D32F2F;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-`;
-document.head.appendChild(style);
+  const style = document.createElement("style")
+  style.textContent = `
+    .error-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: #FFF8F8;
+      border: 1px solid #FFDDDD;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 2rem auto;
+      color: #D32F2F;
+    }
+    
+    .error-icon {
+      font-size: 2.5rem;
+    }
+    
+    .error-content h3 {
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .reload-btn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #D32F2F;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  `
+  document.head.appendChild(style)
 
-
-
-
-
-
-  
   function loadProjects() {
-  console.log("Chargement des projets dans le tableau..."); // ← ajoute ça
-  if (!projectsTableBody) return;
+    console.log("Chargement des projets dans le tableau...") // ← ajoute ça
+    if (!projectsTableBody) return
 
-  projectsTableBody.innerHTML = "";
+    projectsTableBody.innerHTML = ""
 
-  projectsData.forEach((project, index) => {
-    const row = createProjectRow(project);
-    projectsTableBody.appendChild(row);
+    projectsData.forEach((project, index) => {
+      const row = createProjectRow(project)
+      projectsTableBody.appendChild(row)
 
-    setTimeout(() => {
-      row.style.opacity = "1";
-      row.style.transform = "translateY(0)";
-    }, index * 100);
-  });
+      setTimeout(() => {
+        row.style.opacity = "1"
+        row.style.transform = "translateY(0)"
+      }, index * 100)
+    })
 
-  addRowEventListeners();
-}
-
-
+    addRowEventListeners()
+  }
 
   function createProjectRow(project) {
-  const row = document.createElement("tr");
-  row.style.opacity = "0";
-  row.style.transform = "translateY(20px)";
-  row.style.transition = "all 0.3s ease";
+    const row = document.createElement("tr")
+    row.style.opacity = "0"
+    row.style.transform = "translateY(20px)"
+    row.style.transition = "all 0.3s ease"
 
-  const typeClass = project.type === "electrification" ? "electrification" : "investment";
-  const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement";
+    const typeClass = project.type === "electrification" ? "electrification" : "investment"
+    const typeLabel = project.type === "electrification" ? "Électrification" : "Investissement"
 
-  let statusClass = "";
-  let statusLabel = "";
+    let statusClass = ""
+    let statusLabel = ""
 
-  switch (project.status) {
-    case "in-progress":
-      statusClass = "in-progress";
-      statusLabel = "En cours";
-      break;
-    case "planned":
-      statusClass = "planned";
-      statusLabel = "Planifié";
-      break;
-    case "completed":
-      statusClass = "completed";
-      statusLabel = "Terminé";
-      break;
-    default:
-      statusClass = "unknown";
-      statusLabel = "—";
-  }
+    switch (project.status) {
+      case "in-progress":
+        statusClass = "in-progress"
+        statusLabel = "En cours"
+        break
+      case "planned":
+        statusClass = "planned"
+        statusLabel = "Planifié"
+        break
+      case "completed":
+        statusClass = "completed"
+        statusLabel = "Terminé"
+        break
+      default:
+        statusClass = "unknown"
+        statusLabel = "—"
+    }
 
-  row.innerHTML = `
+    row.innerHTML = `
     <td>
       <div class="project-code">
         <strong>${project.code || "-"}</strong>
@@ -289,8 +273,7 @@ document.head.appendChild(style);
       <div class="project-title">
         <strong>${project.title || "-"}</strong>
         <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
-          ${project.contractor || "-"}
-        </small>
+          ${project.contractor || "-"}</small>
       </div>
     </td>
     <td>${project.location || "-"}</td>
@@ -310,11 +293,10 @@ document.head.appendChild(style);
         </button>
       </div>
     </td>
-  `;
+  `
 
-  return row;
- }
-
+    return row
+  }
 
   function addRowEventListeners() {
     // Boutons de visualisation
@@ -419,14 +401,30 @@ document.head.appendChild(style);
   }
 
   function deleteProject(projectId) {
-    if (confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
-      const index = projectsData.findIndex((p) => p.id === projectId)
-      if (index > -1) {
-        projectsData.splice(index, 1)
-        loadProjects()
-        updateStats()
-        showNotification("Projet supprimé avec succès", "success")
-      }
+    if (confirm("Êtes-vous sûr de vouloir archiver ce projet ?")) {
+      fetch("../api/projects/archive.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ project_id: projectId }),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.success) {
+            const index = projectsData.findIndex((p) => p.id === projectId)
+            if (index > -1) {
+              projectsData.splice(index, 1)
+              loadProjects()
+              updateStats()
+              showNotification("Projet archivé avec succès", "success")
+            }
+          } else {
+            showNotification("Erreur lors de l'archivage", "error")
+          }
+        })
+        .catch((err) => {
+          console.error("Erreur:", err)
+          showNotification("Erreur réseau", "error")
+        })
     }
   }
 
@@ -589,25 +587,7 @@ document.head.appendChild(style);
             </tr>
           </thead>
           <tbody>
-            ${projectsData
-              .map(
-                (project) => `
-              <tr>
-                <td>${project.code}</td>
-                <td>${project.type === "electrification" ? "Électrification" : "Investissement"}</td>
-                <td>${project.title}</td>
-                <td>${project.location}</td>
-                <td>${formatCurrency(project.budget)}</td>
-                <td>${formatDate(project.startDate)} - ${formatDate(project.endDate)}</td>
-                <td>
-                  <span class="status status-${project.status}">
-                    ${project.status === "in-progress" ? "En cours" : project.status === "completed" ? "Terminé" : "Planifié"}
-                  </span>
-                </td>
-              </tr>
-            `,
-              )
-              .join("")}
+            ${projectsData.map((project) => ``).join("")}
           </tbody>
         </table>
         
